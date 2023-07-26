@@ -29,4 +29,9 @@ public class User {
     private String password;
 
 
+    public void getEmail(String email) {
+    }
+
+    public void getPassword(String password) {
+    }
 }

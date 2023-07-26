@@ -33,18 +33,26 @@ public class UserDbModel {
     }
 
     public User signIn(String email, String password) {
+        User logowanie= null;
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM user where (email=?) and (password=?");
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM user where (email=?) and (password=?)");
             preparedStatement.setString(1,email);
             preparedStatement.setString(2,password);
             ResultSet result = preparedStatement.executeQuery();
+            if(result.next()) {
+                logowanie = new User();
+                logowanie.getEmail(result.getString("email"));
+                logowanie.getPassword(result.getString("password"));
+            }
+            preparedStatement.executeQuery();
+            dbConnection.closeConnection();
         }
         catch (SQLException e) {
             dbConnection.closeConnection();
             e.printStackTrace();
         }
-        return null;
+        return logowanie;
     }
 
 
