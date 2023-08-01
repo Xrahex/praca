@@ -23,6 +23,21 @@ public class UserDbModel {
             preparedStatement.setString(2,user.getPassword());
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            PreparedStatement preparedStatement1= connect.prepareStatement("SELECT id from user where email=?");
+            preparedStatement1.setString(1,user.getEmail());
+            ResultSet result = preparedStatement1.executeQuery();
+            int userid;
+            if(result.next()) {
+                userid = result.getInt("id");
+                preparedStatement1.close();
+                PreparedStatement preparedStatement2 = connect.prepareStatement("INSERT into profile (user_id,login,imie,nazwisko) values(?,?,?,?)");
+                preparedStatement2.setInt(1,userid);
+                preparedStatement2.setString(2,"");
+                preparedStatement2.setString(3,"");
+                preparedStatement2.setString(4,"");
+                preparedStatement2.executeUpdate();
+                preparedStatement2.close();
+            }
         }
         catch(SQLException e) {
             dbConnection.closeConnection();
@@ -53,6 +68,25 @@ public class UserDbModel {
             e.printStackTrace();
         }
         return logowanie;
+    }
+
+    public void change_password(User user, String password, String password2) throws  SQLException{
+        connect = dbConnection.openConnection();
+        PreparedStatement preparedStatement = connect.prepareStatement("UPDATE user set password=? where password=? and email=?");
+        preparedStatement.setString(1,password2);
+        preparedStatement.setString(2,password);
+        preparedStatement.setString(3,user.getEmail());
+        preparedStatement.executeQuery();
+    }
+
+    public void change_personals(User user,String login, String imie, String nazwisko) throws SQLException {
+        connect = dbConnection.openConnection();
+        PreparedStatement preparedStatement = connect.prepareStatement("UPDATE profile set login =?,imie=?, nazwisko=? where user_id=?");
+        preparedStatement.setString(1,login);
+        preparedStatement.setString(2,imie);
+        preparedStatement.setString(3,nazwisko);
+        preparedStatement.setString(4,user.getId());
+        preparedStatement.executeQuery();
     }
 
 

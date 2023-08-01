@@ -36,7 +36,7 @@
                                 <label class="form-label" for="password">Password</label>
                             </div>
 
-                            <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Nie pamiętasz hasła?</a></p>
+                            <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#">Nie pamiętasz hasła?</a></p>
 
                             <button class="btn btn-outline-light btn-lg px-5" type="submit">Zaloguj</button>
                         </div>

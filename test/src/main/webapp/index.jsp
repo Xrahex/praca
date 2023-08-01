@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Calicounter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
