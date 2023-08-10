@@ -22,8 +22,11 @@ public class change_password extends HttpServlet {
         String password2= req.getParameter("password2");
         HttpSession session = req.getSession(true);
         User user = (User) session.getAttribute("email");
+        System.out.println(password);
+        System.out.println(password2);
         try {
             new UserDbModel().change_password(user,password,password2);
+            System.out.println(user.getEmail());
            // getServletContext().getRequestDispatcher("/login").forward(req,response);
         }
         catch(SQLException e) {

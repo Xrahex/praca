@@ -24,7 +24,7 @@
             <div class="row g-3">
                 <div class="col-sm-6">
                     <label for="productname" class="form-label">Nazwa produktu</label>
-                    <input type="text" class="form-control" id="productname" placeholder="" value="" required>
+                    <input type="text" class="form-control" id="productname" name="productname" placeholder="" value="" required>
                     <div class="invalid-feedback">
                         Valid first name is required.
                     </div>
@@ -32,7 +32,7 @@
 
                 <div class="col-sm-6">
                     <label for="calorie" class="form-label">Wartość energetyczna</label>
-                    <input type="number" class="form-control" id="calorie" placeholder="" value="" required>
+                    <input type="number" class="form-control" id="calorie" name="calorie" placeholder="" value="" required>
                     <div class="invalid-feedback">
                         Valid last name is required.
                     </div>

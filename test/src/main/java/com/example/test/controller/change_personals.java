@@ -19,13 +19,14 @@ public class change_personals extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServerException, IOException, ServletException {
+        HttpSession session = req.getSession(true);
+        User user = (User) session.getAttribute("email");
         String username = req.getParameter("username");
         String imie = req.getParameter("firstName");
         String nazwisko = req.getParameter("lastName");
-        HttpSession session = req.getSession(true);
-        User user = (User) session.getAttribute("email");
         try {
             new UserDbModel().change_personals(user,username,imie,nazwisko);
+            System.out.println(imie);
             getServletContext().getRequestDispatcher("/panel.jsp").forward(req,response);
         }
         catch(SQLException e) {

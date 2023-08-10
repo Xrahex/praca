@@ -20,6 +20,8 @@ public class signIn extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         User user = new UserDbModel().signIn(email,password);
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword());
         if(user ==  null) {
             req.setAttribute("status", 1);
             getServletContext().getRequestDispatcher("/signin.jsp").forward(req,response);

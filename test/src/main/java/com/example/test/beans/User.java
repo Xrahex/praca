@@ -28,15 +28,15 @@ public class User {
     private String email;
     private String password;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    private String id;
+    private int id;
 
 
     public void getEmail(String email) {

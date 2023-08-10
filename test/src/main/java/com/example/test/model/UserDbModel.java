@@ -48,7 +48,7 @@ public class UserDbModel {
     }
 
     public User signIn(String email, String password) {
-        User logowanie= null;
+        User logowanie = null;
         try {
             connect = dbConnection.openConnection();
             PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM user where (email=?) and (password=?)");
@@ -56,16 +56,18 @@ public class UserDbModel {
             preparedStatement.setString(2,password);
             ResultSet result = preparedStatement.executeQuery();
             if(result.next()) {
+                System.out.println("yoyo");
                 logowanie = new User();
-                logowanie.getEmail(result.getString("email"));
-                logowanie.getPassword(result.getString("password"));
+                logowanie.setId(result.getInt("id"));
+                logowanie.setEmail(result.getString("email"));
+                logowanie.setPassword(result.getString("password"));
             }
-            preparedStatement.executeQuery();
             dbConnection.closeConnection();
+            return logowanie;
         }
         catch (SQLException e) {
-            dbConnection.closeConnection();
             e.printStackTrace();
+            dbConnection.closeConnection();
         }
         return logowanie;
     }
@@ -77,6 +79,7 @@ public class UserDbModel {
         preparedStatement.setString(2,password);
         preparedStatement.setString(3,user.getEmail());
         preparedStatement.executeQuery();
+        System.out.println("test");
     }
 
     public void change_personals(User user,String login, String imie, String nazwisko) throws SQLException {
@@ -85,7 +88,8 @@ public class UserDbModel {
         preparedStatement.setString(1,login);
         preparedStatement.setString(2,imie);
         preparedStatement.setString(3,nazwisko);
-        preparedStatement.setString(4,user.getId());
+        preparedStatement.setInt(4,user.getId());
+        System.out.println(user.getId());
         preparedStatement.executeQuery();
     }
 
