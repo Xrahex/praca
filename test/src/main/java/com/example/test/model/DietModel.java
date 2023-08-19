@@ -56,6 +56,7 @@ public class DietModel {
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
                 DietList dietList=new DietList();
+                dietList.setDiet_list_id(resultSet.getInt("id_diet"));
                 dietList.setId_user(resultSet.getInt("id_user"));
                 dietList.setName(resultSet.getString("diet_name"));
                 wszystkiediety.add(dietList);
@@ -66,6 +67,23 @@ public class DietModel {
             e.printStackTrace();
         }
         return wszystkiediety;
+    }
+
+    public boolean deleteDietlistbyid(int id_diet) {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM diets WHERE (id_diet=?)");
+            preparedStatement.setInt(1, id_diet);
+            preparedStatement.executeQuery();
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            dbConnection.closeConnection();
+        }
+        return true;
     }
 
 

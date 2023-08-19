@@ -195,7 +195,7 @@
                 </a>
             </li>
             <li>
-                <a href="diety.jsp" class="nav-link text-white">
+                <a href="alldiets" class="nav-link text-white">
                     <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                     Diety
                 </a>
@@ -227,6 +227,5 @@
     </div>
 </main>
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
 <script src="sidebars.js"></script></body>
 </html>
