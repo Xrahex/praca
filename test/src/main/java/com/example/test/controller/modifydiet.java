@@ -1,5 +1,6 @@
 package com.example.test.controller;
 
+
 import com.example.test.beans.DietList;
 import com.example.test.beans.User;
 import com.example.test.model.DietModel;
@@ -12,22 +13,26 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet(name = "add_diet_listy", urlPatterns = {"/adddietlist"})
-public class adddiet extends HttpServlet {
+@WebServlet(name="modifydiet", urlPatterns = {"/modifydietlist"})
+public class modifydiet extends HttpServlet {
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse response) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+
         HttpSession session = req.getSession(true);
-        User user = (User) session.getAttribute("email");
+        User user =  (User) session.getAttribute("email");
         if(user == null) {
-            response.sendRedirect(req.getContextPath() + "");
+            response.sendRedirect("/signin.jsp");
+            return;
         }
-        DietList dietList= new DietList();
-        dietList.setId_user(user.getId());
-        String listname = req.getParameter("listName");
-        dietList.setName(listname);
-        new DietModel().createdietlist(dietList);
+
+        int dietlistid = Integer.parseInt(req.getParameter("list_id"));
+        String dietname = req.getParameter("name");
+
+        boolean isDietlistupdated = new DietModel().updateDietlistbyid(dietlistid,dietname);
 
         response.sendRedirect(req.getContextPath() + "/alldiets");
+
+
     }
 }

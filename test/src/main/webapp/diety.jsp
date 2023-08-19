@@ -127,7 +127,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="${pageContext.request.contextPath}/expense/list/update?list_id="
+                <form action="${pageContext.request.contextPath}/modifydietlist?list_id="
                       method="post"
                       id="confirmExpenseListModify">
                     <label class="fw-bold mt-2 mb-1" for="modifiedListName">Nazwa listy</label>
@@ -179,7 +179,6 @@
     $(".modify-expense-list").click(function () {
         let listName = $(this).parent().parent().find('.list-name').text();
         let listId = $(this).parent().parent().find('.list-id').text();
-        let expenseLimit = $(this).parent().parent().find('.expense-limit').text();
         $("#modify-list-modal-title").text('Modyfikuj: ' + listName);
 
         $("#modifiedListName").val(listName);

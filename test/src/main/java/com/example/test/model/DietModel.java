@@ -86,5 +86,23 @@ public class DietModel {
         return true;
     }
 
+    public boolean updateDietlistbyid(int id_diet, String diet_name) {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE diets SET diet_name=? WHERE (id_diet=?)");
+            preparedStatement.setString(1,diet_name);
+            preparedStatement.setInt(2,id_diet);
+            preparedStatement.executeQuery();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            dbConnection.closeConnection();
+        }
+        return true;
+    }
+
 
 }
