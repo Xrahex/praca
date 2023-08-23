@@ -1,6 +1,13 @@
 <%--
   Created by IntelliJ IDEA.
   User: Xrahex
+  Date: 22.08.2023
+  Time: 15:39
+  To change this template use File | Settings | File Templates.
+--%>
+<%--
+  Created by IntelliJ IDEA.
+  User: Xrahex
   Date: 05.08.2023
   Time: 20:52
   To change this template use File | Settings | File Templates.
@@ -18,53 +25,79 @@
     <title>Title</title>
 </head>
 <body>
-<a href="add_your_diet.jsp">
-<button>Dodaj własna diete</button>
-</a>
-<button>Wybierz diete dla Ciebie</button>
 <table class="table table-striped table-bordered">
     <thead class="table-dark">
     <tr>
         <th>Nazwa listy</th>
+        <th><button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                    data-bs-target="#addExpenseListModal">
+            <span class="fw-light fs-8">Dodaj listę wydatków</span>
+        </button></th>
+
+    </tr>
+    <tr>
+        <th>Śniadanie (7:00-9:00)</th>
         <th>Usuń</th>
         <th>Modyfikuj</th>
     </tr>
+    <tr>
+        <th>Przekąska (9:00-12:00) </th>
+        <th>Usuń</th>
+        <th>Modyfikuj</th>
+    </tr>
+    <tr>
+        <th>Obiad (13:00-16:00) </th>
+        <th>Usuń</th>
+        <th>Modyfikuj</th>
+    </tr>
+    <tr>
+        <th>Podwieczorek (16:00-18:00)  </th>
+        <th>Usuń</th>
+        <th>Modyfikuj</th>
+    </tr>
+    <tr>
+        <th>Kolacja (18:00-20:00)  </th>
+        <th>Usuń</th>
+        <th>Modyfikuj</th>
+    </tr>
+
+
     </thead>
-<c:if test="${!empty requestScope.showalldiets}">
-    <c:forEach items="${requestScope.showalldiets}" var="wszystkiediety">
-        <tr>
-            <td>
-                <a href="${pageContext.request.contextPath}/dietlistdetails?list_id=${wszystkiediety.diet_list_id}"
-                   class="list-name">${wszystkiediety.name}</a>
-                <p class="list-id" style="display:none;">${wszystkiediety.diet_list_id}</p>
-            </td>
-            <td class="text-center m-0">
-                <button class="delete-expense-list btn btn-outline-danger" type="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#deleteExpenseListConfirmationModal"
-                        id="deleteExpenseListButton">
+    <c:if test="${!empty requestScope.showalldiets}">
+        <c:forEach items="${requestScope.showalldiets}" var="wszystkiediety">
+            <tr>
+                <td>
+                    <a href="${pageContext.request.contextPath}/dietlistdetails?list_id=${wszystkiediety.diet_list_id}"
+                       class="list-name">${wszystkiediety.name}</a>
+                    <p class="list-id" style="display:none;">${wszystkiediety.diet_list_id}</p>
+                </td>
+                <td class="text-center m-0">
+                    <button class="delete-expense-list btn btn-outline-danger" type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#deleteExpenseListConfirmationModal"
+                            id="deleteExpenseListButton">
                                                             <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </span>
-                </button>
-            </td>
-            <td class="text-center m-0">
-                <button class="modify-expense-list btn btn-outline-dark" type="button"
-                        data-bs-toggle="modal"
-                        data-bs-target="#modifyExpenseListConfirmationModal"
-                        id="modifyExpenseListButton">
+                    </button>
+                </td>
+                <td class="text-center m-0">
+                    <button class="modify-expense-list btn btn-outline-dark" type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modifyExpenseListConfirmationModal"
+                            id="modifyExpenseListButton">
                                                             <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-pen-to-square" aria-hidden="true"></i>
                                                             </span>
-                </button>
-            </td>
-        </tr>
-  </c:forEach>
-</c:if>
+                    </button>
+                </td>
+            </tr>
+        </c:forEach>
+    </c:if>
     <c:if test="${empty requestScope.showalldiets}">
         <tr>
             <td colspan="7" style="text-align: center;">
-               Nie utworzyłeś żadnej swojej diety.
+                Nie utworzyłeś żadnej swojej diety.
             </td>
         </tr>
     </c:if>
@@ -167,14 +200,6 @@
         $("#confirmExpenseListDelete").attr('action', actionAttr + listId);
     });
 </script>
-<script>
-    $(".archive-expense-list").click(function () {
-        let listId = $(this).parent().parent().find('.list-id').text();
-        let actionAttr = $("#archive").attr('action');
-        $("#archive").attr('action', actionAttr + listId);
-    });
-</script>
-
 <script>
     $(".modify-expense-list").click(function () {
         let listName = $(this).parent().parent().find('.list-name').text();

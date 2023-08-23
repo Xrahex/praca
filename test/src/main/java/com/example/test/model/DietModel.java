@@ -35,12 +35,11 @@ public class DietModel {
         try {
             connect = dbConnection.openConnection();
             PreparedStatement preparedStatement = connect.prepareStatement("INSERT into diets(id_user,diet_name) values (?,?)");
-            preparedStatement.setInt(1,dietList.getId_user());
-            preparedStatement.setString(2,dietList.getName());
+            preparedStatement.setInt(1, dietList.getId_user());
+            preparedStatement.setString(2, dietList.getName());
             preparedStatement.executeQuery();
             preparedStatement.close();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -49,21 +48,19 @@ public class DietModel {
     }
 
     public List<DietList> alldiets() {
-        List<DietList> wszystkiediety= new ArrayList<>();
+        List<DietList> wszystkiediety = new ArrayList<>();
         try {
             connect = dbConnection.openConnection();
             PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM diets");
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()) {
-                DietList dietList=new DietList();
+            while (resultSet.next()) {
+                DietList dietList = new DietList();
                 dietList.setDiet_list_id(resultSet.getInt("id_diet"));
                 dietList.setId_user(resultSet.getInt("id_user"));
                 dietList.setName(resultSet.getString("diet_name"));
                 wszystkiediety.add(dietList);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return wszystkiediety;
@@ -75,12 +72,10 @@ public class DietModel {
             PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM diets WHERE (id_diet=?)");
             preparedStatement.setInt(1, id_diet);
             preparedStatement.executeQuery();
-        }
-        catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        }
-        finally {
+        } finally {
             dbConnection.closeConnection();
         }
         return true;
@@ -90,19 +85,57 @@ public class DietModel {
         try {
             connect = dbConnection.openConnection();
             PreparedStatement preparedStatement = connect.prepareStatement("UPDATE diets SET diet_name=? WHERE (id_diet=?)");
-            preparedStatement.setString(1,diet_name);
-            preparedStatement.setInt(2,id_diet);
+            preparedStatement.setString(1, diet_name);
+            preparedStatement.setInt(2, id_diet);
             preparedStatement.executeQuery();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        }
-        finally {
+        } finally {
             dbConnection.closeConnection();
         }
         return true;
     }
 
+    public DietList searchDietListByListid(int list_id) {
+        DietList dietList = new DietList();
 
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM diets INNER JOIN user ON diets.id_user = user.id where (id_diet=?)");
+            preparedStatement.setInt(1, list_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                dietList.setDiet_list_id(resultSet.getInt("id_diet"));
+                dietList.setId_user(resultSet.getInt("id_user"));
+                dietList.setName(resultSet.getString("diet_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConnection.closeConnection();
+        }
+        return dietList;
+    }
+
+    public List<Product> getproductsfromdiet(int list_id) {
+
+        List<Product> produkty = new ArrayList<>();
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM products WHERE diet_list_id=?");
+            preparedStatement.setInt(1, list_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Product product= new Product();
+                product.setProduct_id(resultSet.getInt("product_id"));
+                product.setDiet_list_id(resultSet.getInt("diet_list_id"));
+                product.setName(resultSet.getString("product_name"));
+                product.setCalorie(resultSet.getInt("calorie"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return  produkty;
+    }
 }
