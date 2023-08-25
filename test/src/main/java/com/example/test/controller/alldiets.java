@@ -2,6 +2,7 @@ package com.example.test.controller;
 
 import com.example.test.beans.DietList;
 import com.example.test.beans.Product;
+import com.example.test.beans.User;
 import com.example.test.model.DietModel;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -20,7 +21,9 @@ public class alldiets extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServerException, IOException, ServletException {
         HttpSession session = req.getSession(true);
-        List<DietList> alldiets=new DietModel().alldiets();
+        User user = (User) session.getAttribute("email");
+        int id_user = user.getId();
+        List<DietList> alldiets=new DietModel().alldiets(id_user);
         System.out.println(alldiets.size());
         req.setAttribute("showalldiets",alldiets);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/diety.jsp");

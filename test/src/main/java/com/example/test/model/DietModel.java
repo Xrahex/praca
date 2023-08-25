@@ -47,11 +47,12 @@ public class DietModel {
         return true;
     }
 
-    public List<DietList> alldiets() {
+    public List<DietList> alldiets(int id_user) {
         List<DietList> wszystkiediety = new ArrayList<>();
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM diets");
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM diets where id_user=?");
+            preparedStatement.setInt(1,id_user);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 DietList dietList = new DietList();
@@ -132,10 +133,29 @@ public class DietModel {
                 product.setDiet_list_id(resultSet.getInt("diet_list_id"));
                 product.setName(resultSet.getString("product_name"));
                 product.setCalorie(resultSet.getInt("calorie"));
+                produkty.add(product);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     return  produkty;
+    }
+
+    public boolean createdietproductsniadanie(Product product) {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into products(diet_list_id,product_name,calorie,pora_dnia) values (?,?,?,?)");
+            preparedStatement.setInt(1,product.getDiet_list_id());
+            preparedStatement.setString(2, product.getName());
+            preparedStatement.setInt(3, product.getCalorie());
+            preparedStatement.setInt(4,1);
+            preparedStatement.executeQuery();
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        dbConnection.closeConnection();
+        return true;
     }
 }

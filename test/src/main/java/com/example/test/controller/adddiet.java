@@ -20,7 +20,7 @@ public class adddiet extends HttpServlet {
         HttpSession session = req.getSession(true);
         User user = (User) session.getAttribute("email");
         if(user == null) {
-            response.sendRedirect(req.getContextPath() + "");
+            response.sendRedirect(req.getContextPath() + "/signin.jsp");
         }
         DietList dietList= new DietList();
         dietList.setId_user(user.getId());

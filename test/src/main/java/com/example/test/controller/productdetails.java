@@ -33,8 +33,10 @@ public class productdetails extends HttpServlet {
 
         try {
             int dietlistid = Integer.parseInt(req.getParameter("list_id"));
+            System.out.println(dietlistid);
             DietList dietList = dietModel.searchDietListByListid(dietlistid);
             List<Product>  product=new DietModel().getproductsfromdiet(dietlistid);
+            System.out.println(product.isEmpty());
             req.setAttribute("dietlist",dietList);
             req.setAttribute("dietwithproducts",product);
         }
