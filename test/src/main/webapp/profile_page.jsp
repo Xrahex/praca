@@ -156,16 +156,6 @@
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3">Dane adresowe</h4>
                 <form class="needs-validation" novalidate action="changepersonals" method="post">
-                    <div class="col-12">
-                        <label for="username" class="form-label">Login</label>
-                        <div class="input-group has-validation">
-                            <span class="input-group-text">@</span>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
-                            <div class="invalid-feedback">
-                                Your username is required.
-                            </div>
-                        </div>
-                    </div>
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">Imie</label>
@@ -174,7 +164,6 @@
                                 Valid first name is required.
                             </div>
                         </div>
-
                         <div class="col-sm-6">
                             <label for="lastName" class="form-label">Nazwisko</label>
                             <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
@@ -182,8 +171,50 @@
                                 Valid last name is required.
                             </div>
                         </div>
-                    <hr class="my-4">
+                        <div class="col-sm-6">
+                            <label for="plec" class="form-label">Płeć</label>
+                            <input type="text" class="form-control" id="plec" name="plec" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="aktualna_waga" class="form-label">Aktualna waga</label>
+                            <input type="text" class="form-control" id="aktualna_waga" name="aktualna_waga" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                            <div class="col-sm-6">
+                                <label for="waga_docelowa" class="form-label">Waga docelowa</label>
+                                <input type="text" class="form-control" id="waga_docelowa" name="waga_docelowa" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid last name is required.
+                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="wzrost" class="form-label">Wzrost</label>
+                            <input type="text" class="form-control" id="wzrost" name="wzrost" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="wiek" class="form-label">Wiek</label>
+                            <input type="text" class="form-control" id="wiek" name="wiek" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="aktywnosc_fizyczna" class="form-label">Aktywność fizyczna</label>
+                            <input type="text" class="form-control" id="aktywnosc_fizyczna" name="aktywnosc_fizyczna" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
 
+                    <hr class="my-4">
                     <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
                     </div>
                 </form>

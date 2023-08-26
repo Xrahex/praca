@@ -148,7 +148,7 @@ public class DietModel {
             preparedStatement.setInt(1,product.getDiet_list_id());
             preparedStatement.setString(2, product.getName());
             preparedStatement.setInt(3, product.getCalorie());
-            preparedStatement.setInt(4,1);
+            preparedStatement.setInt(4,product.getPoradnia());
             preparedStatement.executeQuery();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -156,6 +156,21 @@ public class DietModel {
             return false;
         }
         dbConnection.closeConnection();
+        return true;
+    }
+
+    public boolean deleteproductbyid(int product_id) {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM products WHERE (product_id=?)");
+            preparedStatement.setInt(1, product_id);
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            dbConnection.closeConnection();
+        }
         return true;
     }
 }

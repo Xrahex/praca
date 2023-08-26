@@ -18,10 +18,6 @@
     <title>Title</title>
 </head>
 <body>
-<a href="add_your_diet.jsp">
-<button>Dodaj własna diete</button>
-</a>
-<button>Wybierz diete dla Ciebie</button>
 <table class="table table-striped table-bordered">
     <thead class="table-dark">
     <tr>

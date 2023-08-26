@@ -5,6 +5,24 @@ public class Product {
     private String name;
     private int calorie;
 
+    public int getPoradnia() {
+        return poradnia;
+    }
+
+    public void setPoradnia(int poradnia) {
+        this.poradnia = poradnia;
+    }
+
+    public Product(String name, int calorie, int poradnia, int diet_list_id, int product_id) {
+        this.name = name;
+        this.calorie = calorie;
+        this.poradnia = poradnia;
+        this.diet_list_id = diet_list_id;
+        this.product_id = product_id;
+    }
+
+    private int poradnia;
+
     public int getDiet_list_id() {
         return diet_list_id;
     }
