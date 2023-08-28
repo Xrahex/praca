@@ -173,4 +173,21 @@ public class DietModel {
         }
         return true;
     }
+
+    public boolean updateproductbyid(int product_id,String product_name, int calorie) {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE products SET product_name=?, calorie=? WHERE (product_id=?)");
+            preparedStatement.setString(1, product_name);
+            preparedStatement.setInt(2, calorie);
+            preparedStatement.setInt(3, product_id);
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            dbConnection.closeConnection();
+        }
+        return true;
+    }
 }

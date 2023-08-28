@@ -16,7 +16,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <title>Title</title>
+    <title>Dodaj produkt</title>
 </head>
 <body>
 <%
@@ -27,6 +27,33 @@
         <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
         <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
     </svg></a>      Dodaj produkty</p>
+    <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+            data-bs-target="#addExpenseListModal">
+        <span class="fw-light fs-8">Dodaj produkt</span>
+    </button>
+    <div class="modal" id="addExpenseListModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Dodawanie listy wydatków</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="${pageContext.request.contextPath}/addproductsnaidanie?list_id=${pageContext.request.getParameter("list_id")}" method="post" id="addExpenseList">
+                        <label class="fw-bold mt-2 mb-1" for="productname">Nazwa produktu</label>
+                        <input type="text" name="productname" id="productname"/>
+                        <input type="hidden" name="sniadanie" value="<%= sniadanie %>">
+                        <label class="fw-bold mt-2 mb-1" for="calorie">Liczba kalorii</label>
+                        <input type="text" name="calorie" id="calorie"/>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+                    <button type="submit" name="submit" form="addExpenseList" class="btn btn-primary">Dodaj</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <c:if test="${!empty requestScope.dietwithproducts}">
         <div class="center">
             <div class="card">
@@ -49,10 +76,10 @@
                                 <tr>
                                     <td>
                                     <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
-                                    <p>${produktyzdiet.name}</p>
+                                    <p class="product_name">${produktyzdiet.name}</p>
                                     </td>
                                     <td>
-                                    <p>${produktyzdiet.calorie}</p>
+                                    <p class="product_calorie">${produktyzdiet.calorie}</p>
                                     </td>
                                     <td class="text-center m-0">
                                         <button class="delete-expense-list btn btn-outline-danger" type="button"
@@ -85,42 +112,9 @@
                             </tr>
                         </c:if>
                     </table>
-                    <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-                            data-bs-target="#addExpenseListModal">
-                        <span class="fw-light fs-8">Dodaj Wydatek</span>
-                    </button>
-                    <button class="btn btn-primary">
-                        <span class="fw-light fs-8">Suma wszystkich wydatków: <fmt:formatNumber type="CURRENCY" maxFractionDigits="2" value="${suma_wydatkow}"/></span>
-                    </button>
-                    <button class="btn btn-success">
-                        <span class="fw-light fs-8">Suma twoich wydatków: <fmt:formatNumber type="CURRENCY" maxFractionDigits="2" value="${suma_wydatkow_t}"/></span>
-                    </button>
                 </div>
             </div>
         </div>
-    <div class="modal" id="addExpenseListModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Dodawanie listy wydatków</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="${pageContext.request.contextPath}/addproductsnaidanie?list_id=${pageContext.request.getParameter("list_id")}" method="post" id="addExpenseList">
-                        <label class="fw-bold mt-2 mb-1" for="productname">Nazwa produktu</label>
-                        <input type="text" name="productname" id="productname"/>
-                        <input type="hidden" name="sniadanie" value="<%= sniadanie %>">
-                        <label class="fw-bold mt-2 mb-1" for="calorie">Liczba kalorii</label>
-                        <input type="text" name="calorie" id="calorie"/>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-                    <button type="submit" name="submit" form="addExpenseList" class="btn btn-primary">Dodaj</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="modal" id="deleteExpenseListConfirmationModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -155,13 +149,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="${pageContext.request.contextPath}/expense/list/update?list_id="
+                    <form action="${pageContext.request.contextPath}/modifyproduct?list_id=${pageContext.request.getParameter("list_id")}&product_id="
                           method="post"
                           id="confirmExpenseListModify">
-                        <label class="fw-bold mt-2 mb-1" for="modifiedListName">Nazwa listy</label>
-                        <input type="text" name="name" id="modifiedListName"/>
-                        <label class="fw-bold mt-2 mb-1" for="modifiedExpenseLimit">Limit wydatków dla listy</label>
-                        <input type="text" name="expenseLimit" id="modifiedExpenseLimit"/>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedproductName">Nazwa produktu</label>
+                        <input type="text" name="name" id="modifiedproductName"/>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedcalorie">Liczba kalorii</label>
+                        <input type="text" name="calorie" id="modifiedcalorie"/>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -203,25 +197,18 @@
         });
     </script>
     <script>
-        $(".archive-expense-list").click(function () {
-            let listId = $(this).parent().parent().find('.list-id').text();
-            let actionAttr = $("#archive").attr('action');
-            $("#archive").attr('action', actionAttr + listId);
-        });
-    </script>
-
-    <script>
         $(".modify-expense-list").click(function () {
-            let listName = $(this).parent().parent().find('.list-name').text();
+            let productName = $(this).parent().parent().find('.product_name').text();
             let listId = $(this).parent().parent().find('.list-id').text();
-            let expenseLimit = $(this).parent().parent().find('.expense-limit').text();
-            $("#modify-list-modal-title").text('Modyfikuj: ' + listName);
+            let product_id = $(this).parent().parent().find('.product_id').text();
+            let product_calorie=  $(this).parent().parent().find('.product_calorie').text();
+            $("#modify-list-modal-title").text('Modyfikuj: ' + productName);
 
-            $("#modifiedListName").val(listName);
-            $("#modifiedExpenseLimit").val(expenseLimit);
+            $("#modifiedproductName").val(productName);
+            $("#modifiedcalorie").val(product_calorie);
 
             let actionAttr = $("#confirmExpenseListModify").attr('action');
-            $("#confirmExpenseListModify").attr('action', actionAttr + listId);
+            $("#confirmExpenseListModify").attr('action', actionAttr + product_id);
         });
     </script>
 </body>
