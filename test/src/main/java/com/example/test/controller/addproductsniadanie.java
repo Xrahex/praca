@@ -29,7 +29,7 @@ public class addproductsniadanie extends HttpServlet {
         String productname = req.getParameter("productname");
         String calorie = req.getParameter("calorie");
         String listid = req.getParameter("list_id");
-        String poradnia = req.getParameter("sniadanie");
+        String poradnia = req.getParameter("poradnia");
         product.setDiet_list_id(Integer.parseInt(listid));
         product.setName(productname);
         product.setCalorie(Integer.valueOf(calorie));

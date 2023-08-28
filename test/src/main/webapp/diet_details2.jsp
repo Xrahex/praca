@@ -19,9 +19,6 @@
     <title>Dodaj produkt</title>
 </head>
 <body>
-<%
-    int sniadanie = 1;
-%>
 <div class="container h-100">
     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"><a href="${pageContext.request.contextPath}/alldiets"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="43" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
@@ -30,6 +27,9 @@
     <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
             data-bs-target="#addExpenseListModal">
         <span class="fw-light fs-8">Dodaj produkt</span>
+    </button>
+    <button class="btn btn-primary">
+        <span class="fw-light fs-8">Wszystkie kalorie:${requestScope.liczbacalorie}</span>
     </button>
     <div class="modal" id="addExpenseListModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -40,11 +40,18 @@
                 </div>
                 <div class="modal-body">
                     <form action="${pageContext.request.contextPath}/addproductsnaidanie?list_id=${pageContext.request.getParameter("list_id")}" method="post" id="addExpenseList">
-                        <label class="fw-bold mt-2 mb-1" for="productname">Nazwa produktu</label>
-                        <input type="text" name="productname" id="productname"/>
-                        <input type="hidden" name="sniadanie" value="<%= sniadanie %>">
-                        <label class="fw-bold mt-2 mb-1" for="calorie">Liczba kalorii</label>
-                        <input type="text" name="calorie" id="calorie"/>
+                        <label class="fw-bold mt-2 mb-1" for="productname">Nazwa produktu</label><br>
+                        <input type="text" name="productname" id="productname"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="calorie">Liczba kalorii</label><br>
+                        <input type="text" name="calorie" id="calorie"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="poradnia">Pora dnia</label><br>
+                        <select name="poradnia" id="poradnia">
+                            <option value="1">Śniadanie</option>
+                            <option value="2">Przekąska</option>
+                            <option value="3">Obiad</option>
+                            <option value="4">Podwieczorek</option>
+                            <option value="5">Kolacja</option>
+                        </select>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -59,7 +66,6 @@
             <div class="card">
                 <div class="card-body">
                     <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
-                    <p class="sniadanie" style="display: none;"><%= sniadanie %></p>
                     <h5 class="card-title">
                         <p>Śniadanie (7:00-9:00)</p>
                     </h5>
@@ -71,11 +77,12 @@
                             <th colspan="2" style="text-align: center;">Operacje</th>
                         </tr>
                         </thead>
-                        <c:if test="${!empty requestScope.dietwithproducts}">
-                            <c:forEach items="${requestScope.dietwithproducts}" var="produktyzdiet">
+                        <c:if test="${!empty requestScope.dietwithproducts1}">
+                            <c:forEach items="${requestScope.dietwithproducts1}" var="produktyzdiet">
                                 <tr>
                                     <td>
                                     <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
+                                    <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
                                     <p class="product_name">${produktyzdiet.name}</p>
                                     </td>
                                     <td>

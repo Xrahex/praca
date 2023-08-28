@@ -33,12 +33,15 @@ public class productdetails extends HttpServlet {
 
         try {
             int dietlistid = Integer.parseInt(req.getParameter("list_id"));
-            System.out.println(dietlistid);
             DietList dietList = dietModel.searchDietListByListid(dietlistid);
             List<Product>  product=new DietModel().getproductsfromdiet(dietlistid);
-            System.out.println(product.isEmpty());
+            List<Product> product1 = new DietModel().getproductsfromdiet1(dietlistid);
+            int licznik_calorie = new DietModel().caloriecount(dietlistid);
+            System.out.println(licznik_calorie);
             req.setAttribute("dietlist",dietList);
             req.setAttribute("dietwithproducts",product);
+            req.setAttribute("dietwithproducts1",product1);
+            req.setAttribute("liczbacalorie",licznik_calorie);
         }
         catch (NumberFormatException e) {
             req.setAttribute("dietlist",null);

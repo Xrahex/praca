@@ -3,6 +3,7 @@ package com.example.test.model;
 import com.example.test.beans.DietList;
 import com.example.test.beans.Product;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -133,6 +134,7 @@ public class DietModel {
                 product.setDiet_list_id(resultSet.getInt("diet_list_id"));
                 product.setName(resultSet.getString("product_name"));
                 product.setCalorie(resultSet.getInt("calorie"));
+                product.setPoradnia(resultSet.getInt("pora_dnia"));
                 produkty.add(product);
             }
         } catch (SQLException e) {
@@ -140,6 +142,31 @@ public class DietModel {
         }
     return  produkty;
     }
+
+    public List<Product> getproductsfromdiet1(int list_id) {
+
+        List<Product> produkty = new ArrayList<>();
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM products WHERE diet_list_id=? and pora_dnia=1");
+            preparedStatement.setInt(1, list_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                Product product= new Product();
+                product.setProduct_id(resultSet.getInt("product_id"));
+                product.setDiet_list_id(resultSet.getInt("diet_list_id"));
+                product.setName(resultSet.getString("product_name"));
+                product.setCalorie(resultSet.getInt("calorie"));
+                product.setPoradnia(resultSet.getInt("pora_dnia"));
+                produkty.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  produkty;
+    }
+
+
 
     public boolean createdietproductsniadanie(Product product) {
         try {
@@ -190,4 +217,27 @@ public class DietModel {
         }
         return true;
     }
+
+    public int caloriecount(int diet_list_id) {
+        int suma= 0;
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement(
+                    "SELECT calorie from products where diet_list_id=?");
+            preparedStatement.setInt(1,diet_list_id);
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                BigDecimal s =resultSet.getBigDecimal("calorie");
+                suma=suma+s.intValue();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            dbConnection.closeConnection();
+        }
+        return suma;
+    }
+
 }
