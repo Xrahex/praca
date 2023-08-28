@@ -48,13 +48,13 @@
                             <c:forEach items="${requestScope.dietwithproducts}" var="produktyzdiet">
                                 <tr>
                                     <td>
+                                    <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
                                     <p>${produktyzdiet.name}</p>
                                     </td>
                                     <td>
                                     <p>${produktyzdiet.calorie}</p>
                                     </td>
                                     <td class="text-center m-0">
-                                        <p class="product-id"><c:out value="${produktyzdiet.product_id}" /></p>
                                         <button class="delete-expense-list btn btn-outline-danger" type="button"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#deleteExpenseListConfirmationModal"
@@ -132,10 +132,9 @@
                 </div>
                 <div class="modal-body">
                     <p>Czy na pewno chcesz usunąć tę listę?</p>
-                    <form action="${pageContext.request.contextPath}/deleteproduct?list_id=${pageContext.request.getParameter("list_id")}"
+                    <form action="${pageContext.request.contextPath}/deleteproduct?list_id=${pageContext.request.getParameter("list_id")}&product_id="
                           method="post"
                           id="confirmExpenseListDelete">
-                        <input type="hidden" name="productId" value="${produktyzdiet.product_id}">
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -196,10 +195,11 @@
         $(".delete-expense-list").click(function () {
             let listName = $(this).parent().parent().find('.list-name').text();
             let listId = $(this).parent().parent().find('.list-id').text();
+            let product_id = $(this).parent().parent().find('.product_id').text();
             $("#delete-list-modal-title").text('Usuń: ' + listName);
 
             let actionAttr = $("#confirmExpenseListDelete").attr('action');
-            $("#confirmExpenseListDelete").attr('action', actionAttr + listId);
+            $("#confirmExpenseListDelete").attr('action', actionAttr + product_id);
         });
     </script>
     <script>

@@ -23,20 +23,21 @@ public class change_personals extends HttpServlet {
         User user = (User) session.getAttribute("email");
         String imie = req.getParameter("firstName");
         String nazwisko = req.getParameter("lastName");
-        String plec =  req.getParameter("plec");
-        String akt_waga=  req.getParameter("aktualna_waga");
-        String doc_waga=  req.getParameter("waga_docelowa");
-        String wzrost=  req.getParameter("wzrost");
-        String wiek=  req.getParameter("wiek");
+        String plec = req.getParameter("plec");
+        String akt_waga = req.getParameter("aktualna_waga");
+        String doc_waga = req.getParameter("waga_docelowa");
+        String wzrost = req.getParameter("wzrost");
+        String wiek = req.getParameter("wiek");
         String aktywnosc_fizyczna = req.getParameter("aktywnosc_fizyczna");
 
-        try {
-            // new UserDbModel().change_personals(user,username,imie,nazwisko);
-            System.out.println(imie);
-            getServletContext().getRequestDispatcher("/panel.jsp").forward(req,response);
-        }
-        catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            // new UserDbModel().change_personals(user,username,imie,nazwisko);
+//            System.out.println(imie);
+//            getServletContext().getRequestDispatcher("/panel.jsp").forward(req,response);
+//        }
+//        catch(SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
     }
 }

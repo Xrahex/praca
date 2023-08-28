@@ -22,7 +22,7 @@ public class deleteproduct extends HttpServlet {
             response.sendRedirect(req.getContextPath() + "/signin.jsp");
             return;
         }
-        int product_id = Integer.parseInt(req.getParameter("productId"));
+        int product_id = Integer.parseInt(req.getParameter("product_id"));
         System.out.println(product_id);
         String listid = req.getParameter("list_id");
 
