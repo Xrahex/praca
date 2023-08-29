@@ -61,7 +61,6 @@
             </div>
         </div>
     </div>
-    <c:if test="${!empty requestScope.dietwithproducts}">
         <div class="center">
             <div class="card">
                 <div class="card-body">
@@ -111,7 +110,7 @@
                                 </tr>
                             </c:forEach>
                         </c:if>
-                        <c:if test="${empty requestScope.dietwithproducts}">
+                        <c:if test="${empty requestScope.dietwithproducts1}">
                             <tr>
                                 <td colspan="5" style="text-align: center;">
                                     Nie dodałeś jeszcze żadnych wydatków.
@@ -173,7 +172,7 @@
             </div>
         </div>
     </div>
-    </c:if>
+
     <c:if test="${empty requestScope.dietlist}">
     Lista o podanym identyfikatorze nie istnieje.
     </c:if>
