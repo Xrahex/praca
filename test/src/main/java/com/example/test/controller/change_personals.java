@@ -24,11 +24,34 @@ public class change_personals extends HttpServlet {
         String imie = req.getParameter("firstName");
         String nazwisko = req.getParameter("lastName");
         String plec = req.getParameter("plec");
-        String akt_waga = req.getParameter("aktualna_waga");
-        String doc_waga = req.getParameter("waga_docelowa");
-        String wzrost = req.getParameter("wzrost");
-        String wiek = req.getParameter("wiek");
-        String aktywnosc_fizyczna = req.getParameter("aktywnosc_fizyczna");
+        double akt_waga = Double.parseDouble(req.getParameter("aktualna_waga"));
+        double doc_waga = Double.parseDouble(req.getParameter("waga_docelowa"));
+        int wzrost = Integer.parseInt(req.getParameter("wzrost"));
+        int wiek = Integer.parseInt(req.getParameter("wiek"));
+        int aktywnosc_fizyczna = Integer.parseInt(req.getParameter("aktywnosc_fizyczna"));
+        int aktywnosc_fizyczna2 = Integer.parseInt(req.getParameter("aktywnosc_fizyczna2"));
+        String wybor = req.getParameter("wybor");
+
+        double PPM=0.0;
+
+
+        if(plec=="kobieta") {
+            PPM = 665.09 + (9.56 * akt_waga) + (1.85 * wzrost) - (4.67 * wiek);
+        }
+        else {
+            PPM = 66.47 + (13.75 * akt_waga) + (5 * wzrost) - (6.75 * wiek);
+        }
+
+        double[][] PAL = {
+                {1.4, 1.5, 1.6, 1.7},
+                {1.5, 1.6, 1.7, 1.8},
+                {1.6, 1.7, 1.8, 1.9},
+                {1.7, 1.8, 1.9, 2.1},
+                {1.9, 2.0, 2.2, 2.3}
+        };
+
+       double yoursPAL = PAL[aktywnosc_fizyczna][aktywnosc_fizyczna2];
+       double CPM = PPM*yoursPAL;
 
 //        try {
 //            // new UserDbModel().change_personals(user,username,imie,nazwisko);

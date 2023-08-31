@@ -36,16 +36,20 @@ public class productdetails extends HttpServlet {
             DietList dietList = dietModel.searchDietListByListid(dietlistid);
             List<Product>  product=new DietModel().getproductsfromdiet(dietlistid);
             List<Product> sniadanie = new DietModel().getproductsfromdiet1(dietlistid,1);
-            List<Product> przekaska = new DietModel().getproductsfromdiet1(dietlistid,1);
-            List<Product> obiad = new DietModel().getproductsfromdiet1(dietlistid,1);
-            List<Product> podwieczorek = new DietModel().getproductsfromdiet1(dietlistid,1);
-            List<Product> kolacja = new DietModel().getproductsfromdiet1(dietlistid,1);
+            List<Product> przekaska = new DietModel().getproductsfromdiet1(dietlistid,2);
+            List<Product> obiad = new DietModel().getproductsfromdiet1(dietlistid,3);
+            List<Product> podwieczorek = new DietModel().getproductsfromdiet1(dietlistid,4);
+            List<Product> kolacja = new DietModel().getproductsfromdiet1(dietlistid,5);
             int licznik_calorie = new DietModel().caloriecount(dietlistid);
             System.out.println(licznik_calorie);
             new DietModel().updateDietcaloriebyid(dietlistid,licznik_calorie);
             req.setAttribute("dietlist",dietList);
             req.setAttribute("dietwithproducts",product);
             req.setAttribute("dietwithproducts1",sniadanie);
+            req.setAttribute("dietwithproducts2",przekaska);
+            req.setAttribute("dietwithproducts3",obiad);
+            req.setAttribute("dietwithproducts4",podwieczorek);
+            req.setAttribute("dietwithproducts5",kolacja);
             req.setAttribute("liczbacalorie",licznik_calorie);
         }
         catch (NumberFormatException e) {

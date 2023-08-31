@@ -35,7 +35,7 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Dodawanie listy wydatków</h5>
+                    <h5 class="modal-title">Dodawanie listy produktów</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -113,7 +113,7 @@
                         <c:if test="${empty requestScope.dietwithproducts1}">
                             <tr>
                                 <td colspan="5" style="text-align: center;">
-                                    Nie dodałeś jeszcze żadnych wydatków.
+                                    Nie dodałeś jeszcze żadnych produktów.
                                 </td>
                             </tr>
                         </c:if>
@@ -145,7 +145,296 @@
             </div>
         </div>
     </div>
+    <div class="center">
+        <div class="card">
+            <div class="card-body">
+                <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
+                <h5 class="card-title">
+                    <p>Przekąska (9:00-12:00)</p>
+                </h5>
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                    <tr>
+                        <th style="text-align: center;">Nazwa</th>
+                        <th style="text-align: center;">Wartość</th>
+                        <th colspan="2" style="text-align: center;">Operacje</th>
+                    </tr>
+                    </thead>
+                    <c:if test="${!empty requestScope.dietwithproducts2}">
+                        <c:forEach items="${requestScope.dietwithproducts2}" var="produktyzdiet">
+                            <tr>
+                                <td>
+                                    <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
+                                    <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
+                                    <p class="product_name">${produktyzdiet.name}</p>
+                                </td>
+                                <td>
+                                    <p class="product_calorie">${produktyzdiet.calorie}</p>
+                                </td>
+                                <td class="text-center m-0">
+                                    <button class="delete-expense-list btn btn-outline-danger" type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteExpenseListConfirmationModal"
+                                            id="deleteExpenseListButton2">
+                                                            <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </span>
+                                    </button>
+                                </td>
+                                <td class="text-center m-0">
+                                    <button class="modify-expense-list btn btn-outline-dark" type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modifyExpenseListConfirmationModal"
+                                            id="modifyExpenseListButton2">
+                                                            <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
+                                                                <i class="fa fa-pen-to-square" aria-hidden="true"></i>
+                                                            </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty requestScope.dietwithproducts2}">
+                        <tr>
+                            <td colspan="5" style="text-align: center;">
+                                Nie dodałeś jeszcze żadnych produktów.
+                            </td>
+                        </tr>
+                    </c:if>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <div class="card">
+            <div class="card-body">
+                <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
+                <h5 class="card-title">
+                    <p>Obiad (13:00-16:00)</p>
+                </h5>
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                    <tr>
+                        <th style="text-align: center;">Nazwa</th>
+                        <th style="text-align: center;">Wartość</th>
+                        <th colspan="2" style="text-align: center;">Operacje</th>
+                    </tr>
+                    </thead>
+                    <c:if test="${!empty requestScope.dietwithproducts3}">
+                        <c:forEach items="${requestScope.dietwithproducts3}" var="produktyzdiet">
+                            <tr>
+                                <td>
+                                    <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
+                                    <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
+                                    <p class="product_name">${produktyzdiet.name}</p>
+                                </td>
+                                <td>
+                                    <p class="product_calorie">${produktyzdiet.calorie}</p>
+                                </td>
+                                <td class="text-center m-0">
+                                    <button class="delete-expense-list btn btn-outline-danger" type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteExpenseListConfirmationModal"
+                                            id="deleteExpenseListButton3">
+                                                            <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </span>
+                                    </button>
+                                </td>
+                                <td class="text-center m-0">
+                                    <button class="modify-expense-list btn btn-outline-dark" type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modifyExpenseListConfirmationModal"
+                                            id="modifyExpenseListButton3">
+                                                            <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
+                                                                <i class="fa fa-pen-to-square" aria-hidden="true"></i>
+                                                            </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty requestScope.dietwithproducts3}">
+                        <tr>
+                            <td colspan="5" style="text-align: center;">
+                                Nie dodałeś jeszcze żadnych produktów.
+                            </td>
+                        </tr>
+                    </c:if>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <div class="card">
+            <div class="card-body">
+                <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
+                <h5 class="card-title">
+                    <p>Podwieczorek (16:00-18:00)</p>
+                </h5>
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                    <tr>
+                        <th style="text-align: center;">Nazwa</th>
+                        <th style="text-align: center;">Wartość</th>
+                        <th colspan="2" style="text-align: center;">Operacje</th>
+                    </tr>
+                    </thead>
+                    <c:if test="${!empty requestScope.dietwithproducts4}">
+                        <c:forEach items="${requestScope.dietwithproducts4}" var="produktyzdiet">
+                            <tr>
+                                <td>
+                                    <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
+                                    <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
+                                    <p class="product_name">${produktyzdiet.name}</p>
+                                </td>
+                                <td>
+                                    <p class="product_calorie">${produktyzdiet.calorie}</p>
+                                </td>
+                                <td class="text-center m-0">
+                                    <button class="delete-expense-list btn btn-outline-danger" type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteExpenseListConfirmationModal"
+                                            id="deleteExpenseListButton4">
+                                                            <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </span>
+                                    </button>
+                                </td>
+                                <td class="text-center m-0">
+                                    <button class="modify-expense-list btn btn-outline-dark" type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modifyExpenseListConfirmationModal"
+                                            id="modifyExpenseListButton4">
+                                                            <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
+                                                                <i class="fa fa-pen-to-square" aria-hidden="true"></i>
+                                                            </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty requestScope.dietwithproducts4}">
+                        <tr>
+                            <td colspan="5" style="text-align: center;">
+                                Nie dodałeś jeszcze żadnych produktów.
+                            </td>
+                        </tr>
+                    </c:if>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="center">
+        <div class="card">
+            <div class="card-body">
+                <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
+                <h5 class="card-title">
+                    <p>Kolacja (18:00-20:00)</p>
+                </h5>
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                    <tr>
+                        <th style="text-align: center;">Nazwa</th>
+                        <th style="text-align: center;">Wartość</th>
+                        <th colspan="2" style="text-align: center;">Operacje</th>
+                    </tr>
+                    </thead>
+                    <c:if test="${!empty requestScope.dietwithproducts5}">
+                        <c:forEach items="${requestScope.dietwithproducts5}" var="produktyzdiet">
+                            <tr>
+                                <td>
+                                    <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
+                                    <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
+                                    <p class="product_name">${produktyzdiet.name}</p>
+                                </td>
+                                <td>
+                                    <p class="product_calorie">${produktyzdiet.calorie}</p>
+                                </td>
+                                <td class="text-center m-0">
+                                    <button class="delete-expense-list btn btn-outline-danger" type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteExpenseListConfirmationModal"
+                                            id="deleteExpenseListButton5">
+                                                            <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </span>
+                                    </button>
+                                </td>
+                                <td class="text-center m-0">
+                                    <button class="modify-expense-list btn btn-outline-dark" type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modifyExpenseListConfirmationModal"
+                                            id="modifyExpenseListButton5">
+                                                            <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
+                                                                <i class="fa fa-pen-to-square" aria-hidden="true"></i>
+                                                            </span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty requestScope.dietwithproducts5}">
+                        <tr>
+                            <td colspan="5" style="text-align: center;">
+                                Nie dodałeś jeszcze żadnych produktów.
+                            </td>
+                        </tr>
+                    </c:if>
+                </table>
+            </div>
+        </div>
+    </div>
 
+
+
+    <div class="modal" id="deleteExpenseListConfirmationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"
+                        id="delete-list-modal-title3">Usuń: </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Czy na pewno chcesz usunąć tę listę?</p>
+                    <form action="${pageContext.request.contextPath}/deleteproduct?list_id=${pageContext.request.getParameter("list_id")}&product_id="
+                          method="post"
+                          id="confirmExpenseListDelete3">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                    <button id="sendToServletButton3" type="submit" name="submit" form="confirmExpenseListDelete"
+                            class="btn btn-primary">Potwierdź</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="deleteExpenseListConfirmationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"
+                        id="delete-list-modal-title2">Usuń: </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Czy na pewno chcesz usunąć tę listę?</p>
+                    <form action="${pageContext.request.contextPath}/deleteproduct?list_id=${pageContext.request.getParameter("list_id")}&product_id="
+                          method="post"
+                          id="confirmExpenseListDelete2">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                    <button id="sendToServletButton2" type="submit" name="submit" form="confirmExpenseListDelete"
+                            class="btn btn-primary">Potwierdź</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal" id="modifyExpenseListConfirmationModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">

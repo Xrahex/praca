@@ -15,7 +15,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <title>Title</title>
+    <title>Lista diet</title>
 </head>
 <body>
 <table class="table table-striped table-bordered">
@@ -67,21 +67,19 @@
 </table>
 <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
         data-bs-target="#addExpenseListModal">
-    <span class="fw-light fs-8">Dodaj listę wydatków</span>
+    <span class="fw-light fs-8">Dodaj swoją diete</span>
 </button>
 <div class="modal" id="addExpenseListModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Dodawanie listy wydatków</h5>
+                <h5 class="modal-title">Dodawanie diety</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form action="adddietlist" method="post" id="adddietlist">
                     <label class="fw-bold mt-2 mb-1" for="listName">Nazwa listy</label>
                     <input type="text" name="listName" id="listName"/>
-                    <label class="fw-bold mt-2 mb-1" for="expenseLimit">Limit wydatków dla listy</label>
-                    <input type="text" name="expenseLimit" id="expenseLimit"/>
                 </form>
             </div>
             <div class="modal-footer">
@@ -128,8 +126,6 @@
                       id="confirmExpenseListModify">
                     <label class="fw-bold mt-2 mb-1" for="modifiedListName">Nazwa listy</label>
                     <input type="text" name="name" id="modifiedListName"/>
-                    <label class="fw-bold mt-2 mb-1" for="modifiedExpenseLimit">Limit wydatków dla listy</label>
-                    <input type="text" name="expenseLimit" id="modifiedExpenseLimit"/>
                 </form>
             </div>
             <div class="modal-footer">
@@ -163,14 +159,6 @@
         $("#confirmExpenseListDelete").attr('action', actionAttr + listId);
     });
 </script>
-<script>
-    $(".archive-expense-list").click(function () {
-        let listId = $(this).parent().parent().find('.list-id').text();
-        let actionAttr = $("#archive").attr('action');
-        $("#archive").attr('action', actionAttr + listId);
-    });
-</script>
-
 <script>
     $(".modify-expense-list").click(function () {
         let listName = $(this).parent().parent().find('.list-name').text();

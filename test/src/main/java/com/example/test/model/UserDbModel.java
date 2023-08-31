@@ -93,5 +93,20 @@ public class UserDbModel {
         preparedStatement.executeQuery();
     }
 
+    public boolean updateuserCPM(int user_id, double CPM) {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE user SET CPM=? WHERE (id=?)");
+            preparedStatement.setDouble(1, CPM);
+            preparedStatement.setInt(2, user_id);
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            dbConnection.closeConnection();
+        }
+        return true;
+    }
 
 }
