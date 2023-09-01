@@ -1,11 +1,15 @@
 package com.example.test.model;
 
+import com.example.test.beans.DietList;
+import com.example.test.beans.Product;
 import com.example.test.beans.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDbModel {
 
@@ -93,10 +97,10 @@ public class UserDbModel {
         preparedStatement.executeQuery();
     }
 
-    public boolean updateuserCPM(int user_id, double CPM) {
+    public boolean updateuserCPM(int user_id, double CPM) throws SQLException{
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE user SET CPM=? WHERE (id=?)");
+            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE profile SET CPM=? WHERE (user_id=?)");
             preparedStatement.setDouble(1, CPM);
             preparedStatement.setInt(2, user_id);
             preparedStatement.executeQuery();
@@ -107,6 +111,29 @@ public class UserDbModel {
             dbConnection.closeConnection();
         }
         return true;
+    }
+
+    public List<DietList> finddiets(double CPM1, double CPM2) throws SQLException{
+        List<DietList> diets = new ArrayList<>();
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("Select * from diets where calories BETWEEN ? AND ? order by calories DESC LIMIT 3;");
+            preparedStatement.setDouble(1, CPM1);
+            preparedStatement.setDouble(2, CPM2);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                DietList dietList= new DietList();
+                dietList.setDiet_list_id(resultSet.getInt("id_diet"));
+                dietList.setId_user(resultSet.getInt("id_user"));
+                dietList.setName(resultSet.getString("diet_name"));
+                diets.add(dietList);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            dbConnection.closeConnection();
+        }
+        return diets;
     }
 
 }

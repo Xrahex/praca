@@ -1,5 +1,6 @@
 package com.example.test.controller;
 
+import com.example.test.beans.DietList;
 import com.example.test.beans.User;
 import com.example.test.model.UserDbModel;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.rmi.ServerException;
 import java.sql.SQLException;
+import java.util.List;
 
 
 @WebServlet(name = "changepersonals", urlPatterns = {"/changepersonals"})
@@ -30,18 +32,27 @@ public class change_personals extends HttpServlet {
         int wiek = Integer.parseInt(req.getParameter("wiek"));
         int aktywnosc_fizyczna = Integer.parseInt(req.getParameter("aktywnosc_fizyczna"));
         int aktywnosc_fizyczna2 = Integer.parseInt(req.getParameter("aktywnosc_fizyczna2"));
-        String wybor = req.getParameter("wybor");
+        int wybor = Integer.parseInt(req.getParameter("wybor"));
 
-        double PPM=0.0;
+        double PPM = 0.0;
+
+        System.out.println(plec);
+        System.out.println(akt_waga);
+        System.out.println(doc_waga);
+        System.out.println(wzrost);
+        System.out.println(wiek);
+        System.out.println(aktywnosc_fizyczna);
+        System.out.println(aktywnosc_fizyczna2);
+        System.out.println(wybor);
 
 
-        if(plec=="kobieta") {
+        if (plec == "kobieta") {
             PPM = 665.09 + (9.56 * akt_waga) + (1.85 * wzrost) - (4.67 * wiek);
-        }
-        else {
+        } else {
             PPM = 66.47 + (13.75 * akt_waga) + (5 * wzrost) - (6.75 * wiek);
         }
 
+        System.out.println(PPM);
         double[][] PAL = {
                 {1.4, 1.5, 1.6, 1.7},
                 {1.5, 1.6, 1.7, 1.8},
@@ -50,17 +61,27 @@ public class change_personals extends HttpServlet {
                 {1.9, 2.0, 2.2, 2.3}
         };
 
-       double yoursPAL = PAL[aktywnosc_fizyczna][aktywnosc_fizyczna2];
-       double CPM = PPM*yoursPAL;
-
-//        try {
-//            // new UserDbModel().change_personals(user,username,imie,nazwisko);
-//            System.out.println(imie);
-//            getServletContext().getRequestDispatcher("/panel.jsp").forward(req,response);
-//        }
-//        catch(SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+        double yoursPAL = PAL[aktywnosc_fizyczna2][aktywnosc_fizyczna];
+        double CPM = PPM * yoursPAL;
+        double CPM1=CPM;
+        double CPM2=CPM;
+        System.out.println(CPM);
+        if (wybor == 0) {
+             CPM1 = CPM - 300;
+             CPM2 = CPM - 200;
+        } else if (wybor == 1) {
+            CPM1 = CPM + 200;
+            CPM2 = CPM + 300;
+        }
+        try {
+            new UserDbModel().updateuserCPM(user.getId(),CPM);
+            List<DietList> dietsforyou = new UserDbModel().finddiets(CPM1,CPM2);
+            int id=dietsforyou.get(0).getDiet_list_id();
+            response.sendRedirect(req.getContextPath() + "/dietlistdetails?list_id="+id);
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
-}
+    }
+

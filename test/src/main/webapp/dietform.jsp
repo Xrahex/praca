@@ -48,8 +48,8 @@
                       </div>
                   </div>
               </div>
-              <div class="informacje podstawowe">
-                  <span class="title">Informacje podstawowe</span>
+              <div class="informacje dodatkowe">
+                  <span class="title">Informacje dodatkowe</span>
                   <div class="fields">
                       <div class="input-fields">
                           <label>Imie</label>

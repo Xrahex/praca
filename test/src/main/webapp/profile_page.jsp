@@ -172,8 +172,11 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <label for="plec" class="form-label">Płeć</label>
-                            <input type="text" class="form-control" id="plec" name="plec" placeholder="" value="" required>
+                            <label class="fw-bold mt-2 mb-1" for="plec">Płeć</label><br>
+                            <select name="plec" id="plec">
+                                <option value="kobieta">Kobieta</option>
+                                <option value="mezczyzna">Mężczyzna</option>
+                            </select>
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>
@@ -206,9 +209,41 @@
                                 Valid last name is required.
                             </div>
                         </div>
+                        <div>
+
+                        </div>
                         <div class="col-sm-6">
-                            <label for="aktywnosc_fizyczna" class="form-label">Aktywność fizyczna</label>
-                            <input type="text" class="form-control" id="aktywnosc_fizyczna" name="aktywnosc_fizyczna" placeholder="" value="" required>
+                            <label class="fw-bold mt-2 mb-1" for="aktywnosc_fizyczna">Aktywność fizyczna w pracy</label><br>
+                            <select name="aktywnosc_fizyczna" id="aktywnosc_fizyczna">
+                                <option value="0">bardzo lekka, np. siedzę przed komputerem większą część dnia lub jestem kierowcą</option>
+                                <option value="1">lekka, np. lekka praca przemysłowa, sprzedaż lub praca biurowa obejmująca lekkie czynności </option>
+                                <option value="2">umiarkowana, np. sprzątanie, praca w kuchni lub dostarczanie poczty pieszo lub rowerem</option>
+                                <option value="3">ciężka, np. ciężka praca przemysłowa, prace budowlane lub rolnictwo. </option>
+                            </select>
+                        </div>
+                        <div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="fw-bold mt-2 mb-1" for="aktywnosc_fizyczna2">Aktywność fizyczna w wolnym czasie</label><br>
+                            <select name="aktywnosc_fizyczna2" id="aktywnosc_fizyczna2">
+                                <option value="0">bardzo lekka, np. nie jestem aktywny fizycznie w wolnym czasie</option>
+                                <option value="1">lekka, np. w przybliżeniu raz w tygodniu: spaceruję, rekreacyjnie jeżdżę na rowerze, pracuję w ogródku </option>
+                                <option value="2">umiarkowana, np. regularnie ćwiczę przynajmniej raz w tygodniu: spaceruję, jeżdżę na rowerze, pracuję w ogródku lub idę do pracy przynajmniej 10–30 min codziennie</option>
+                                <option value="3">duża, np. regularnie ćwiczę więcej niż raz w tygodniu: intensywne spacery lub intensywna jazda na rowerze lub uprawianie sportu </option>
+                                <option value="4">intensywna, np. ciężka aktywność fizyczna kilka razy w tygodniu </option>
+                            </select>
+                        </div>
+                        <div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="fw-bold mt-2 mb-1" for="wybor">Jaki wynik chcesz uzyskać?</label><br>
+                            <select name="wybor" id="wybor">
+                                <option value="0">Schudnąć</option>
+                                <option value="1">Przytyć </option>
+                                <option value="2"> Utrzymać wage </option>
+                            </select>
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>

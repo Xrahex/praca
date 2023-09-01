@@ -28,6 +28,7 @@ body {
     position: relative;
     font-size: 20px;
     font-weight: 600;
+    color: #333333;
 
 }
 .box form {
@@ -46,18 +47,18 @@ body {
 .box form .form.drugi {
     opacity: 0;
     pointer-events: none;
-    transform: translateX(100%) ;
+    transform: translateX(100%);
 }
 form.secActive .form.pierwszy {
     opacity: 0;
     pointer-events: none;
-    transform: translateX(-100%)
+    transform: translateX(-100%);
 }
 
 form.secActive .form.drugi {
     opacity: 1;
     pointer-events: auto;
-    transform: translateX(100%)
+    transform: translateX(0);
 }
 
 .box header::before {
@@ -78,6 +79,7 @@ form.secActive .form.drugi {
     font-size: 16px;
     font-weight: 500;
     margin: 6px 0;
+    color: #333333;
 }
 
 .box form .fields {
@@ -151,6 +153,7 @@ form .przyciski {
 form .przyciski button, .Backpage {
     margin-right: 14px;
 }
+
 
 @media (max-width: 750px ) {
     .box form {
