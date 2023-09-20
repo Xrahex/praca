@@ -1,60 +1,112 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
-    font-family:"Poppins",sans-serif;
+    font-family: sans-serif;
 }
 
-body {
-    min-height: 100vh;
-    background: white;
-    /*background: url("") no-repeat;*/
+.panel {
+    background-image:linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(dieta.jpg);
     background-size: cover;
     background-position: center;
+    height:100%;
+    width:100%;
 }
 
-.header {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 20px 100px;
-    background: aqua;
+.logo {
+    width: 120px;
+    cursor: pointer;
+}
+
+
+.podstrony{
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    z-index: 100;
+    justify-content: space-between;
 }
 
-.grafika
-{
-    font-size: 30px;
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-}
-
-.navbar a
-{
-    font-size: 20px;
-    color: #fff;
-    text-decoration: none;
-    margin-left: 40px;
-    font-weight: 500;
+.panel ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
     position: relative;
 }
 
-.navbar a::before {
+.panel ul li::after {
     content: '';
-    position: absolute;
-    top: 100%;
+    transition: 0.4s;
+    bottom: -10px;
     left: 0;
+    background: #009699;
     width: 0;
-    height: 2px;
-    background: #ffffff;
-    transition: .2s;
+    height: 3px;
+    position: absolute;
 }
 
-.navbar a:hover::before {
+.panel ul li:hover::after
+{
     width: 100%;
+}
+
+.panel ul li a {
+    text-decoration: none;
+    color:#fff;
+    text-transform: uppercase;
+}
+
+.srodek {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+}
+
+.srodek h1 {
+    font-size: 75px;
+    margin-top: 80px;
+}
+
+.srodek p {
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+}
+
+button {
+    width: 200px;
+    position: relative;
+    color:#fff;
+    padding: 15px 0;
+    margin: 20px 10px;
+    text-align: center;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #009699;
+    background: transparent;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+span {
+    background: #009699;
+    transition: 0.4s;
+    height: 100%;
+    width: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 25px;
+    z-index: -1;
+}
+
+button:hover span {
+    width: 100%;
+}
+
+button:hover {
+    border: none;
 }
