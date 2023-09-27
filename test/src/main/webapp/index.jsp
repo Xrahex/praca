@@ -17,14 +17,14 @@
         </ul>
     </div>
     <div class="srodek">
-        <h1>WYBIERZ DIETE DLA SIEBIE!</h1>
+        <h1>WYBIERZ DIETĘ DLA SIEBIE!</h1>
         <p>Skorzystaj z jednej z przygotowanych już diet lub utwórz własną!</p>
         <div>
-            <a href="signin.jsp">
-            <button type="button"><span></span>Zaloguj sie</button>
+            <a href="logowanie.jsp">
+            <button type="button"><span></span>Zaloguj się</button>
             </a>
-            <a href="signup.jsp">
-            <button type="button"><span></span>Zarejestruj sie</button>
+            <a href="rejestracja.jsp">
+            <button type="button"><span></span>Zarejestruj się</button>
             </a>
         </div>
 

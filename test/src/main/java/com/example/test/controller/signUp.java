@@ -25,7 +25,7 @@ public class signUp extends HttpServlet {
             System.out.println(password);
         }
         else {
-            System.out.println("nie działa");
+            resp.sendRedirect(req.getContextPath() + "/profile_page.jsp");
         }
     }
 }
