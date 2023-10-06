@@ -7,12 +7,8 @@
 <body>
 <div class="panel">
     <div class="podstrony">
-        <img src="#" class="logo">
+        <img src="bez.png" class="logo">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Home</a></li>
             <li><a href="#">Home</a></li>
         </ul>
     </div>
