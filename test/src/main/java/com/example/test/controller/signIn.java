@@ -32,7 +32,7 @@ public class signIn extends HttpServlet {
             HttpSession session = req.getSession(true);
             session.setAttribute("email",user);
             session.setMaxInactiveInterval(60*15);
-            response.sendRedirect("panel.jsp");
+            response.sendRedirect("dashboard.jsp");
 
         }
     }
