@@ -20,7 +20,7 @@
       <h1>Rejestracja</h1>
       <div class="input">
         <div class="input-text">
-          <input type="text" placeholder="Nazwa użytkownika" required>
+          <input type="text" id="nickname" name="nickname" class="form-control form-control-lg" placeholder="Nazwa użytkownika" required>
           <i class='bx bxs-user'></i>
         </div>
         <div class="input-text">

@@ -17,15 +17,18 @@ public class signUp extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        String nickname= req.getParameter("nickname");
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
+        user.setNickname(nickname);
         if(new UserDbModel().signUp(user)) {
             System.out.println(email);
             System.out.println(password);
+            System.out.println(nickname);
         }
         else {
-            resp.sendRedirect(req.getContextPath() + "/dashboard.jsp");
+            resp.sendRedirect(req.getContextPath() + "/logowanie.jsp");
         }
     }
 }

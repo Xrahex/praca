@@ -48,6 +48,7 @@
     <thead class="table-dark">
     <tr>
       <th>Email</th>
+      <th>Login</th>
       <th>Usuń</th>
       <th>Modyfikuj</th>
     </tr>
@@ -57,7 +58,11 @@
         <tr>
           <td>
             ${wszyscyuzytkownicy.email}
-            <p class="list-id" style="display:none;">${wszyscyuzytkownicy.id}</p>
+            <p class="user-id" style="display:none;">${wszyscyuzytkownicy.id}</p>
+          </td>
+          <td>
+            <p class="nick">${wszyscyuzytkownicy.nickname}</p>
+
           </td>
           <td class="text-center m-0">
             <button class="delete-expense-list btn btn-outline-danger" type="button"
@@ -126,8 +131,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Czy na pewno chcesz usunąć tę listę?</p>
-          <form action="${pageContext.request.contextPath}/deletedietlist?list_id="
+          <p>Czy na pewno chcesz usunąć tego użytkownika</p>
+          <form action="${pageContext.request.contextPath}/deleteuser?id="
                 method="post" method="post" id="confirmExpenseListDelete">
           </form>
         </div>
@@ -149,11 +154,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="${pageContext.request.contextPath}/modifydietlist?list_id="
+          <form action="${pageContext.request.contextPath}/modifyuser?id="
                 method="post"
                 id="confirmExpenseListModify">
-            <label class="fw-bold mt-2 mb-1" for="modifiedListName">Nazwa listy</label>
-            <input type="text" name="name" id="modifiedListName"/>
+            <label class="fw-bold mt-2 mb-1" for="nickname">Nazwa użytkownika</label>
+            <input type="text" name="nickname" id="nickname"/>
           </form>
         </div>
         <div class="modal-footer">
@@ -181,23 +186,22 @@
   <script>
     $(".delete-expense-list").click(function () {
       let listName = $(this).parent().parent().find('.list-name').text();
-      let listId = $(this).parent().parent().find('.list-id').text();
+      let userId = $(this).parent().parent().find('.user-id').text();
       $("#delete-list-modal-title").text('Usuń: ' + listName);
       let actionAttr = $("#confirmExpenseListDelete").attr('action');
-      $("#confirmExpenseListDelete").attr('action', actionAttr + listId);
+      $("#confirmExpenseListDelete").attr('action', actionAttr + userId);
     });
   </script>
   <script>
     $(".modify-expense-list").click(function () {
-      let listName = $(this).parent().parent().find('.list-name').text();
-      let listId = $(this).parent().parent().find('.list-id').text();
-      $("#modify-list-modal-title").text('Modyfikuj: ' + listName);
+      let nick = $(this).parent().parent().find('.nick').text();
+      let userId = $(this).parent().parent().find('.user-id').text();
+      $("#modify-list-modal-title").text('Modyfikuj: ' + nick);
 
-      $("#modifiedListName").val(listName);
-      $("#modifiedExpenseLimit").val(expenseLimit);
+      $("#modifiedListName").val(nick);
 
       let actionAttr = $("#confirmExpenseListModify").attr('action');
-      $("#confirmExpenseListModify").attr('action', actionAttr + listId);
+      $("#confirmExpenseListModify").attr('action', actionAttr + userId);
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
