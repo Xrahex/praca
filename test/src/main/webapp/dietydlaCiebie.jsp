@@ -18,7 +18,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" href="panelcss.css" />
-  <title>Lista diet</title>
+  <title>Diety dla Ciebie</title>
 </head>
 <body>
 <div class="d-flex" id="wrapper">
@@ -41,12 +41,10 @@
     <thead class="table-dark">
     <tr>
       <th>Nazwa listy</th>
-      <th>Usuń</th>
-      <th>Modyfikuj</th>
+      <th>Zapisz</th>
     </tr>
     </thead>
     <c:if test="${!empty requestScope.dietydlaciebie}">
-      <c:out value="Test"></c:out>
       <c:forEach items="${requestScope.dietydlaciebie}" var="dietsforyou">
         <tr>
           <td>
@@ -60,17 +58,7 @@
                     data-bs-target="#deleteExpenseListConfirmationModal"
                     id="deleteExpenseListButton">
                                                             <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </span>
-            </button>
-          </td>
-          <td class="text-center m-0">
-            <button class="modify-expense-list btn btn-outline-dark" type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modifyExpenseListConfirmationModal"
-                    id="modifyExpenseListButton">
-                                                            <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
-                                                                <i class="fa fa-pen-to-square" aria-hidden="true"></i>
+                                                               <i class="fa-solid fa-cloud-arrow-down"></i>
                                                             </span>
             </button>
           </td>
@@ -86,72 +74,23 @@
       </tr>
     </c:if>
   </table>
-  <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-          data-bs-target="#addExpenseListModal">
-    <span class="fw-light fs-8">Dodaj swoją diete</span>
-  </button>
-  <div class="modal" id="addExpenseListModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Dodawanie diety</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="adddietlist" method="post" id="adddietlist">
-            <label class="fw-bold mt-2 mb-1" for="listName">Nazwa listy</label>
-            <input type="text" name="listName" id="listName"/>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-          <button type="submit" name="submit" form="adddietlist" class="btn btn-primary">Dodaj</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="modal" id="deleteExpenseListConfirmationModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title"
-              id="delete-list-modal-title">Usuń: </h5>
+              id="delete-list-modal-title">Przypisz: </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Czy na pewno chcesz usunąć tę listę?</p>
-          <form action="${pageContext.request.contextPath}/deletedietlist?list_id="
+          <p>Czy na pewno chcesz przypisać tą diete dla siebie?</p>
+          <form action="${pageContext.request.contextPath}/asigndiet?list_id="
                 method="post" method="post" id="confirmExpenseListDelete">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
           <button type="submit" name="submit" form="confirmExpenseListDelete"
-                  class="btn btn-primary">Potwierdź</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="modifyExpenseListConfirmationModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"
-              id="modify-list-modal-title">Modyfikuj: </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="${pageContext.request.contextPath}/modifydietlist?list_id="
-                method="post"
-                id="confirmExpenseListModify">
-            <label class="fw-bold mt-2 mb-1" for="modifiedListName">Nazwa listy</label>
-            <input type="text" name="name" id="modifiedListName"/>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-          <button type="submit" name="submit" form="confirmExpenseListModify"
                   class="btn btn-primary">Potwierdź</button>
         </div>
       </div>
@@ -175,7 +114,7 @@
     $(".delete-expense-list").click(function () {
       let listName = $(this).parent().parent().find('.list-name').text();
       let listId = $(this).parent().parent().find('.list-id').text();
-      $("#delete-list-modal-title").text('Usuń: ' + listName);
+      $("#delete-list-modal-title").text('Przypisz: ' + listName);
       let actionAttr = $("#confirmExpenseListDelete").attr('action');
       $("#confirmExpenseListDelete").attr('action', actionAttr + listId);
     });

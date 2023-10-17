@@ -1,8 +1,8 @@
 package com.example.test.model;
 
 import com.example.test.beans.DietList;
-import com.example.test.beans.Product;
 import com.example.test.beans.User;
+import com.example.test.tools.password_sha;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ public class UserDbModel {
             connect = dbConnection.openConnection();
             PreparedStatement preparedStatement = connect.prepareStatement("INSERT into user(email,password,nickname) values (?,?,?)");
             preparedStatement.setString(1,user.getEmail());
-            preparedStatement.setString(2,user.getPassword());
+            preparedStatement.setString(2,password_sha.encrypt(user.getPassword()));
             preparedStatement.setString(3,user.getNickname());
             preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -58,7 +58,7 @@ public class UserDbModel {
             connect = dbConnection.openConnection();
             PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM user where (email=?) and (password=?)");
             preparedStatement.setString(1,email);
-            preparedStatement.setString(2,password);
+            preparedStatement.setString(2,password_sha.encrypt(password));
             ResultSet result = preparedStatement.executeQuery();
             if(result.next()) {
                 System.out.println("yoyo");
@@ -88,13 +88,15 @@ public class UserDbModel {
         System.out.println("test");
     }
 
-    public void change_personals(User user,String login, String imie, String nazwisko) throws SQLException {
+    public void change_personals(User user, String imie, String nazwisko, double waga , int wzrost, int wiek) throws SQLException {
         connect = dbConnection.openConnection();
-        PreparedStatement preparedStatement = connect.prepareStatement("UPDATE profile set login =?,imie=?, nazwisko=? where user_id=?");
-        preparedStatement.setString(1,login);
-        preparedStatement.setString(2,imie);
-        preparedStatement.setString(3,nazwisko);
-        preparedStatement.setInt(4,user.getId());
+        PreparedStatement preparedStatement = connect.prepareStatement("UPDATE profile set imie=?, nazwisko=?, waga=?, wzrost=?, wiek=? where user_id=?");
+        preparedStatement.setString(1,imie);
+        preparedStatement.setString(2,nazwisko);
+        preparedStatement.setDouble(3,waga);
+        preparedStatement.setInt(4,wzrost);
+        preparedStatement.setInt(5,wiek);
+        preparedStatement.setInt(6,user.getId());
         System.out.println(user.getId());
         preparedStatement.executeQuery();
     }
@@ -136,6 +138,22 @@ public class UserDbModel {
             dbConnection.closeConnection();
         }
         return diets;
+    }
+
+    public void asigndiet(User user, int dietlistid) throws SQLException {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into assign(user_id,dietlist_id) values (?,?);");
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setInt(2, dietlistid);
+            System.out.println(user.getId());
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+             dbConnection.closeConnection();
+        }
     }
 
 }

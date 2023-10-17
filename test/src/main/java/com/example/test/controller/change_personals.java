@@ -78,6 +78,7 @@ public class change_personals extends HttpServlet {
         System.out.println(CPM2);
         try {
             new UserDbModel().updateuserCPM(user.getId(),CPM);
+            new UserDbModel().change_personals(user,imie,nazwisko,akt_waga,wzrost,wiek);
             List<DietList> dietsforyou = new UserDbModel().finddiets(CPM1,CPM2);
             req.setAttribute("dietydlaciebie",dietsforyou);
             System.out.println(dietsforyou.size());
