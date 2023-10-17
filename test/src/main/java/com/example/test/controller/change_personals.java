@@ -3,6 +3,7 @@ package com.example.test.controller;
 import com.example.test.beans.DietList;
 import com.example.test.beans.User;
 import com.example.test.model.UserDbModel;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -73,11 +74,16 @@ public class change_personals extends HttpServlet {
             CPM1 = CPM + 200;
             CPM2 = CPM + 300;
         }
+        System.out.println(CPM1);
+        System.out.println(CPM2);
         try {
             new UserDbModel().updateuserCPM(user.getId(),CPM);
             List<DietList> dietsforyou = new UserDbModel().finddiets(CPM1,CPM2);
+            req.setAttribute("dietydlaciebie",dietsforyou);
+            System.out.println(dietsforyou.size());
             int id=dietsforyou.get(0).getDiet_list_id();
-            response.sendRedirect(req.getContextPath() + "/dietlistdetails?list_id="+id);
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dietydlaCiebie.jsp");
+            dispatcher.forward(req,response);
         }
         catch(SQLException e) {
             e.printStackTrace();
