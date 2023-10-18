@@ -257,4 +257,24 @@ public class DietModel {
         return suma;
     }
 
+    public List<DietList> saved_diets(int id_user) {
+        List<DietList> zapisanediety = new ArrayList<>();
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM diets INNER JOIN assign ON diets.id_diet = assign.dietlist_id WHERE user_id=?;");
+            preparedStatement.setInt(1,id_user);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                DietList dietList = new DietList();
+                dietList.setDiet_list_id(resultSet.getInt("id_diet"));
+                dietList.setId_user(resultSet.getInt("id_user"));
+                dietList.setName(resultSet.getString("diet_name"));
+                zapisanediety.add(dietList);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return zapisanediety;
+    }
+
 }

@@ -38,6 +38,6 @@ public class asigndiet extends HttpServlet {
         {
             e.printStackTrace();
         }
-        response.sendRedirect(req.getContextPath() + "/alldiets");
+        response.sendRedirect(req.getContextPath() + "/saveddiet");
     }
 }
