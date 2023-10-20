@@ -22,10 +22,11 @@ public class UserDbModel {
         boolean b = false;
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into user(email,password,nickname) values (?,?,?)");
+            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into user(email,password,nickname,type) values (?,?,?,?)");
             preparedStatement.setString(1,user.getEmail());
             preparedStatement.setString(2,password_sha.encrypt(user.getPassword()));
             preparedStatement.setString(3,user.getNickname());
+            preparedStatement.setString(4,"user");
             preparedStatement.executeUpdate();
             preparedStatement.close();
             PreparedStatement preparedStatement1= connect.prepareStatement("SELECT id from user where email=?");
@@ -67,6 +68,7 @@ public class UserDbModel {
                 logowanie.setEmail(result.getString("email"));
                 logowanie.setPassword(result.getString("password"));
                 logowanie.setNickname(result.getString("nickname"));
+                logowanie.setType(result.getString("type"));
             }
             dbConnection.closeConnection();
             return logowanie;

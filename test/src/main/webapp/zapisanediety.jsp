@@ -42,7 +42,6 @@
     <tr>
       <th>Nazwa listy</th>
       <th>Usuń</th>
-      <th>Modyfikuj</th>
     </tr>
     </thead>
     <c:if test="${!empty requestScope.zapisanediety}">
@@ -59,17 +58,7 @@
                     data-bs-target="#deleteExpenseListConfirmationModal"
                     id="deleteExpenseListButton">
                                                             <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </span>
-            </button>
-          </td>
-          <td class="text-center m-0">
-            <button class="modify-expense-list btn btn-outline-dark" type="button"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modifyExpenseListConfirmationModal"
-                    id="modifyExpenseListButton">
-                                                            <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
-                                                                <i class="fa fa-pen-to-square" aria-hidden="true"></i>
+                                                               <i class="fa-solid fa-xmark"></i>
                                                             </span>
             </button>
           </td>
@@ -84,30 +73,6 @@
       </tr>
     </c:if>
   </table>
-  <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-          data-bs-target="#addExpenseListModal">
-    <span class="fw-light fs-8">Dodaj swoją diete</span>
-  </button>
-  <div class="modal" id="addExpenseListModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Dodawanie diety</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="adddietlist" method="post" id="adddietlist">
-            <label class="fw-bold mt-2 mb-1" for="listName">Nazwa listy</label>
-            <input type="text" name="listName" id="listName"/>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
-          <button type="submit" name="submit" form="adddietlist" class="btn btn-primary">Dodaj</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="modal" id="deleteExpenseListConfirmationModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
@@ -117,39 +82,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Czy na pewno chcesz usunąć tę listę?</p>
-          <form action="${pageContext.request.contextPath}/deletedietlist?list_id="
+          <p>Czy na pewno chcesz usunąć tę diete z zapisanych?</p>
+          <form action="${pageContext.request.contextPath}/deletesaveddiet?list_id="
                 method="post" method="post" id="confirmExpenseListDelete">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
           <button type="submit" name="submit" form="confirmExpenseListDelete"
-                  class="btn btn-primary">Potwierdź</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="modifyExpenseListConfirmationModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"
-              id="modify-list-modal-title">Modyfikuj: </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form action="${pageContext.request.contextPath}/modifydietlist?list_id="
-                method="post"
-                id="confirmExpenseListModify">
-            <label class="fw-bold mt-2 mb-1" for="modifiedListName">Nazwa listy</label>
-            <input type="text" name="name" id="modifiedListName"/>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-          <button type="submit" name="submit" form="confirmExpenseListModify"
                   class="btn btn-primary">Potwierdź</button>
         </div>
       </div>
@@ -176,19 +116,6 @@
       $("#delete-list-modal-title").text('Usuń: ' + listName);
       let actionAttr = $("#confirmExpenseListDelete").attr('action');
       $("#confirmExpenseListDelete").attr('action', actionAttr + listId);
-    });
-  </script>
-  <script>
-    $(".modify-expense-list").click(function () {
-      let listName = $(this).parent().parent().find('.list-name').text();
-      let listId = $(this).parent().parent().find('.list-id').text();
-      $("#modify-list-modal-title").text('Modyfikuj: ' + listName);
-
-      $("#modifiedListName").val(listName);
-      $("#modifiedExpenseLimit").val(expenseLimit);
-
-      let actionAttr = $("#confirmExpenseListModify").attr('action');
-      $("#confirmExpenseListModify").attr('action', actionAttr + listId);
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

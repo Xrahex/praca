@@ -1,6 +1,15 @@
 package com.example.test.beans;
 
 public class User {
+
+    public User(String email, String password, String type, String nickname, int id) {
+        this.email = email;
+        this.password = password;
+        this.type = type;
+        this.nickname = nickname;
+        this.id = id;
+    }
+
     public User() {
     }
 
@@ -34,6 +43,16 @@ public class User {
 
     private String email;
     private String password;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    private String type;
 
     public String getNickname() {
         return nickname;

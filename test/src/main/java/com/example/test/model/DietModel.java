@@ -277,4 +277,20 @@ public class DietModel {
         return zapisanediety;
     }
 
+    public boolean deletesavedDiettbyid(int id_diet, int id_user) {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("DELETE FROM assign WHERE (user_id=?) and (dietlist_id=?)");
+            preparedStatement.setInt(1, id_user);
+            preparedStatement.setInt(2, id_diet);
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            dbConnection.closeConnection();
+        }
+        return true;
+    }
+
 }
