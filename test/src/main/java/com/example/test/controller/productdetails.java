@@ -41,8 +41,11 @@ public class productdetails extends HttpServlet {
             List<Product> podwieczorek = new DietModel().getproductsfromdiet1(dietlistid,4);
             List<Product> kolacja = new DietModel().getproductsfromdiet1(dietlistid,5);
             int licznik_calorie = new DietModel().caloriecount(dietlistid);
+            int licznik_bialko = new DietModel().bialkocount(dietlistid);
             System.out.println(licznik_calorie);
+            System.out.println(licznik_bialko);
             new DietModel().updateDietcaloriebyid(dietlistid,licznik_calorie);
+            new DietModel().updateDietbialkobyid(dietlistid,licznik_bialko);
             req.setAttribute("dietlist",dietList);
             req.setAttribute("dietwithproducts",product);
             req.setAttribute("dietwithproducts1",sniadanie);
@@ -51,6 +54,7 @@ public class productdetails extends HttpServlet {
             req.setAttribute("dietwithproducts4",podwieczorek);
             req.setAttribute("dietwithproducts5",kolacja);
             req.setAttribute("liczbacalorie",licznik_calorie);
+            req.setAttribute("liczbabialko",licznik_bialko);
         }
         catch (NumberFormatException e) {
             req.setAttribute("dietlist",null);

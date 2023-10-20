@@ -30,10 +30,12 @@ public class addproductsniadanie extends HttpServlet {
         String calorie = req.getParameter("calorie");
         String listid = req.getParameter("list_id");
         String poradnia = req.getParameter("poradnia");
+        String bialko = req.getParameter("bialko");
         product.setDiet_list_id(Integer.parseInt(listid));
         product.setName(productname);
         product.setCalorie(Integer.valueOf(calorie));
         product.setPoradnia(Integer.parseInt(poradnia));
+        product.setBialko(Double.parseDouble(bialko));
         new DietModel().createdietproductsniadanie(product);
 
         response.sendRedirect(req.getContextPath() + "/dietlistdetails?list_id="+listid);

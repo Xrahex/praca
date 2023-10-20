@@ -20,9 +20,10 @@ public class DietModel {
     public boolean addProduct(Product product) {
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into products(product_name,calorie) values (?,?)");
+            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into products(product_name,calorie,bialko) values (?,?,?)");
             preparedStatement.setString(1, product.getName());
             preparedStatement.setInt(2, product.getCalorie());
+            preparedStatement.setDouble(3,product.getBialko());
             preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -188,11 +189,12 @@ public class DietModel {
     public boolean createdietproductsniadanie(Product product) {
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into products(diet_list_id,product_name,calorie,pora_dnia) values (?,?,?,?)");
+            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into products(diet_list_id,product_name,calorie,pora_dnia,bialko) values (?,?,?,?,?)");
             preparedStatement.setInt(1,product.getDiet_list_id());
             preparedStatement.setString(2, product.getName());
             preparedStatement.setInt(3, product.getCalorie());
             preparedStatement.setInt(4,product.getPoradnia());
+            preparedStatement.setDouble(5,product.getBialko());
             preparedStatement.executeQuery();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -256,6 +258,46 @@ public class DietModel {
         }
         return suma;
     }
+
+    public int bialkocount(int diet_list_id) {
+        int suma= 0;
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement(
+                    "SELECT bialko from products where diet_list_id=?");
+            preparedStatement.setInt(1,diet_list_id);
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                BigDecimal s =resultSet.getBigDecimal("bialko");
+                suma=suma+s.intValue();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            dbConnection.closeConnection();
+        }
+        return suma;
+    }
+
+    public boolean updateDietbialkobyid(int id_diet, double bialko) {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE diets SET bialko=? WHERE (id_diet=?)");
+            preparedStatement.setDouble(1, bialko);
+            preparedStatement.setInt(2, id_diet);
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            dbConnection.closeConnection();
+        }
+        return true;
+    }
+
+
 
     public List<DietList> saved_diets(int id_user) {
         List<DietList> zapisanediety = new ArrayList<>();

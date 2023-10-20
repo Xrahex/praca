@@ -18,9 +18,11 @@ public class addproduct extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServerException, IOException, ServletException {
         String name = req.getParameter("productname");
         int calorie = Integer.valueOf(req.getParameter("calorie"));
+        double bialko = Double.parseDouble(req.getParameter("bialko"));
         Product product = new Product();
         product.setName(name);
         product.setCalorie(calorie);
+        product.setBialko(bialko);
         if(new DietModel().addProduct(product)) {
             System.out.println("hej");
         }

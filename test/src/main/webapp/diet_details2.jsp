@@ -31,6 +31,9 @@
     <button class="btn btn-primary">
         <span class="fw-light fs-8">Wszystkie kalorie:${requestScope.liczbacalorie}</span>
     </button>
+    <button class="btn btn-primary">
+        <span class="fw-light fs-8">Licznik bialko:${requestScope.liczbabialko}</span>
+    </button>
     <div class="modal" id="addExpenseListModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -51,7 +54,9 @@
                             <option value="3">Obiad</option>
                             <option value="4">Podwieczorek</option>
                             <option value="5">Kolacja</option>
-                        </select>
+                        </select><br>
+                        <label class="fw-bold mt-2 mb-1" for="calorie">Liczba bialka</label><br>
+                        <input type="text" name="bialko" id="bialko"/><br>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -71,8 +76,8 @@
                     <table class="table table-striped table-bordered">
                         <thead class="table-dark">
                         <tr>
-                            <th style="text-align: center;">Nazwa</th>
-                            <th style="text-align: center;">Wartość</th>
+                            <th style="text-align: center;">Nazwa produktu</th>
+                            <th style="text-align: center;">Wartość kaloryczna</th>
                             <th colspan="2" style="text-align: center;">Operacje</th>
                         </tr>
                         </thead>
