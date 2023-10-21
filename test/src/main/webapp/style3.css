@@ -93,6 +93,12 @@ body {
     margin-right: 10px;
 }
 
+.ramka a {
+    font-size: 50px;
+    display: inline-block;
+    margin: 10px 0 23px;
+}
+
 @media (max-width:576px) {
     .input .input-text {
         width: 100%;
