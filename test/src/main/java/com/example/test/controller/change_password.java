@@ -27,7 +27,7 @@ public class change_password extends HttpServlet {
         try {
             new UserDbModel().change_password(user,password,password2);
             System.out.println(user.getEmail());
-           // getServletContext().getRequestDispatcher("/login").forward(req,response);
+           getServletContext().getRequestDispatcher("/login").forward(req,response);
         }
         catch(SQLException e) {
             e.printStackTrace();

@@ -83,8 +83,8 @@ public class UserDbModel {
     public void change_password(User user, String password, String password2) throws  SQLException{
         connect = dbConnection.openConnection();
         PreparedStatement preparedStatement = connect.prepareStatement("UPDATE user set password=? where password=? and email=?");
-        preparedStatement.setString(1,password2);
-        preparedStatement.setString(2,password);
+        preparedStatement.setString(1,password_sha.encrypt(password2));
+        preparedStatement.setString(2,password_sha.encrypt(password));
         preparedStatement.setString(3,user.getEmail());
         preparedStatement.executeQuery();
         System.out.println("test");

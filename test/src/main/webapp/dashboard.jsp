@@ -71,7 +71,7 @@
             </a>
             </c:if>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="changepassword.jsp">Zmień hasło</a></li>
+              <li><a class="dropdown-item" href="zmiana_hasla.jsp">Zmień hasło</a></li>
               <li><a class="dropdown-item" href="#">Wyloguj</a></li>
             </ul>
           </li>
