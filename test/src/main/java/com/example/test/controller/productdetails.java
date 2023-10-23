@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 
 @WebServlet(name = "show_diet_list_details", urlPatterns = {"/dietlistdetails"})
@@ -41,7 +42,7 @@ public class productdetails extends HttpServlet {
             List<Product> podwieczorek = new DietModel().getproductsfromdiet1(dietlistid,4);
             List<Product> kolacja = new DietModel().getproductsfromdiet1(dietlistid,5);
             int licznik_calorie = new DietModel().caloriecount(dietlistid);
-            int licznik_bialko = new DietModel().bialkocount(dietlistid);
+            BigDecimal licznik_bialko = new DietModel().count(dietlistid,"bialko");
             System.out.println(licznik_calorie);
             System.out.println(licznik_bialko);
             new DietModel().updateDietcaloriebyid(dietlistid,licznik_calorie);

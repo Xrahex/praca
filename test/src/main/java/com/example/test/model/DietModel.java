@@ -259,18 +259,18 @@ public class DietModel {
         return suma;
     }
 
-    public int bialkocount(int diet_list_id) {
-        int suma= 0;
+    public BigDecimal count(int diet_list_id, String name) {
+        BigDecimal d= new BigDecimal(0);
         try {
             connect = dbConnection.openConnection();
             PreparedStatement preparedStatement = connect.prepareStatement(
-                    "SELECT bialko from products where diet_list_id=?");
+                    "SELECT SUM("+name+") from products where diet_list_id=?");
             preparedStatement.setInt(1,diet_list_id);
             ResultSet resultSet;
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                BigDecimal s =resultSet.getBigDecimal("bialko");
-                suma=suma+s.intValue();
+                d = resultSet.getBigDecimal(1);
+                System.out.println(d);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -278,14 +278,14 @@ public class DietModel {
         finally {
             dbConnection.closeConnection();
         }
-        return suma;
+        return d;
     }
 
-    public boolean updateDietbialkobyid(int id_diet, double bialko) {
+    public boolean updateDietbialkobyid(int id_diet, BigDecimal bialko) {
         try {
             connect = dbConnection.openConnection();
             PreparedStatement preparedStatement = connect.prepareStatement("UPDATE diets SET bialko=? WHERE (id_diet=?)");
-            preparedStatement.setDouble(1, bialko);
+            preparedStatement.setBigDecimal(1, bialko);
             preparedStatement.setInt(2, id_diet);
             preparedStatement.executeQuery();
         } catch (SQLException e) {
