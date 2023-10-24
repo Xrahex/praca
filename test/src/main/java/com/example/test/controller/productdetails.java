@@ -43,10 +43,22 @@ public class productdetails extends HttpServlet {
             List<Product> kolacja = new DietModel().getproductsfromdiet1(dietlistid,5);
             int licznik_calorie = new DietModel().caloriecount(dietlistid);
             BigDecimal licznik_bialko = new DietModel().count(dietlistid,"bialko");
+            BigDecimal licznik_weglowodany = new DietModel().count(dietlistid,"weglowodany");
+            BigDecimal licznik_tluszcz = new DietModel().count(dietlistid,"tluszcz");
+            BigDecimal licznik_kwasy_tluszczowe = new DietModel().count(dietlistid,"kwasy_tluszczowe");
+            BigDecimal licznik_blonnik = new DietModel().count(dietlistid,"blonnik");
+            BigDecimal licznik_sol = new DietModel().count(dietlistid,"sol");
+            BigDecimal licznik_cukry = new DietModel().count(dietlistid,"cukry");
             System.out.println(licznik_calorie);
             System.out.println(licznik_bialko);
             new DietModel().updateDietcaloriebyid(dietlistid,licznik_calorie);
-            new DietModel().updateDietbialkobyid(dietlistid,licznik_bialko);
+            new DietModel().updateDietelementbyid(dietlistid,licznik_bialko,"bialko");
+            new DietModel().updateDietelementbyid(dietlistid,licznik_weglowodany,"weglowodany");
+            new DietModel().updateDietelementbyid(dietlistid,licznik_tluszcz,"tluszcz");
+            new DietModel().updateDietelementbyid(dietlistid,licznik_kwasy_tluszczowe,"kwasy_tluszczowe");
+            new DietModel().updateDietelementbyid(dietlistid,licznik_blonnik,"blonnik");
+            new DietModel().updateDietelementbyid(dietlistid,licznik_sol,"sol");
+            new DietModel().updateDietelementbyid(dietlistid,licznik_cukry,"cukry");
             req.setAttribute("dietlist",dietList);
             req.setAttribute("dietwithproducts",product);
             req.setAttribute("dietwithproducts1",sniadanie);
@@ -56,6 +68,12 @@ public class productdetails extends HttpServlet {
             req.setAttribute("dietwithproducts5",kolacja);
             req.setAttribute("liczbacalorie",licznik_calorie);
             req.setAttribute("liczbabialko",licznik_bialko);
+            req.setAttribute("liczbaweglowodany",licznik_weglowodany);
+            req.setAttribute("liczbatluszcz",licznik_tluszcz);
+            req.setAttribute("liczbakwasy_tluszczowe",licznik_kwasy_tluszczowe);
+            req.setAttribute("liczbablonnik",licznik_blonnik);
+            req.setAttribute("liczbasol",licznik_sol);
+            req.setAttribute("liczbacukry",licznik_cukry);
         }
         catch (NumberFormatException e) {
             req.setAttribute("dietlist",null);

@@ -18,7 +18,7 @@
             class="fas fa-tachometer-alt me-2"></i>Twoje diety</a>
     <a href="saveddiet" class="list-group-item list-group-item-action bg-transparent second-text active"><i
             class="fas fa-tachometer-alt me-2"></i>Zapisane diety</a>
-    <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i
+    <a href="analizadiety" class="list-group-item list-group-item-action bg-transparent second-text active"><i
             class="fas fa-tachometer-alt me-2"></i>Analiza diety</a>
     <c:if test="${!empty email && email.type =='admin' }">
       <a href="allusers" class="list-group-item list-group-item-action bg-transparent second-text active"><i

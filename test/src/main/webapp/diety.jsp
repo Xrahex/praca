@@ -127,7 +127,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="${pageContext.request.contextPath}/modifydietlist?list_id="
+                <form action="${pageContext.request.contextPath}/modifydietlist?list_id="${pageContext.request.getParameter("list_id")}
                       method="post"
                       id="confirmExpenseListModify">
                     <label class="fw-bold mt-2 mb-1" for="modifiedListName">Nazwa listy</label>
@@ -172,7 +172,6 @@
         $("#modify-list-modal-title").text('Modyfikuj: ' + listName);
 
         $("#modifiedListName").val(listName);
-        $("#modifiedExpenseLimit").val(expenseLimit);
 
         let actionAttr = $("#confirmExpenseListModify").attr('action');
         $("#confirmExpenseListModify").attr('action', actionAttr + listId);

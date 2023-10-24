@@ -34,6 +34,24 @@
     <button class="btn btn-primary">
         <span class="fw-light fs-8">Licznik bialko:${requestScope.liczbabialko}</span>
     </button>
+    <button class="btn btn-primary">
+        <span class="fw-light fs-8">Licznik weglowodanów:${requestScope.liczbaweglowodany}</span>
+    </button>
+    <button class="btn btn-primary">
+        <span class="fw-light fs-8">Licznik tłuszczy:${requestScope.liczbatluszcz}</span>
+    </button>
+    <button class="btn btn-primary">
+        <span class="fw-light fs-8">Licznik kwasów tłuszczowych:${requestScope.liczbakwasy_tluszczowe}</span>
+    </button>
+    <button class="btn btn-primary">
+        <span class="fw-light fs-8">Licznik błonnika:${requestScope.liczbablonnik}</span>
+    </button>
+    <button class="btn btn-primary">
+        <span class="fw-light fs-8">Licznik soli:${requestScope.liczbasol}</span>
+    </button>
+    <button class="btn btn-primary">
+        <span class="fw-light fs-8">Licznik cukrów:${requestScope.liczbacukry}</span>
+    </button>
     <div class="modal" id="addExpenseListModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -55,8 +73,20 @@
                             <option value="4">Podwieczorek</option>
                             <option value="5">Kolacja</option>
                         </select><br>
-                        <label class="fw-bold mt-2 mb-1" for="calorie">Liczba bialka</label><br>
+                        <label class="fw-bold mt-2 mb-1" for="bialko">Liczba bialka</label><br>
                         <input type="text" name="bialko" id="bialko"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="weglowodany">Liczba weglowodanów</label><br>
+                        <input type="text" name="weglowodany" id="weglowodany"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="tluszcz">Liczba tłuszczów</label><br>
+                        <input type="text" name="tluszcz" id="tluszcz"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="kwasy_tluszczowe">Liczba kwasów tłuszczowych</label><br>
+                        <input type="text" name="kwasy_tluszczowe" id="kwasy_tluszczowe"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="blonnik">Liczba błonnika</label><br>
+                        <input type="text" name="blonnik" id="blonnik"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="sol">Liczba soli</label><br>
+                        <input type="text" name="sol" id="sol"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="cukry">Liczba cukru</label><br>
+                        <input type="text" name="cukry" id="cukry"/><br>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -78,6 +108,13 @@
                         <tr>
                             <th style="text-align: center;">Nazwa produktu</th>
                             <th style="text-align: center;">Wartość kaloryczna</th>
+                            <th style="text-align: center;">Białko</th>
+                            <th style="text-align: center;">Węglowodany</th>
+                            <th style="text-align: center;">Tłuszcze</th>
+                            <th style="text-align: center;">Kwasy tłuszczowe</th>
+                            <th style="text-align: center;">Błonnik</th>
+                            <th style="text-align: center;">Sól</th>
+                            <th style="text-align: center;">Cukry</th>
                             <th colspan="2" style="text-align: center;">Operacje</th>
                         </tr>
                         </thead>
@@ -91,6 +128,27 @@
                                     </td>
                                     <td>
                                     <p class="product_calorie">${produktyzdiet.calorie}</p>
+                                    </td>
+                                    <td>
+                                    <p class="product_bialko">${produktyzdiet.bialko}</p>
+                                    </td>
+                                    <td>
+                                    <p class="product_weglowodany">${produktyzdiet.weglowodany}</p>
+                                    </td>
+                                    <td>
+                                        <p class="product_tluszcz">${produktyzdiet.tluszcz}</p>
+                                    </td>
+                                    <td>
+                                        <p class="product_kwasy_tluszczowe">${produktyzdiet.kwasy_tluszczowe}</p>
+                                    </td>
+                                    <td>
+                                        <p class="product_blonnik">${produktyzdiet.blonnik}</p>
+                                    </td>
+                                    <td>
+                                        <p class="product_sol">${produktyzdiet.sol}</p>
+                                    </td>
+                                    <td>
+                                        <p class="product_cukry">${produktyzdiet.cukry}</p>
                                     </td>
                                     <td class="text-center m-0">
                                         <button class="delete-expense-list btn btn-outline-danger" type="button"
@@ -452,10 +510,24 @@
                     <form action="${pageContext.request.contextPath}/modifyproduct?list_id=${pageContext.request.getParameter("list_id")}&product_id="
                           method="post"
                           id="confirmExpenseListModify">
-                        <label class="fw-bold mt-2 mb-1" for="modifiedproductName">Nazwa produktu</label>
-                        <input type="text" name="name" id="modifiedproductName"/>
-                        <label class="fw-bold mt-2 mb-1" for="modifiedcalorie">Liczba kalorii</label>
-                        <input type="text" name="calorie" id="modifiedcalorie"/>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedproductName">Nazwa produktu</label><br>
+                        <input type="text" name="name" id="modifiedproductName"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedcalorie">Liczba kalorii</label><br>
+                        <input type="text" name="calorie" id="modifiedcalorie"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedbialko">Liczba bialka</label><br>
+                        <input type="text" name="bialko" id="modifiedbialko"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedweglowodany">Liczba weglowodanów</label><br>
+                        <input type="text" name="weglowodany" id="modifiedweglowodany"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedtluszcz">Liczba tłuszczów</label><br>
+                        <input type="text" name="tluszcz" id="modifiedtluszcz"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedkwasy_tluszczowe">Liczba kwasów tłuszczowych</label><br>
+                        <input type="text" name="kwasy_tluszczowe" id="modifiedkwasy_tluszczowe"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedblonnik">Liczba błonnika</label><br>
+                        <input type="text" name="blonnik" id="modifiedblonnik"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedsol">Liczba soli</label><br>
+                        <input type="text" name="sol" id="modifiedsol"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedcukry">Liczba cukru</label><br>
+                        <input type="text" name="cukry" id="modifiedcukry"/><br>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -488,7 +560,6 @@
     <script>
         $(".delete-expense-list").click(function () {
             let listName = $(this).parent().parent().find('.list-name').text();
-            let listId = $(this).parent().parent().find('.list-id').text();
             let product_id = $(this).parent().parent().find('.product_id').text();
             $("#delete-list-modal-title").text('Usuń: ' + listName);
 
@@ -499,13 +570,26 @@
     <script>
         $(".modify-expense-list").click(function () {
             let productName = $(this).parent().parent().find('.product_name').text();
-            let listId = $(this).parent().parent().find('.list-id').text();
             let product_id = $(this).parent().parent().find('.product_id').text();
-            let product_calorie=  $(this).parent().parent().find('.product_calorie').text();
+            let productcalorie=  $(this).parent().parent().find('.product_calorie').text();
+            let productbialko=  $(this).parent().parent().find('.product_bialko').text();
+            let productweglowodany=  $(this).parent().parent().find('.product_weglowodany').text();
+            let producttluszcz=  $(this).parent().parent().find('.product_tluszcz').text();
+            let productkwasy_tluszczowe=  $(this).parent().parent().find('.product_kwasy_tluszczowe').text();
+            let productblonnik=  $(this).parent().parent().find('.product_blonnik').text();
+            let productsol=  $(this).parent().parent().find('.product_sol').text();
+            let productcukry=  $(this).parent().parent().find('.product_cukry').text();
             $("#modify-list-modal-title").text('Modyfikuj: ' + productName);
 
             $("#modifiedproductName").val(productName);
-            $("#modifiedcalorie").val(product_calorie);
+            $("#modifiedcalorie").val(productcalorie);
+            $("#modifiedbialko").val(productbialko);
+            $("#modifiedweglowodany").val(productweglowodany);
+            $("#modifiedtluszcz").val(producttluszcz);
+            $("#modifiedkwasy_tluszczowe").val(productkwasy_tluszczowe);
+            $("#modifiedblonnik").val(productblonnik);
+            $("#modifiedsol").val(productsol);
+            $("#modifiedcukry").val(productcukry);
 
             let actionAttr = $("#confirmExpenseListModify").attr('action');
             $("#confirmExpenseListModify").attr('action', actionAttr + product_id);

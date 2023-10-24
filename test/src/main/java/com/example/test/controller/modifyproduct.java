@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @WebServlet(name="modifyproduct", urlPatterns = {"/modifyproduct"})
 public class modifyproduct extends HttpServlet {
@@ -28,10 +29,17 @@ public class modifyproduct extends HttpServlet {
 
         int listid = Integer.parseInt(req.getParameter("list_id"));
         int calorie = Integer.parseInt(req.getParameter("calorie"));
+        BigDecimal bialko =new BigDecimal(req.getParameter("bialko"));
+        BigDecimal weglowodany =new BigDecimal(req.getParameter("weglowodany"));
+        BigDecimal tluszcz =new BigDecimal(req.getParameter("tluszcz"));
+        BigDecimal kwasy_tluszczowe =new BigDecimal(req.getParameter("kwasy_tluszczowe"));
+        BigDecimal blonnik =new BigDecimal(req.getParameter("blonnik"));
+        BigDecimal sol =new BigDecimal(req.getParameter("sol"));
+        BigDecimal cukry =new BigDecimal(req.getParameter("cukry"));
         int product_id = Integer.parseInt(req.getParameter("product_id"));
         String name = req.getParameter("name");
 
-        boolean isDietlistupdated = new DietModel().updateproductbyid(product_id,name,calorie);
+        boolean isDietlistupdated = new DietModel().updateproductbyid(product_id,name,calorie,bialko,weglowodany,tluszcz,kwasy_tluszczowe,blonnik,sol,cukry);
 
         response.sendRedirect(req.getContextPath() + "/dietlistdetails?list_id="+listid);
 
