@@ -61,6 +61,14 @@ public class DietModel {
                 dietList.setDiet_list_id(resultSet.getInt("id_diet"));
                 dietList.setId_user(resultSet.getInt("id_user"));
                 dietList.setName(resultSet.getString("diet_name"));
+                dietList.setCalorie(resultSet.getInt("calories"));
+                dietList.setBialko(resultSet.getDouble("bialko"));
+                dietList.setWeglowodany(resultSet.getDouble("weglowodany"));
+                dietList.setTluszcz(resultSet.getDouble("tluszcz"));
+                dietList.setKwasy_tluszczowe(resultSet.getDouble("kwasy_tluszczowe"));
+                dietList.setBlonnik(resultSet.getDouble("blonnik"));
+                dietList.setSol(resultSet.getDouble("sol"));
+                dietList.setCukry(resultSet.getDouble("cukry"));
                 wszystkiediety.add(dietList);
             }
         } catch (SQLException e) {

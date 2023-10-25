@@ -13,6 +13,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 <html>
 <head>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {packages: ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -24,50 +29,67 @@
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <jsp:include page="sidebar.jsp"></jsp:include>
+    <c:set var="id_opcji" value="${0}"></c:set>
+    <c:set var="test1" value="${0}"></c:set>
     <c:if test="${!empty requestScope.showalldiets}">
     <div class="col-sm-6">
         <label class="fw-bold mt-2 mb-1" for="dieta_analiza">Wybierz diete do analizy</label><br>
-            <select name="dieta_analiza" id="dieta_analiza">
+            <select name="dieta_analiza" id="dieta_analiza" onchange="changeContent()">
                 <c:forEach items="${requestScope.showalldiets}" var="wszystkiediety">
-                    <option value="${wszystkiediety.diet_list_id}">${wszystkiediety.name}</option>
+                    <option value=${id_opcji}>${wszystkiediety.name}</option>
+                    <c:set var="id_opcji" value="${id_opcji+1}"></c:set>
                 </c:forEach>
             </select>
     </div>
     </c:if>
+    <div id="dynamiczna-tresc">
+        <div id="piechart" style="width: 900px; height: 500px;"></div>
+    </div
+
     <c:if test="${empty requestScope.showalldiets}">
         Brak wybranej diety
     </c:if>
-    <div>
-        <canvas id="myChart"></canvas>
     </div>
-    </div>
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <%
+    String s=request.getParameter("m");
+    pageContext.setAttribute("wychodze",s);
+    %>
     <script>
-            const ctx = document.getElementById('myChart');
+    function changeContent() {
+        var selectedOption = document.getElementById("dieta_analiza").value;
+        var dynamicznaTresc = document.getElementById("dynamiczna-tresc");
 
-            new Chart(ctx, {
-            type: 'pie',
-            data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1
-        }]
-        },
-            options: {
-            scales: {
-            y: {
-            beginAtZero: true
-        }
-        }
-        }
-        });
+        window.location.replace("analizadiety?m="+selectedOption);
+        dynamicznaTresc.innerHTML = "<p>Hej${wychodze} ${requestScope.showalldiets[wychodze].name}</p>";
+    }
     </script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['bialko',     ${requestScope.showalldiets[wychodze].bialko}],
+            ['weglowodany',  ${requestScope.showalldiets[wychodze].weglowodany}],
+            ['tłuszcz',   ${requestScope.showalldiets[wychodze].tluszcz}],
+            ['kwasy tłuszczowe',  ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],
+            ['błonnik',     ${requestScope.showalldiets[wychodze].blonnik}],
+            ['sól',     ${requestScope.showalldiets[wychodze].sol}],
+            ['cukry',     ${requestScope.showalldiets[wychodze].cukry}]
+        ]);
+
+        var options = {
+            title: '${requestScope.showalldiets[wychodze].name}',
+            is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+</script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
