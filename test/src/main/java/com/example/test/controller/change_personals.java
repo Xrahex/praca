@@ -34,18 +34,11 @@ public class change_personals extends HttpServlet {
         int aktywnosc_fizyczna = Integer.parseInt(req.getParameter("aktywnosc_fizyczna"));
         int aktywnosc_fizyczna2 = Integer.parseInt(req.getParameter("aktywnosc_fizyczna2"));
         int wybor = Integer.parseInt(req.getParameter("wybor"));
+        int liczba_posilkow = Integer.parseInt(req.getParameter("liczba_posilki"));
+        int czas_posilkow = Integer.parseInt(req.getParameter("czas_posilki"));
+        int preferencje = Integer.parseInt(req.getParameter("preferencje"));
 
         double PPM = 0.0;
-
-        System.out.println(plec);
-        System.out.println(akt_waga);
-        System.out.println(doc_waga);
-        System.out.println(wzrost);
-        System.out.println(wiek);
-        System.out.println(aktywnosc_fizyczna);
-        System.out.println(aktywnosc_fizyczna2);
-        System.out.println(wybor);
-
 
         if (plec == "kobieta") {
             PPM = 665.09 + (9.56 * akt_waga) + (1.85 * wzrost) - (4.67 * wiek);
@@ -78,11 +71,9 @@ public class change_personals extends HttpServlet {
         System.out.println(CPM2);
         try {
             new UserDbModel().updateuserCPM(user.getId(),CPM);
-            new UserDbModel().change_personals(user,imie,nazwisko,akt_waga,wzrost,wiek);
+            new UserDbModel().change_personals(user,imie,nazwisko,akt_waga,wzrost,wiek,plec,liczba_posilkow,czas_posilkow,preferencje);
             List<DietList> dietsforyou = new UserDbModel().finddiets(CPM1,CPM2);
             req.setAttribute("dietydlaciebie",dietsforyou);
-            System.out.println(dietsforyou.size());
-            int id=dietsforyou.get(0).getDiet_list_id();
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dietydlaCiebie.jsp");
             dispatcher.forward(req,response);
         }

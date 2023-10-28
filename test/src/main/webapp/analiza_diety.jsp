@@ -44,10 +44,11 @@
     </c:if>
     <div id="dynamiczna-tresc">
         <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <div id="piechart2" style="width: 900px; height: 500px;"></div>
     </div
 
     <c:if test="${empty requestScope.showalldiets}">
-        Brak wybranej diety
+        <p>Dodaj swoją diete lub wypełnij formularz i przypisz sobie jakaś</p>
     </c:if>
     </div>
     <%
@@ -81,15 +82,34 @@
         ]);
 
         var options = {
-            title: '${requestScope.showalldiets[wychodze].name}',
+            title: 'Składniki w twojej diecie',
             is3D: true,
         };
+
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
+
     }
-</script>
+    function drawbialko() {
+        <c:if test="${!empty email && email.plec =='kobieta' }">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['bialko',     ${requestScope.showalldiets[wychodze].bialko}]
+        ]);
+
+        var options = {
+            title: 'Zalecana ilość białka',
+            is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
+        </c:if>
+    }
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

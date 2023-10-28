@@ -36,11 +36,17 @@ public class UserDbModel {
             if(result.next()) {
                 userid = result.getInt("id");
                 preparedStatement1.close();
-                PreparedStatement preparedStatement2 = connect.prepareStatement("INSERT into profile (user_id,login,imie,nazwisko) values(?,?,?,?)");
+                PreparedStatement preparedStatement2 = connect.prepareStatement("INSERT into profile (user_id,imie,nazwisko,CPM,waga,wzrost,plec,liczba_posilkow,czas_posilkow,preferencje) values(?,?,?,?,?,?,?,?,?,?)");
                 preparedStatement2.setInt(1,userid);
                 preparedStatement2.setString(2,"");
                 preparedStatement2.setString(3,"");
-                preparedStatement2.setString(4,"");
+                preparedStatement2.setInt(4,0);
+                preparedStatement2.setInt(5,0);
+                preparedStatement2.setInt(6,0);
+                preparedStatement2.setString(7,"");
+                preparedStatement2.setInt(8,0);
+                preparedStatement2.setInt(9,0);
+                preparedStatement2.setInt(10,0);
                 preparedStatement2.executeUpdate();
                 preparedStatement2.close();
             }
@@ -62,7 +68,6 @@ public class UserDbModel {
             preparedStatement.setString(2,password_sha.encrypt(password));
             ResultSet result = preparedStatement.executeQuery();
             if(result.next()) {
-                System.out.println("yoyo");
                 logowanie = new User();
                 logowanie.setId(result.getInt("id"));
                 logowanie.setEmail(result.getString("email"));
@@ -90,15 +95,19 @@ public class UserDbModel {
         System.out.println("test");
     }
 
-    public void change_personals(User user, String imie, String nazwisko, double waga , int wzrost, int wiek) throws SQLException {
+    public void change_personals(User user, String imie, String nazwisko, double waga , int wzrost, int wiek, String plec, int liczba_posilkow, int czas_posilkow, int preferencje) throws SQLException {
         connect = dbConnection.openConnection();
-        PreparedStatement preparedStatement = connect.prepareStatement("UPDATE profile set imie=?, nazwisko=?, waga=?, wzrost=?, wiek=? where user_id=?");
+        PreparedStatement preparedStatement = connect.prepareStatement("UPDATE profile set imie=?, nazwisko=?, waga=?, wzrost=?, wiek=?, plec=?, liczba_posilkow=?, czas_posilkow=?, preferencje=? where user_id=?");
         preparedStatement.setString(1,imie);
         preparedStatement.setString(2,nazwisko);
         preparedStatement.setDouble(3,waga);
         preparedStatement.setInt(4,wzrost);
         preparedStatement.setInt(5,wiek);
-        preparedStatement.setInt(6,user.getId());
+        preparedStatement.setString(6,plec);
+        preparedStatement.setInt(7,liczba_posilkow);
+        preparedStatement.setInt(8,czas_posilkow);
+        preparedStatement.setInt(9,preferencje);
+        preparedStatement.setInt(10,user.getId());
         System.out.println(user.getId());
         preparedStatement.executeQuery();
     }
