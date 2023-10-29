@@ -6,6 +6,9 @@ public class Profile {
         this.plec = plec;
     }
 
+    public Profile() {
+    }
+
     public String getPlec() {
         return plec;
     }

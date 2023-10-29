@@ -1,6 +1,7 @@
 package com.example.test.model;
 
 import com.example.test.beans.DietList;
+import com.example.test.beans.Profile;
 import com.example.test.beans.User;
 import com.example.test.tools.password_sha;
 
@@ -110,6 +111,27 @@ public class UserDbModel {
         preparedStatement.setInt(10,user.getId());
         System.out.println(user.getId());
         preparedStatement.executeQuery();
+    }
+
+    public Profile select_profile(User user){
+        Profile profile = null;
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM profile where user_id=?");
+            preparedStatement.setInt(1,user.getId());
+            ResultSet result = preparedStatement.executeQuery();
+            if(result.next()) {
+                profile= new Profile();
+                profile.setPlec(result.getString("plec"));
+            }
+            dbConnection.closeConnection();
+            return profile;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            dbConnection.closeConnection();
+        }
+        return profile;
     }
 
     public boolean updateuserCPM(int user_id, double CPM) throws SQLException{

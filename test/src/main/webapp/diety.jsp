@@ -24,7 +24,8 @@
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
 <jsp:include page="sidebar.jsp"></jsp:include>
-<table class="table table-striped table-bordered">
+<div class="container-fluid d-inline p-0 m-0">
+<table class="table table-striped table-bordered table-responsive">
     <thead class="table-dark">
     <tr>
         <th>Nazwa listy</th>
@@ -71,6 +72,7 @@
         </tr>
     </c:if>
 </table>
+</div>
 <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
         data-bs-target="#addExpenseListModal">
     <span class="fw-light fs-8">Dodaj swoją diete</span>

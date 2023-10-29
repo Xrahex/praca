@@ -1,6 +1,7 @@
 package com.example.test.controller;
 
 import com.example.test.beans.DietList;
+import com.example.test.beans.Profile;
 import com.example.test.beans.User;
 import com.example.test.model.UserDbModel;
 import jakarta.servlet.RequestDispatcher;
@@ -72,8 +73,10 @@ public class change_personals extends HttpServlet {
         try {
             new UserDbModel().updateuserCPM(user.getId(),CPM);
             new UserDbModel().change_personals(user,imie,nazwisko,akt_waga,wzrost,wiek,plec,liczba_posilkow,czas_posilkow,preferencje);
+            Profile profile = new UserDbModel().select_profile(user);
             List<DietList> dietsforyou = new UserDbModel().finddiets(CPM1,CPM2);
             req.setAttribute("dietydlaciebie",dietsforyou);
+            session.setAttribute("profil",profile);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dietydlaCiebie.jsp");
             dispatcher.forward(req,response);
         }

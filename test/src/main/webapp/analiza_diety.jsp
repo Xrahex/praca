@@ -32,8 +32,9 @@
     <c:set var="id_opcji" value="${0}"></c:set>
     <c:set var="test1" value="${0}"></c:set>
     <c:if test="${!empty requestScope.showalldiets}">
-    <div class="col-sm-6">
-        <label class="fw-bold mt-2 mb-1" for="dieta_analiza">Wybierz diete do analizy</label><br>
+    <div class="container-fluid d-inline p-0 m-0">
+    <div class="d-flex justify-content-center">
+        <label class="fw-bold mt-2 mb-1" for="dieta_analiza">Wybierz diete do analizy </label><br>
             <select name="dieta_analiza" id="dieta_analiza" onchange="changeContent()">
                 <c:forEach items="${requestScope.showalldiets}" var="wszystkiediety">
                     <option value=${id_opcji}>${wszystkiediety.name}</option>
@@ -42,10 +43,11 @@
             </select>
     </div>
     </c:if>
-    <div id="dynamiczna-tresc">
+    <div id="dynamiczna-tresc" class="d-flex">
         <div id="piechart" style="width: 900px; height: 500px;"></div>
         <div id="piechart2" style="width: 900px; height: 500px;"></div>
-    </div
+    </div>
+    </div>
 
     <c:if test="${empty requestScope.showalldiets}">
         <p>Dodaj swoją diete lub wypełnij formularz i przypisz sobie jakaś</p>
@@ -67,6 +69,7 @@
     <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawbialko);
 
     function drawChart() {
 
@@ -84,6 +87,7 @@
         var options = {
             title: 'Składniki w twojej diecie',
             is3D: true,
+            backgroundColor: 'transparent',
         };
 
 
@@ -93,21 +97,29 @@
 
     }
     function drawbialko() {
-        <c:if test="${!empty email && email.plec =='kobieta' }">
+        <c:if test="${!empty profil && profil.plec =='kobieta'}">
         var data = google.visualization.arrayToDataTable([
             ['Skład diety', 'Ze względu na składniki'],
-            ['bialko',     ${requestScope.showalldiets[wychodze].bialko}]
+            ['Twoje bialko',     ${requestScope.showalldiets[wychodze].bialko}],
+            ['Brakujace bialko',    50- ${requestScope.showalldiets[wychodze].bialko} ]
         ]);
-
+        </c:if>
+        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
+            var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Twoje bialko',     ${requestScope.showalldiets[wychodze].bialko}],
+            ['Brakujące bialko',    60- ${requestScope.showalldiets[wychodze].bialko} ]
+            ]);
+        </c:if>
         var options = {
             title: 'Zalecana ilość białka',
             is3D: true,
+            backgroundColor: 'transparent',
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
 
         chart.draw(data, options);
-        </c:if>
     }
     </script>
     <!-- Bootstrap core JavaScript-->

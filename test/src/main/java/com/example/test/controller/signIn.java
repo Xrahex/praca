@@ -1,5 +1,6 @@
 package com.example.test.controller;
 
+import com.example.test.beans.Profile;
 import com.example.test.beans.User;
 import com.example.test.model.UserDbModel;
 import jakarta.servlet.ServletException;
@@ -20,6 +21,7 @@ public class signIn extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         User user = new UserDbModel().signIn(email,password);
+        Profile profile = new UserDbModel().select_profile(user);
         if(user ==  null) {
             req.setAttribute("status", 1);
             getServletContext().getRequestDispatcher("/signin.jsp").forward(req,response);
@@ -27,6 +29,7 @@ public class signIn extends HttpServlet {
         else {
             HttpSession session = req.getSession(true);
             session.setAttribute("email",user);
+            session.setAttribute("profil",profile);
             session.setMaxInactiveInterval(60*15);
             response.sendRedirect("dashboard.jsp");
 
