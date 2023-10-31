@@ -43,9 +43,35 @@
             </select>
     </div>
     </c:if>
-    <div id="dynamiczna-tresc" class="d-flex">
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
-        <div id="piechart2" style="width: 900px; height: 500px;"></div>
+    <div id="dynamiczna-tresc" class="row align-content-center justify-content-center">
+        <div class="col-6">
+            <div id="piechart" style="width: 800px; height: 500px;"></div>
+        </div>
+        <div class="col-6">
+            <div id="piechart2" style="width: 800px; height: 500px;"></div>
+        </div>
+        <div class="col-6">
+            <div id="piechart3" style="width: 800px; height: 500px;"></div>
+        </div>
+        <div class="col-6">
+            <div id="piechart4" style="width: 800px; height: 500px;"></div>
+        </div>
+        <div class="col-6">
+            <div id="piechart5" style="width: 800px; height: 500px;"></div>
+        </div>
+        <div class="col-6">
+            <div id="piechart6" style="width: 800px; height: 500px;"></div>
+        </div>
+        <div class="col-6">
+            <div id="piechart7" style="width: 800px; height: 500px;"></div>
+        </div>
+        <div class="col-6">
+        <div id="piechart8" style="width: 800px; height: 500px;"></div>
+        </div>
+        <div class="col-2 d-flex align-items-center mb-3">
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Sprawdź produkty uzupełniające</button>
+        </div>
+    </div>
     </div>
     </div>
 
@@ -70,12 +96,18 @@
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     google.charts.setOnLoadCallback(drawbialko);
+    google.charts.setOnLoadCallback(drawbweglowodany);
+    google.charts.setOnLoadCallback(drawtluszcz);
+    google.charts.setOnLoadCallback(drawkwasytluszczowe);
+    google.charts.setOnLoadCallback(drawblonnik);
+    google.charts.setOnLoadCallback(drawsol);
+    google.charts.setOnLoadCallback(drawcukry);
 
     function drawChart() {
 
         var data = google.visualization.arrayToDataTable([
             ['Skład diety', 'Ze względu na składniki'],
-            ['bialko',     ${requestScope.showalldiets[wychodze].bialko}],
+            ['białko',     ${requestScope.showalldiets[wychodze].bialko}],
             ['weglowodany',  ${requestScope.showalldiets[wychodze].weglowodany}],
             ['tłuszcz',   ${requestScope.showalldiets[wychodze].tluszcz}],
             ['kwasy tłuszczowe',  ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],
@@ -100,24 +132,182 @@
         <c:if test="${!empty profil && profil.plec =='kobieta'}">
         var data = google.visualization.arrayToDataTable([
             ['Skład diety', 'Ze względu na składniki'],
-            ['Twoje bialko',     ${requestScope.showalldiets[wychodze].bialko}],
-            ['Brakujace bialko',    50- ${requestScope.showalldiets[wychodze].bialko} ]
+            ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],
+            ['Brakująca ilość białka',    50- ${requestScope.showalldiets[wychodze].bialko} ]
         ]);
         </c:if>
         <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
             var data = google.visualization.arrayToDataTable([
             ['Skład diety', 'Ze względu na składniki'],
-            ['Twoje bialko',     ${requestScope.showalldiets[wychodze].bialko}],
-            ['Brakujące bialko',    60- ${requestScope.showalldiets[wychodze].bialko} ]
+            ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],
+            ['Brakująca ilość białka',    60- ${requestScope.showalldiets[wychodze].bialko} ]
             ]);
         </c:if>
         var options = {
-            title: 'Zalecana ilość białka',
+            title: 'Wskazane dzienne spożycie białka',
             is3D: true,
             backgroundColor: 'transparent',
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
+    }
+    function drawbweglowodany() {
+        <c:if test="${!empty profil && profil.plec =='kobieta'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość węglowodanów',     ${requestScope.showalldiets[wychodze].weglowodany}],
+            ['Brakująca ilość węglowodanów',    270- ${requestScope.showalldiets[wychodze].weglowodany} ]
+        ]);
+        </c:if>
+        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość węglowodanów',     ${requestScope.showalldiets[wychodze].weglowodany}],
+            ['Brakująca ilość węglowodanów',    340- ${requestScope.showalldiets[wychodze].weglowodany} ]
+        ]);
+        </c:if>
+        var options = {
+            title: 'Wskazane dzienne spożycie węglowodanów',
+            is3D: true,
+            backgroundColor: 'transparent',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+
+        chart.draw(data, options);
+    }
+    function drawtluszcz() {
+        <c:if test="${!empty profil && profil.plec =='kobieta'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość tłuszczu',     ${requestScope.showalldiets[wychodze].tluszcz}],
+            ['Brakująca ilość tłuszczu',    70- ${requestScope.showalldiets[wychodze].tluszcz} ]
+        ]);
+        </c:if>
+        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość tłuszczu',     ${requestScope.showalldiets[wychodze].tluszcz}],
+            ['Brakująca ilość tłuszczu',   80- ${requestScope.showalldiets[wychodze].tluszcz} ]
+        ]);
+        </c:if>
+        var options = {
+            title: 'Wskazane dzienne spożycie tłuszczu',
+            is3D: true,
+            backgroundColor: 'transparent',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart4'));
+
+        chart.draw(data, options);
+    }
+    function drawkwasytluszczowe() {
+        <c:if test="${!empty profil && profil.plec =='kobieta'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość kwasów tłuszczowych',     ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],
+            ['Brakująca ilość kwasów tłuszczowych',    20- ${requestScope.showalldiets[wychodze].kwasy_tluszczowe} ]
+        ]);
+        </c:if>
+        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość kwasów tłuszczowych',     ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],
+            ['Brakująca ilość kwasów tłuszczowych',    30- ${requestScope.showalldiets[wychodze].kwasy_tluszczowe} ]
+        ]);
+        </c:if>
+        var options = {
+            title: 'Wskazane dzienne spożycie kwasów tłuszczowych',
+            is3D: true,
+            backgroundColor: 'transparent',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart5'));
+
+        chart.draw(data, options);
+    }
+    function drawblonnik() {
+        <c:if test="${!empty profil && profil.plec =='kobieta'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość błonnika',     ${requestScope.showalldiets[wychodze].blonnik}],
+            ['Brakująca ilość błonnika',    25- ${requestScope.showalldiets[wychodze].blonnik} ]
+        ]);
+        </c:if>
+        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość błonnika',     ${requestScope.showalldiets[wychodze].blonnik}],
+            ['Brakująca ilość błonnika',    25- ${requestScope.showalldiets[wychodze].blonnik} ]
+        ]);
+        </c:if>
+        var options = {
+            title: 'Wskazane dzienne spożycie błonnika',
+            is3D: true,
+            backgroundColor: 'transparent',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart6'));
+
+        chart.draw(data, options);
+    }
+    function drawsol() {
+        <c:if test="${!empty profil && profil.plec =='kobieta'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość soli',     ${requestScope.showalldiets[wychodze].sol}],
+            ['Brakująca ilość soli',    6- ${requestScope.showalldiets[wychodze].sol} ]
+        ]);
+        </c:if>
+        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
+        var wynik=0;
+        if (6- ${requestScope.showalldiets[wychodze].sol} > 0) {
+            wynik = 6- ${requestScope.showalldiets[wychodze].sol};
+        }
+        else {
+            wynik = 0;
+        }
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość soli',     ${requestScope.showalldiets[wychodze].sol}],
+            ['Brakująca ilość soli',   wynik ]
+
+        ]);
+        </c:if>
+        var options = {
+            title: 'Wskazane dzienne spożycie soli',
+            is3D: true,
+            backgroundColor: 'transparent',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart7'));
+
+        chart.draw(data, options);
+    }
+    function drawcukry() {
+        <c:if test="${!empty profil && profil.plec =='kobieta'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość cukru',     ${requestScope.showalldiets[wychodze].cukry}],
+            ['Brakująca ilość cukru',    90- ${requestScope.showalldiets[wychodze].cukry} ]
+        ]);
+        </c:if>
+        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość cukru',     ${requestScope.showalldiets[wychodze].cukry}],
+            ['Brakująca ilość cukru',    110- ${requestScope.showalldiets[wychodze].cukry} ]
+        ]);
+        </c:if>
+        var options = {
+            title: 'Wskazane dzienne spożycie cukru',
+            is3D: true,
+            backgroundColor: 'transparent',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart8'));
 
         chart.draw(data, options);
     }
