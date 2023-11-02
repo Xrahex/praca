@@ -36,6 +36,7 @@
     <div class="d-flex justify-content-center">
         <label class="fw-bold mt-2 mb-1" for="dieta_analiza">Wybierz diete do analizy </label><br>
             <select name="dieta_analiza" id="dieta_analiza" onchange="changeContent()">
+                <option></option>
                 <c:forEach items="${requestScope.showalldiets}" var="wszystkiediety">
                     <option value=${id_opcji}>${wszystkiediety.name}</option>
                     <c:set var="id_opcji" value="${id_opcji+1}"></c:set>
@@ -68,9 +69,6 @@
         <div class="col-6">
         <div id="piechart8" style="width: 800px; height: 500px;"></div>
         </div>
-        <div class="col-2 d-flex align-items-center mb-3">
-            <button class="w-100 btn btn-primary btn-lg" type="submit">Sprawdź produkty uzupełniające</button>
-        </div>
     </div>
     </div>
     </div>
@@ -81,17 +79,27 @@
     </div>
     <%
     String s=request.getParameter("m");
+    int dietki = Integer.parseInt(request.getParameter("dietlist"));
+    double calorie_w = Double.parseDouble(request.getParameter("diet_calorie"));
     pageContext.setAttribute("wychodze",s);
+    pageContext.setAttribute("dietyy_id",dietki);
+    pageContext.setAttribute("diet_calorie",calorie_w);
     %>
     <script>
     function changeContent() {
         var selectedOption = document.getElementById("dieta_analiza").value;
         var dynamicznaTresc = document.getElementById("dynamiczna-tresc");
 
-        window.location.replace("analizadiety?m="+selectedOption);
-        dynamicznaTresc.innerHTML = "<p>Hej${wychodze} ${requestScope.showalldiets[wychodze].name}</p>";
+        window.location.replace("analizadiety?m="+selectedOption+"&dietlist="+"${requestScope.showalldiets[wychodze].diet_list_id}"+"&diet_calorie="+${requestScope.showalldiets[wychodze].calorie});
+        <c:set var="list_id" value="${requestScope.showalldiets[wychodze].diet_list_id}"></c:set>
+        dynamicznaTresc.innerHTML = "<p>Hej${wychodze} ${requestScope.showalldiets[wychodze].diet_list_id}</p>";
     }
     </script>
+<div class="col-2 d-flex align-items-center mb-3">
+    <a href="proponowane_produkty?list_id=${dietyy_id}&calorie=${diet_calorie}">
+        <button class="w-100 btn btn-primary btn-lg" type="submit" href="proponowane_p">Sprawdź produkty uzupełniające</button>
+    </a>
+</div>
     <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);

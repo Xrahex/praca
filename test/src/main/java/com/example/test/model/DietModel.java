@@ -362,4 +362,50 @@ public class DietModel {
         return true;
     }
 
+    public List<Product> proponowane_produkty(double potrzebne_calorie, double twoje_calorie) {
+        List<Product> proponowane_produkty = new ArrayList<>();
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM products where calorie<=?-? ORDER BY calorie DESC");
+            preparedStatement.setDouble(1,potrzebne_calorie);
+            preparedStatement.setDouble(2,twoje_calorie);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product= new Product();
+                product.setProduct_id(resultSet.getInt("product_id"));
+                product.setDiet_list_id(resultSet.getInt("diet_list_id"));
+                product.setName(resultSet.getString("product_name"));
+                product.setCalorie(resultSet.getInt("calorie"));
+                product.setPoradnia(resultSet.getInt("pora_dnia"));
+                product.setBialko(resultSet.getDouble("bialko"));
+                product.setWeglowodany(resultSet.getDouble("weglowodany"));
+                product.setTluszcz(resultSet.getDouble("tluszcz"));
+                product.setKwasy_tluszczowe(resultSet.getDouble("kwasy_tluszczowe"));
+                product.setBlonnik(resultSet.getDouble("blonnik"));
+                product.setSol(resultSet.getDouble("sol"));
+                product.setCukry(resultSet.getDouble("cukry"));
+                proponowane_produkty.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return proponowane_produkty;
+    }
+
+    public double calorie_w_diecie(int diet_lisy_id) {
+        double calorie=0;
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT CPM FROM profile where user_id=?");
+                    preparedStatement.setInt(1,diet_lisy_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                calorie = resultSet.getDouble("CPM");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return calorie;
+    }
+
 }
