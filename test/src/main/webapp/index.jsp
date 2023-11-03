@@ -3,6 +3,10 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <title>Wybierz swoja diete</title>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
 </head>
 <body>
 <div class="panel">
@@ -13,7 +17,7 @@
         </ul>
     </div>
     <div class="srodek">
-        <h1>WYBIERZ DIETĘ DLA SIEBIE!</h1>
+        <h1 class="animate__animated animate__fadeInDown">WYBIERZ DIETĘ DLA SIEBIE!</h1>
         <p>Skorzystaj z jednej z przygotowanych już diet lub utwórz własną!</p>
         <div>
             <a href="logowanie.jsp">

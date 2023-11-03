@@ -17,97 +17,49 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="panelcss.css" />
 
-    <style>
-        .container {
-            position: center;
-        }
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            width: 100%;
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-    </style>
-
-
     <!-- Custom styles for this template -->
     <link href="checkout.css" rel="stylesheet">
 </head>
+<style>
+    h2,h4,label {
+        color:white;
+        text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+        -webkit-font-smoothing: antialiased
+    }
+</style>
 <body class="bg-body-tertiary">
-<div class="d-flex" id="wrapper">
+<div class="d-flex" id="wrapper" style="background: url(images/panel.jpg) no-repeat; height: 100%; width: 100%; overflow:hidden; position: fixed;">
     <!-- Sidebar -->
 <jsp:include page="sidebar.jsp"></jsp:include>
 <div class="container">
     <main>
-        <div class="py-5 text-center">
-            <h2>Na początku uzupełnij swoje dane!</h2>
-            <p class="lead"></p>
-        </div>
-        <div class="row g-5">
-            <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3">Dane adresowe</h4>
+        <div class="row">
+            <div class="py-5 text-center col-12">
+                <h2>Na początku uzupełnij swoje dane!</h2>
+            </div>
+            <div class="align-items-center justify-content-center card border-dark" style="background-color: transparent; backdrop-filter: blur(15px)">
+                <div class="card-body">
+                    <div class="col-12">
+                        <h4 class="mb-3 text-center">Dane adresowe</h4>
+                    </div>
+                    <hr>
                 <form class="needs-validation" novalidate action="changepersonals" method="post">
                     <div class="row g-3">
-                        <div class="col-sm-6">
+                        <div class="col-5">
                             <label for="firstName" class="form-label">Imie</label>
                             <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid first name is required.
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-5">
                             <label for="lastName" class="form-label">Nazwisko</label>
                             <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-2">
                             <label class="fw-bold mt-2 mb-1" for="plec">Płeć</label><br>
                             <select name="plec" id="plec">
                                 <option value="kobieta">Kobieta</option>
@@ -117,37 +69,41 @@
                                 Valid last name is required.
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <label for="aktualna_waga" class="form-label">Aktualna waga</label>
-                            <input type="text" class="form-control" id="aktualna_waga" name="aktualna_waga" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Valid last name is required.
-                            </div>
-                        </div>
-                            <div class="col-sm-6">
-                                <label for="waga_docelowa" class="form-label">Waga docelowa</label>
-                                <input type="text" class="form-control" id="waga_docelowa" name="waga_docelowa" placeholder="" value="" required>
-                                <div class="invalid-feedback">
-                                    Valid last name is required.
-                                </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="wzrost" class="form-label">Wzrost</label>
-                            <input type="text" class="form-control" id="wzrost" name="wzrost" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Valid last name is required.
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
+                        <div class="col-3">
                             <label for="wiek" class="form-label">Wiek</label>
                             <input type="text" class="form-control" id="wiek" name="wiek" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>
                         </div>
-                        <div>
-
+                        <div class="col-3">
+                            <label for="aktualna_waga" class="form-label">Aktualna waga</label>
+                            <input type="text" class="form-control" id="aktualna_waga" name="aktualna_waga" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
                         </div>
+                            <div class="col-3">
+                                <label for="waga_docelowa" class="form-label">Waga docelowa</label>
+                                <input type="text" class="form-control" id="waga_docelowa" name="waga_docelowa" placeholder="" value="" required>
+                                <div class="invalid-feedback">
+                                    Valid last name is required.
+                                </div>
+                        </div>
+                        <div class="col-3">
+                            <label for="wzrost" class="form-label">Wzrost</label>
+                            <input type="text" class="form-control" id="wzrost" name="wzrost" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <div class="col-12">
+                            <h4 class="mb-3 text-center">Pytania kontrolne</h4>
+                    </div>
+                    <hr>
                         <div class="col-sm-6">
                             <label class="fw-bold mt-2 mb-1" for="aktywnosc_fizyczna">Aktywność fizyczna w pracy</label><br>
                             <select name="aktywnosc_fizyczna" id="aktywnosc_fizyczna">
@@ -156,9 +112,6 @@
                                 <option value="2">umiarkowana, np. sprzątanie, praca w kuchni lub dostarczanie poczty pieszo lub rowerem</option>
                                 <option value="3">ciężka, np. ciężka praca przemysłowa, prace budowlane lub rolnictwo. </option>
                             </select>
-                        </div>
-                        <div>
-
                         </div>
                         <div class="col-sm-6">
                             <label class="fw-bold mt-2 mb-1" for="aktywnosc_fizyczna2">Aktywność fizyczna w wolnym czasie</label><br>
@@ -169,8 +122,6 @@
                                 <option value="3">duża, np. regularnie ćwiczę więcej niż raz w tygodniu: intensywne spacery lub intensywna jazda na rowerze lub uprawianie sportu </option>
                                 <option value="4">intensywna, np. ciężka aktywność fizyczna kilka razy w tygodniu </option>
                             </select>
-                        </div>
-                        <div>
                         </div>
                         <div class="col-sm-12">
                             <label class="fw-bold mt-2 mb-1" for="wybor">Jaki wynik chcesz uzyskać?</label><br>
@@ -218,18 +169,16 @@
                                 Valid last name is required.
                             </div>
                         </div>
-
                     <hr class="my-4">
                     <button class="w-100 btn btn-primary btn-lg" type="submit">Sprawdź diete dla siebie</button>
-                    </div>
                 </form>
             </div>
-        </div>
+            </div>
+            </div>
     </main>
-
-    <footer class="my-5 pt-5 text-body-secondary text-center text-small">
-    </footer>
+</div>
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-<script src="checkout.js"></script></body>
+</body>
 </html>

@@ -28,10 +28,9 @@
           <i class='bx bxs-lock'></i>
         </div>
       </div>
-      <label><input type="checkbox">Zgadzam się na przetwarzanie danych osobowych.</label>
-      <p class="align-content-center"><a class="align-content-center" href="#">Nie pamiętasz hasła?</a></p>
-      <br>
-      <p class="align-content-center">Nie masz konta? <a href="rejestracja.jsp" class="align-content-center">Zarejestruj</a></p>
+      <div class="" style="text-align: center">
+      <p class="">Nie masz konta? <a href="rejestracja.jsp" class="align-content-center">Zarejestruj</a></p>
+      </div>
       <br>
       <button type="submit" class="przycisk">Zaloguj się</button>
     </form>

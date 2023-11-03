@@ -57,9 +57,7 @@
         </ul>
       </div>
     </nav>
-
-    <div class="container-fluid px-4">
-      tutaj
+    <div class="container-fluid" style="background: url(images/panel.jpg) no-repeat; height: 100%; overflow:hidden; position: fixed">
     </div>
   </div>
 </div>

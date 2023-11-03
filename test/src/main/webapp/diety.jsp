@@ -24,13 +24,24 @@
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
 <jsp:include page="sidebar.jsp"></jsp:include>
-<div class="container-fluid d-inline p-0 m-0">
-<table class="table table-striped table-bordered table-responsive">
+<div class="container-fluid d-inline m-0 p-0">
+    <div class="row align-items-center justify-content-center m-0 p-0" style="background-color: white; height: 84px">
+            <div class="col-4 align-items-center justify-content-center text-center d-flex flex-column" style="padding-bottom: 4px">
+        <h3>Twoje diety</h3>
+            <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                    data-bs-target="#addExpenseListModal">
+                <span class="fw-light fs-8">Dodaj swoją diete</span>
+            </button>
+        </div>
+        <hr>
+    </div>
+    <div class="container-fluid d-inline m-0 p-0 align-items-center justify-content-center">
+<table class="table table-striped table-bordered table-responsive table-hover mx-auto" style="width: 60rem;">
     <thead class="table-dark">
     <tr>
         <th>Nazwa listy</th>
-        <th>Usuń</th>
-        <th>Modyfikuj</th>
+        <th style="width: 50px">Usuń</th>
+        <th style="width: 50px">Modyfikuj</th>
     </tr>
     </thead>
 <c:if test="${!empty requestScope.showalldiets}">
@@ -72,11 +83,8 @@
         </tr>
     </c:if>
 </table>
+    </div>
 </div>
-<button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-        data-bs-target="#addExpenseListModal">
-    <span class="fw-light fs-8">Dodaj swoją diete</span>
-</button>
 <div class="modal" id="addExpenseListModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
