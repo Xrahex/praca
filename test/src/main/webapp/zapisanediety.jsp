@@ -24,7 +24,19 @@
 <div class="d-flex" id="wrapper">
   <!-- Sidebar -->
 <jsp:include page="sidebar.jsp"></jsp:include>
-  <table class="table table-striped table-bordered">
+  <div class="container-fluid d-inline m-0 p-0">
+    <div class="row align-items-center justify-content-center m-0 p-0" style="background-color: white; height: 84px">
+      <div class="col-4 align-items-center justify-content-center text-center d-flex flex-column" style="padding-bottom: 4px">
+        <h3>Zapisane diety</h3>
+        <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                data-bs-target="#addExpenseListModal">
+          <span class="fw-light fs-8">Dodaj swoją diete</span>
+        </button>
+      </div>
+      <hr>
+    </div>
+    <div class="container-fluid d-inline m-0 p-0 align-items-center justify-content-center">
+  <table class="table table-striped table-bordered table-responsive table-hover mx-auto" style="width: 60rem;">
     <thead class="table-dark">
     <tr>
       <th>Nazwa listy</th>
@@ -60,6 +72,8 @@
       </tr>
     </c:if>
   </table>
+    </div>
+  </div>
   <div class="modal" id="deleteExpenseListConfirmationModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
