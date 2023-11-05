@@ -47,6 +47,7 @@
     <tr>
       <th>Email</th>
       <th>Login</th>
+      <th>Typ konta</th>
       <th>Usuń</th>
       <th>Modyfikuj</th>
     </tr>
@@ -60,7 +61,9 @@
           </td>
           <td>
             <p class="nick">${wszyscyuzytkownicy.nickname}</p>
-
+          </td>
+          <td>
+            <p class="tryb">${wszyscyuzytkownicy.type}</p>
           </td>
           <td class="text-center m-0">
             <button class="delete-expense-list btn btn-outline-danger" type="button"
@@ -127,7 +130,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Czy na pewno chcesz usunąć tego użytkownika</p>
+          <p>Czy na pewno chcesz usunąć tego użytkownika?</p>
           <form action="${pageContext.request.contextPath}/deleteuser?id="
                 method="post" method="post" id="confirmExpenseListDelete">
           </form>
@@ -153,8 +156,13 @@
           <form action="${pageContext.request.contextPath}/modifyuser?id="
                 method="post"
                 id="confirmExpenseListModify">
-            <label class="fw-bold mt-2 mb-1" for="nickname">Nazwa użytkownika</label>
-            <input type="text" name="nickname" id="nickname"/>
+            <label class="fw-bold mt-2 mb-1" for="modifiedListName">Nazwa użytkownika</label>
+            <input type="text" name="nickname" id="modifiedListName"/><br>
+            <label class="fw-bold mt-2 mb-1" for="modifiedusertype">Typ konta</label>
+            <select name="type" id="modifiedusertype">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
           </form>
         </div>
         <div class="modal-footer">
@@ -191,10 +199,12 @@
   <script>
     $(".modify-expense-list").click(function () {
       let nick = $(this).parent().parent().find('.nick').text();
+      let tryb= $(this).parent().parent().find('.tryb').text();
       let userId = $(this).parent().parent().find('.user-id').text();
       $("#modify-list-modal-title").text('Modyfikuj: ' + nick);
 
       $("#modifiedListName").val(nick);
+      $("#modifiedusertype").val(tryb);
 
       let actionAttr = $("#confirmExpenseListModify").attr('action');
       $("#confirmExpenseListModify").attr('action', actionAttr + userId);

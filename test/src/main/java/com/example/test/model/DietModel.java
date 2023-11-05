@@ -338,6 +338,7 @@ public class DietModel {
                 dietList.setDiet_list_id(resultSet.getInt("id_diet"));
                 dietList.setId_user(resultSet.getInt("id_user"));
                 dietList.setName(resultSet.getString("diet_name"));
+                dietList.setCalorie(resultSet.getInt("calories"));
                 zapisanediety.add(dietList);
             }
         } catch (SQLException e) {

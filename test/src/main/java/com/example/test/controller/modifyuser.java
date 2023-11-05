@@ -27,8 +27,9 @@ public class modifyuser extends HttpServlet {
 
         int userid = Integer.parseInt(req.getParameter("id"));
         String nickname = req.getParameter("nickname");
+        String type = req.getParameter("type");
 
-        boolean isDietlistupdated = new AdminDbModel().updatenicknamebyid(userid,nickname);
+        boolean isDietlistupdated = new AdminDbModel().updatenicknamebyid(userid,nickname,type);
 
         response.sendRedirect(req.getContextPath() + "/allusers");
 

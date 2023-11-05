@@ -9,6 +9,11 @@ public class Profile {
     public Profile() {
     }
 
+    public Profile(String plec, double CPM) {
+        this.plec = plec;
+        this.CPM = CPM;
+    }
+
     public String getPlec() {
         return plec;
     }
@@ -18,4 +23,14 @@ public class Profile {
     }
 
     private String plec;
+
+    public double getCPM() {
+        return CPM;
+    }
+
+    public void setCPM(double CPM) {
+        this.CPM = CPM;
+    }
+
+    private double CPM;
 }

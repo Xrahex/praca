@@ -40,6 +40,7 @@
     <thead class="table-dark">
     <tr>
         <th>Nazwa listy</th>
+        <th>Liczba kalorii</th>
         <th style="width: 50px">Usuń</th>
         <th style="width: 50px">Modyfikuj</th>
     </tr>
@@ -51,6 +52,9 @@
                 <a href="${pageContext.request.contextPath}/dietlistdetails?list_id=${wszystkiediety.diet_list_id}"
                    class="list-name">${wszystkiediety.name}</a>
                 <p class="list-id" style="display:none;">${wszystkiediety.diet_list_id}</p>
+            </td>
+            <td>
+                <p class="calorie">${wszystkiediety.calorie}</p>
             </td>
             <td class="text-center m-0">
                 <button class="delete-expense-list btn btn-outline-danger" type="button"

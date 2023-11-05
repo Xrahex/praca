@@ -29,6 +29,7 @@ public class AdminDbModel {
                 user.setEmail(resultSet.getString("email"));
                 user.setPassword(resultSet.getString("password"));
                 user.setNickname(resultSet.getString("nickname"));
+                user.setType(resultSet.getString("type"));
                 allusers.add(user);
             }
             }
@@ -53,12 +54,13 @@ public class AdminDbModel {
         return true;
     }
 
-    public boolean updatenicknamebyid(int id, String nickname) {
+    public boolean updatenicknamebyid(int id, String nickname, String type) {
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE user SET nickname=? WHERE (id=?)");
+            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE user SET nickname=?, type=? WHERE (id=?)");
             preparedStatement.setString(1, nickname);
-            preparedStatement.setInt(2, id);
+            preparedStatement.setString(2,type);
+            preparedStatement.setInt(3, id);
             preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -125,6 +125,7 @@
 
             $("#modifiedListName").val(listName);
 
+
             let actionAttr = $("#confirmExpenseListModify").attr('action');
             $("#confirmExpenseListModify").attr('action', actionAttr + listId);
         });

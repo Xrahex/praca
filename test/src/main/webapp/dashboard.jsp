@@ -19,6 +19,49 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" href="panelcss.css" />
   <title>Panel</title>
+  <style>
+
+    body {
+      background-color: #f8f8f8;
+    }
+
+    .porady {
+      text-align: center;
+    }
+    .card {
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .welcome h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .welcome p {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .welcome a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .welcome a:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
 </head>
 
 <body>
@@ -57,9 +100,63 @@
         </ul>
       </div>
     </nav>
-    <div class="container-fluid" style="background: url(images/panel.jpg) no-repeat; height: 100%; overflow:hidden; position: fixed">
+    <div class="porady">
+  <c:if test="${empty requestScope.email}">
+    <div class="account-info card">
+      <h2>Informacje o koncie</h2>
+      <p>Email: ${email.email}</p>
+      <p>Typ: ${email.type}</p>
     </div>
-  </div>
+  </c:if>
+    <div class="diet-tips">
+      <h2>Porady Dietetyczne</h2>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="diet-tip card">
+            <h3>Porada 1</h3>
+            <p>Jedz regularnie i w umiarkowanych ilościach.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="diet-tip card">
+            <h3>Porada 2</h3>
+            <p>Wybieraj zdrowe źródła białka, takie jak drób, ryby, tofu i rośliny strączkowe.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="diet-tip card">
+            <h3>Porada 3</h3>
+            <p>Unikaj przetworzonych produktów i słodzonych napojów.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="diet-tip card">
+            <h3>Porada 4</h3>
+            <p>Zadbaj o zbilansowaną dietę zawierającą owoce, warzywa, pełnoziarniste produkty, orzechy i nasiona.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="diet-tip card">
+            <h3>Porada 5</h3>
+            <p>Pamiętaj o regularnej aktywności fizycznej.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="diet-tip card">
+            <h3>Porada 6</h3>
+            <p>Staraj się spożywać różnorodne produkty, aby dostarczyć organizmowi różnorodnych składników odżywczych.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
 </div>
 <!-- /#page-content-wrapper -->
 </div>

@@ -45,6 +45,9 @@
     </div>
     </c:if>
     <div id="dynamiczna-tresc" class="row align-content-center justify-content-center">
+<%--        <div class="col-12">--%>
+<%--            <div id="piechart9" style="width: 800px; height: 500px;"></div>--%>
+<%--        </div>--%>
         <div class="col-6">
             <div id="piechart" style="width: 800px; height: 500px;"></div>
         </div>
@@ -103,6 +106,7 @@
     <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawcalorie);
     google.charts.setOnLoadCallback(drawbialko);
     google.charts.setOnLoadCallback(drawbweglowodany);
     google.charts.setOnLoadCallback(drawtluszcz);
@@ -135,6 +139,51 @@
 
         chart.draw(data, options);
 
+    }
+    function drawcalorie() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Kalorie w diecie',     ${requestScope.showalldiets[wychodze].calorie}],
+            ['Brakujące kalorie',  ${requestScope.profile[wychodze].CPM}]
+        ]);
+
+        var options = {
+            title: 'Liczba kalorii',
+            is3D: true,
+            backgroundColor: 'transparent',
+        };
+
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart9'));
+
+        chart.draw(data, options);
+
+    }
+    function drawbialko() {
+        <c:if test="${!empty profil && profil.plec =='kobieta'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],
+            ['Brakująca ilość białka',    50- ${requestScope.showalldiets[wychodze].bialko} ]
+        ]);
+        </c:if>
+        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],
+            ['Brakująca ilość białka',    60- ${requestScope.showalldiets[wychodze].bialko} ]
+        ]);
+        </c:if>
+        var options = {
+            title: 'Wskazane dzienne spożycie białka',
+            is3D: true,
+            backgroundColor: 'transparent',
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+        chart.draw(data, options);
     }
     function drawbialko() {
         <c:if test="${!empty profil && profil.plec =='kobieta'}">

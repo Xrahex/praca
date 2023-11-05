@@ -28,10 +28,11 @@
     <div class="row align-items-center justify-content-center m-0 p-0" style="background-color: white; height: 84px">
       <div class="col-4 align-items-center justify-content-center text-center d-flex flex-column" style="padding-bottom: 4px">
         <h3>Zapisane diety</h3>
-        <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-                data-bs-target="#addExpenseListModal">
-          <span class="fw-light fs-8">Dodaj swoją diete</span>
+        <a href="profile_page.jsp">
+        <button class="btn btn-outline-success" type="button">
+          <span class="fw-light fs-8">Wyszukaj dietę dla siebie</span>
         </button>
+        </a>
       </div>
       <hr>
     </div>
@@ -40,6 +41,7 @@
     <thead class="table-dark">
     <tr>
       <th>Nazwa listy</th>
+      <th>Liczba kalorii</th>
       <th>Usuń</th>
     </tr>
     </thead>
@@ -50,6 +52,9 @@
             <a href="${pageContext.request.contextPath}/dietlistdetails?list_id=${wszystkiediety.diet_list_id}"
                class="list-name">${wszystkiediety.name}</a>
             <p class="list-id" style="display:none;">${wszystkiediety.diet_list_id}</p>
+          </td>
+          <td>
+            <p class="calorie">${wszystkiediety.calorie}</p>
           </td>
           <td class="text-center m-0">
             <button class="delete-expense-list btn btn-outline-danger" type="button"

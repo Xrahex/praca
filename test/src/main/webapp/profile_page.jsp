@@ -26,9 +26,18 @@
         text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
         -webkit-font-smoothing: antialiased
     }
+    .d-flex#wrapper {
+        background: url(images/food.jpg) no-repeat;
+        background-size: cover; /* Dopasowanie tła do rozmiaru elementu */
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        position: fixed;
+    }
 </style>
+
 <body class="bg-body-tertiary">
-<div class="d-flex" id="wrapper" style="background: url(images/panel.jpg) no-repeat; height: 100%; width: 100%; overflow:hidden; position: fixed;">
+<div class="d-flex" id="wrapper">
     <!-- Sidebar -->
 <jsp:include page="sidebar.jsp"></jsp:include>
 <div class="container">

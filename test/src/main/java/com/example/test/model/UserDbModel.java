@@ -123,6 +123,7 @@ public class UserDbModel {
             if(result.next()) {
                 profile= new Profile();
                 profile.setPlec(result.getString("plec"));
+                profile.setCPM(result.getDouble("CPM"));
             }
             dbConnection.closeConnection();
             return profile;
