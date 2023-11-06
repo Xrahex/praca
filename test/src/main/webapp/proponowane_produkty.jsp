@@ -31,8 +31,20 @@
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <jsp:include page="sidebar.jsp"></jsp:include>
-    <div class="container-fluid d-inline p-0 m-0">
-        <table class="table table-striped table-bordered table-responsive">
+    <div class="container-fluid d-inline m-0 p-0">
+        <div class="row align-items-center justify-content-center m-0 p-0" style="background-color: white; height: 84px">
+            <div class="col-4 align-items-center justify-content-center text-center d-flex flex-column" style="padding-bottom: 4px">
+                <h3>Proponowane produkty</h3>
+                <a href="analizadiety?m=0&dietlist=0&diet_calorie=0">
+                    <button class="btn btn-outline-success" type="button">
+                        <span class="fw-light fs-8">Sprawdź inna dietę</span>
+                    </button>
+                </a>
+            </div>
+            <hr>
+        </div>
+        <div class="container-fluid d-inline m-0 p-0 align-items-center justify-content-center">
+        <table class="table table-striped table-bordered table-responsive table-hover mx-auto" style="width: 60rem;">
             <thead class="table-dark">
             <tr>
                 <th>Nazwa produktu</th>
@@ -44,19 +56,19 @@
                 <c:forEach items="${requestScope.proponowane_produkty}" var="wszystkiediety">
                     <tr>
                         <td>
-                            <a class="list-name">${wszystkiediety.name}</a>
+                            <p class="list-name">${wszystkiediety.name}</p>
                             <p class="list-id" style="display:none;">${wszystkiediety.diet_list_id}</p>
                         </td>
                         <td>
-                            <a class="calorie">${wszystkiediety.calorie}</a>
+                            <p class="calorie">${wszystkiediety.calorie}</p>
                         </td>
                         <td class="text-center m-0">
-                            <button class="delete-expense-list btn btn-outline-danger" type="button"
+                            <button class="delete-expense-list btn btn-outline-success" type="button"
                                     data-bs-toggle="modal"
                                     data-bs-target="#deleteExpenseListConfirmationModal"
                                     id="deleteExpenseListButton">
-                                                            <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            <span class="input-group-text text-success w-50 justify-content-center mx-auto">
+                                                                <i class="fa-solid fa-plus" aria-hidden="true"></i>
                                                             </span>
                             </button>
                         </td>
@@ -72,6 +84,7 @@
             </c:if>
         </table>
     </div>
+    </div>
     <div class="modal" id="deleteExpenseListConfirmationModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -81,7 +94,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Czy na pewno chcesz usunąć tę listę?</p>
+                    <p>Czy na pewno chcesz dodać ten produkt do swojej diety?</p>
                     <form action="${pageContext.request.contextPath}/deletedietlist?list_id="
                           method="post" method="post" id="confirmExpenseListDelete">
                     </form>
@@ -115,19 +128,6 @@
             $("#delete-list-modal-title").text('Usuń: ' + listName);
             let actionAttr = $("#confirmExpenseListDelete").attr('action');
             $("#confirmExpenseListDelete").attr('action', actionAttr + listId);
-        });
-    </script>
-    <script>
-        $(".modify-expense-list").click(function () {
-            let listName = $(this).parent().parent().find('.list-name').text();
-            let listId = $(this).parent().parent().find('.list-id').text();
-            $("#modify-list-modal-title").text('Modyfikuj: ' + listName);
-
-            $("#modifiedListName").val(listName);
-
-
-            let actionAttr = $("#confirmExpenseListModify").attr('action');
-            $("#confirmExpenseListModify").attr('action', actionAttr + listId);
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

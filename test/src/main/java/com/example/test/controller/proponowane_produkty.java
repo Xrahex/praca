@@ -25,7 +25,7 @@ public class proponowane_produkty extends HttpServlet {
         int id_diet = Integer.parseInt(req.getParameter("list_id"));
         double calorie = Double.parseDouble(req.getParameter("calorie"));
         double twoje_calorie = new DietModel().calorie_w_diecie(user.getId());
-        List<Product> proponowane_produkty=new DietModel().proponowane_produkty(calorie,twoje_calorie);
+        List<Product> proponowane_produkty=new DietModel().proponowane_produkty(twoje_calorie,calorie);
         req.setAttribute("proponowane_produkty",proponowane_produkty);
         System.out.println(calorie);
         System.out.println(twoje_calorie);

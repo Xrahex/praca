@@ -151,7 +151,7 @@
         <div class="col-md-6">
           <div class="diet-tip card">
             <h3>Porada 6</h3>
-            <p>Staraj się spożywać różnorodne produkty, aby dostarczyć organizmowi różnorodnych składników odżywczych.</p>
+            <p>Staraj się spożywać różnorodne produkty, aby dostarczyć organizmowi składników odżywczych.</p>
           </div>
         </div>
       </div>

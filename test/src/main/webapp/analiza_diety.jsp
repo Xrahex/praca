@@ -29,6 +29,36 @@
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
     <jsp:include page="sidebar.jsp"></jsp:include>
+    <div class="container-fluid d-inline m-0 p-0">
+        <div class="row align-items-center justify-content-center m-0 p-0" style="background-color: white; height: 84px">
+            <div class="col-12 align-items-center justify-content-center text-center d-flex flex-column" style="padding-bottom: 4px">
+                <h3>Analiza diety</h3>
+                <%
+                    String s=request.getParameter("m");
+                    int dietki = Integer.parseInt(request.getParameter("dietlist"));
+                    double calorie_w = Double.parseDouble(request.getParameter("diet_calorie"));
+                    pageContext.setAttribute("wychodze",s);
+                    pageContext.setAttribute("dietyy_id",dietki);
+                    pageContext.setAttribute("diet_calorie",calorie_w);
+                %>
+                <script>
+                    function changeContent() {
+                        var selectedOption = document.getElementById("dieta_analiza").value;
+                        var dynamicznaTresc = document.getElementById("dynamiczna-tresc");
+
+                        window.location.replace("analizadiety?m="+selectedOption+"&dietlist="+"${requestScope.showalldiets[wychodze].diet_list_id}"+"&diet_calorie="+${requestScope.showalldiets[wychodze].calorie});
+                        <c:set var="list_id" value="${requestScope.showalldiets[wychodze].diet_list_id}"></c:set>
+                        dynamicznaTresc.innerHTML = "<p>Hej${wychodze} ${requestScope.showalldiets[wychodze].diet_list_id}</p>";
+                    }
+                </script>
+                <div class="col-12 d-flex align-items-center mb-3">
+                    <a href="proponowane_produkty?list_id=${dietyy_id}&calorie=${diet_calorie}">
+                        <button class="w-100 btn btn-success btn-lg" type="submit" href="proponowane_p" style="transform: scale(0.8)">Sprawdź produkty uzupełniające</button>
+                    </a>
+                </div>
+            </div>
+            <hr>
+        </div>
     <c:set var="id_opcji" value="${0}"></c:set>
     <c:set var="test1" value="${0}"></c:set>
     <c:if test="${!empty requestScope.showalldiets}">
@@ -80,29 +110,6 @@
         <p>Dodaj swoją diete lub wypełnij formularz i przypisz sobie jakaś</p>
     </c:if>
     </div>
-    <%
-    String s=request.getParameter("m");
-    int dietki = Integer.parseInt(request.getParameter("dietlist"));
-    double calorie_w = Double.parseDouble(request.getParameter("diet_calorie"));
-    pageContext.setAttribute("wychodze",s);
-    pageContext.setAttribute("dietyy_id",dietki);
-    pageContext.setAttribute("diet_calorie",calorie_w);
-    %>
-    <script>
-    function changeContent() {
-        var selectedOption = document.getElementById("dieta_analiza").value;
-        var dynamicznaTresc = document.getElementById("dynamiczna-tresc");
-
-        window.location.replace("analizadiety?m="+selectedOption+"&dietlist="+"${requestScope.showalldiets[wychodze].diet_list_id}"+"&diet_calorie="+${requestScope.showalldiets[wychodze].calorie});
-        <c:set var="list_id" value="${requestScope.showalldiets[wychodze].diet_list_id}"></c:set>
-        dynamicznaTresc.innerHTML = "<p>Hej${wychodze} ${requestScope.showalldiets[wychodze].diet_list_id}</p>";
-    }
-    </script>
-<div class="col-2 d-flex align-items-center mb-3">
-    <a href="proponowane_produkty?list_id=${dietyy_id}&calorie=${diet_calorie}">
-        <button class="w-100 btn btn-primary btn-lg" type="submit" href="proponowane_p">Sprawdź produkty uzupełniające</button>
-    </a>
-</div>
     <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);

@@ -17,41 +17,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Dodaj produkt</title>
+    <link rel="stylesheet" href="panelcss.css" />
 </head>
 <body>
-<div class="container h-100">
-    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"><a href="${pageContext.request.contextPath}/alldiets"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="43" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-    </svg></a>      Dodaj produkty</p>
-    <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
-            data-bs-target="#addExpenseListModal">
-        <span class="fw-light fs-8">Dodaj produkt</span>
-    </button>
-    <button class="btn btn-primary">
-        <span class="fw-light fs-8">Wszystkie kalorie:${requestScope.liczbacalorie}</span>
-    </button>
-    <button class="btn btn-primary">
-        <span class="fw-light fs-8">Licznik bialko:${requestScope.liczbabialko}</span>
-    </button>
-    <button class="btn btn-primary">
-        <span class="fw-light fs-8">Licznik weglowodanów:${requestScope.liczbaweglowodany}</span>
-    </button>
-    <button class="btn btn-primary">
-        <span class="fw-light fs-8">Licznik tłuszczy:${requestScope.liczbatluszcz}</span>
-    </button>
-    <button class="btn btn-primary">
-        <span class="fw-light fs-8">Licznik kwasów tłuszczowych:${requestScope.liczbakwasy_tluszczowe}</span>
-    </button>
-    <button class="btn btn-primary">
-        <span class="fw-light fs-8">Licznik błonnika:${requestScope.liczbablonnik}</span>
-    </button>
-    <button class="btn btn-primary">
-        <span class="fw-light fs-8">Licznik soli:${requestScope.liczbasol}</span>
-    </button>
-    <button class="btn btn-primary">
-        <span class="fw-light fs-8">Licznik cukrów:${requestScope.liczbacukry}</span>
-    </button>
+<div class="d-flex" id="wrapper">
+<jsp:include page="sidebar.jsp"></jsp:include>
+    <div class="container-fluid d-inline m-0 p-0">
+        <div class="row align-items-center justify-content-center m-0 p-0" style="background-color: white; height: 84px">
+            <div class="col-4 align-items-center justify-content-center text-center d-flex flex-column" style="padding-bottom: 4px">
+                <h3>Dodaj produkty</h3>
+                    <button class="btn btn-outline-success" type="button" data-bs-toggle="modal"
+                            data-bs-target="#addExpenseListModal">
+                        <span class="fw-light fs-8">Dodaj produkt</span>
+                    </button>
+            </div>
+            <hr>
+        </div>
     <div class="modal" id="addExpenseListModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -97,11 +78,13 @@
         </div>
     </div>
         <div class="center">
-            <div class="card">
+            <div class="row">
+                <div class="col-10">
+                <div class="card">
                 <div class="card-body">
                     <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
                     <h5 class="card-title">
-                        <p>Śniadanie (7:00-9:00)</p>
+                        <p class="m-0 p-0" style="background-color: white">Śniadanie (7:00-9:00)</p>
                     </h5>
                     <table class="table table-striped table-bordered">
                         <thead class="table-dark">
@@ -182,10 +165,45 @@
                         </c:if>
                     </table>
                 </div>
+        </div>
+                </div>
+            <div class="col-2">
+                <button class="btn btn-primary mb-2" style="width: 100%">
+                    <span class="fw-light fs-8">Wszystkie kalorie:${requestScope.liczbacalorie}</span>
+                </button>
+                <br>
+                <button class="btn btn-primary mb-2" style="width: 100%">
+                    <span class="fw-light fs-8">Licznik bialko:${requestScope.liczbabialko}</span>
+                </button>
+                <br>
+                <button class="btn btn-primary mb-2" style="width: 100%">
+                    <span class="fw-light fs-8">Licznik weglowodanów:${requestScope.liczbaweglowodany}</span>
+                </button>
+                <br>
+                <button class="btn btn-primary mb-2" style="width: 100%">
+                    <span class="fw-light fs-8">Licznik tłuszczy:${requestScope.liczbatluszcz}</span>
+                </button>
+                <br>
+                <button class="btn btn-primary mb-2" style="width: 100%">
+                    <span class="fw-light fs-8">Licznik kwasów tłuszczowych:${requestScope.liczbakwasy_tluszczowe}</span>
+                </button>
+                <br>
+                <button class="btn btn-primary mb-2" style="width: 100%">
+                    <span class="fw-light fs-8">Licznik błonnika:${requestScope.liczbablonnik}</span>
+                </button>
+                <br>
+                <button class="btn btn-primary mb-2" style="width: 100%">
+                    <span class="fw-light fs-8">Licznik soli:${requestScope.liczbasol}</span>
+                </button>
+                <br>
+                <button class="btn btn-primary" style="width: 100%">
+                    <span class="fw-light fs-8">Licznik cukrów:${requestScope.liczbacukry}</span>
+                </button>
             </div>
         </div>
 
-    <div class="modal" id="deleteExpenseListConfirmationModal" tabindex="-1">
+
+            <div class="modal" id="deleteExpenseListConfirmationModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -208,6 +226,8 @@
             </div>
         </div>
     </div>
+        </div>
+
     <div class="center">
         <div class="card">
             <div class="card-body">

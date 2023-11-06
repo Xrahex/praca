@@ -23,12 +23,12 @@
 <style>
     h2,h4,label {
         color:white;
-        text-shadow: 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black, 0 0 4px black;
+        text-shadow: 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black, 0 0 2px black;
         -webkit-font-smoothing: antialiased
     }
     .d-flex#wrapper {
-        background: url(images/food.jpg) no-repeat;
-        background-size: cover; /* Dopasowanie tła do rozmiaru elementu */
+        background: url(images/panel.jpg) no-repeat;
+        background-size: cover;
         height: 100%;
         width: 100%;
         overflow: hidden;
@@ -37,7 +37,7 @@
 </style>
 
 <body class="bg-body-tertiary">
-<div class="d-flex" id="wrapper">
+<div class="d-flex mb-2" id="wrapper">
     <!-- Sidebar -->
 <jsp:include page="sidebar.jsp"></jsp:include>
 <div class="container">
@@ -46,7 +46,7 @@
             <div class="py-5 text-center col-12">
                 <h2>Na początku uzupełnij swoje dane!</h2>
             </div>
-            <div class="align-items-center justify-content-center card border-dark" style="background-color: transparent; backdrop-filter: blur(15px)">
+            <div class="align-items-center justify-content-center card border-dark" style="background-color: #009d63;border-radius: 30px;">
                 <div class="card-body">
                     <div class="col-12">
                         <h4 class="mb-3 text-center">Dane adresowe</h4>
@@ -55,14 +55,14 @@
                 <form class="needs-validation" novalidate action="changepersonals" method="post">
                     <div class="row g-3">
                         <div class="col-5">
-                            <label for="firstName" class="form-label">Imie</label>
+                            <label for="firstName" class="form-label fw-bold">Imie</label>
                             <input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid first name is required.
                             </div>
                         </div>
                         <div class="col-5">
-                            <label for="lastName" class="form-label">Nazwisko</label>
+                            <label for="lastName" class="form-label fw-bold">Nazwisko</label>
                             <input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid last name is required.
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-2">
                             <label class="fw-bold mt-2 mb-1" for="plec">Płeć</label><br>
-                            <select name="plec" id="plec">
+                            <select class="form-select" name="plec" id="plec">
                                 <option value="kobieta">Kobieta</option>
                                 <option value="mezczyzna">Mężczyzna</option>
                             </select>
@@ -79,28 +79,28 @@
                             </div>
                         </div>
                         <div class="col-3">
-                            <label for="wiek" class="form-label">Wiek</label>
+                            <label for="wiek" class="form-label fw-bold">Wiek</label>
                             <input type="text" class="form-control" id="wiek" name="wiek" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>
                         </div>
                         <div class="col-3">
-                            <label for="aktualna_waga" class="form-label">Aktualna waga</label>
+                            <label for="aktualna_waga" class="form-label fw-bold ">Aktualna waga</label>
                             <input type="text" class="form-control" id="aktualna_waga" name="aktualna_waga" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>
                         </div>
                             <div class="col-3">
-                                <label for="waga_docelowa" class="form-label">Waga docelowa</label>
+                                <label for="waga_docelowa" class="form-label fw-bold">Waga docelowa</label>
                                 <input type="text" class="form-control" id="waga_docelowa" name="waga_docelowa" placeholder="" value="" required>
                                 <div class="invalid-feedback">
                                     Valid last name is required.
                                 </div>
                         </div>
                         <div class="col-3">
-                            <label for="wzrost" class="form-label">Wzrost</label>
+                            <label for="wzrost" class="form-label fw-bold">Wzrost</label>
                             <input type="text" class="form-control" id="wzrost" name="wzrost" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid last name is required.
@@ -113,9 +113,10 @@
                             <h4 class="mb-3 text-center">Pytania kontrolne</h4>
                     </div>
                     <hr>
+                    <div class="row g-3">
                         <div class="col-sm-6">
                             <label class="fw-bold mt-2 mb-1" for="aktywnosc_fizyczna">Aktywność fizyczna w pracy</label><br>
-                            <select name="aktywnosc_fizyczna" id="aktywnosc_fizyczna">
+                            <select class="form-select" name="aktywnosc_fizyczna" id="aktywnosc_fizyczna">
                                 <option value="0">bardzo lekka, np. siedzę przed komputerem większą część dnia lub jestem kierowcą</option>
                                 <option value="1">lekka, np. lekka praca przemysłowa, sprzedaż lub praca biurowa obejmująca lekkie czynności </option>
                                 <option value="2">umiarkowana, np. sprzątanie, praca w kuchni lub dostarczanie poczty pieszo lub rowerem</option>
@@ -124,7 +125,7 @@
                         </div>
                         <div class="col-sm-6">
                             <label class="fw-bold mt-2 mb-1" for="aktywnosc_fizyczna2">Aktywność fizyczna w wolnym czasie</label><br>
-                            <select name="aktywnosc_fizyczna2" id="aktywnosc_fizyczna2">
+                            <select class="form-select" name="aktywnosc_fizyczna2" id="aktywnosc_fizyczna2">
                                 <option value="0">bardzo lekka, np. nie jestem aktywny fizycznie w wolnym czasie</option>
                                 <option value="1">lekka, np. w przybliżeniu raz w tygodniu: spaceruję, rekreacyjnie jeżdżę na rowerze, pracuję w ogródku </option>
                                 <option value="2">umiarkowana, np. regularnie ćwiczę przynajmniej raz w tygodniu: spaceruję, jeżdżę na rowerze, pracuję w ogródku lub idę do pracy przynajmniej 10–30 min codziennie</option>
@@ -132,9 +133,9 @@
                                 <option value="4">intensywna, np. ciężka aktywność fizyczna kilka razy w tygodniu </option>
                             </select>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <label class="fw-bold mt-2 mb-1" for="wybor">Jaki wynik chcesz uzyskać?</label><br>
-                            <select name="wybor" id="wybor">
+                            <select class="form-select" name="wybor" id="wybor">
                                 <option value="0">Schudnąć</option>
                                 <option value="1">Przytyć </option>
                                 <option value="2"> Utrzymać wage </option>
@@ -143,9 +144,9 @@
                                 Valid last name is required.
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <label class="fw-bold mt-2 mb-1" for="liczba_posilki">Ile posiłków chcesz jeść dziennie?</label><br>
-                            <select name="liczba_posilki" id="liczba_posilki">
+                            <select class="form-select" name="liczba_posilki" id="liczba_posilki">
                                 <option value="3">Trzy</option>
                                 <option value="4">Cztery </option>
                                 <option value="5"> Pięć</option>
@@ -154,9 +155,9 @@
                                 Valid last name is required.
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <label class="fw-bold mt-2 mb-1" for="czas_posilki">Ile czasu możesz poświęcić na przygotowanie posiłków?</label><br>
-                            <select name="czas_posilki" id="czas_posilki">
+                            <select class="form-select" name="czas_posilki" id="czas_posilki">
                                 <option value="0">Mniej niż 30min</option>
                                 <option value="1">Powyżej 30min </option>
                                 <option value="2">Powyżej godziny</option>
@@ -165,9 +166,9 @@
                                 Valid last name is required.
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                             <label class="fw-bold mt-2 mb-1" for="preferencje">Czy masz jakieś preferencje?</label><br>
-                            <select name="preferencje" id="preferencje">
+                            <select class="form-select" name="preferencje" id="preferencje">
                                 <option value="0">Brak</option>
                                 <option value="1">Nie toleruje laktozy</option>
                                 <option value="2">Nie tolereuje glutenu</option>
@@ -178,8 +179,9 @@
                                 Valid last name is required.
                             </div>
                         </div>
+                    </div>
                     <hr class="my-4">
-                    <button class="w-100 btn btn-primary btn-lg" type="submit">Sprawdź diete dla siebie</button>
+                    <button class="w-100 btn btn-success btn-lg" type="submit">Sprawdź diete dla siebie</button>
                 </form>
             </div>
             </div>

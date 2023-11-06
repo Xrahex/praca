@@ -387,6 +387,10 @@ public class DietModel {
                 product.setCukry(resultSet.getDouble("cukry"));
                 proponowane_produkty.add(product);
             }
+            for (Product p:proponowane_produkty
+                 ) {
+                System.out.println(p.getName());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
