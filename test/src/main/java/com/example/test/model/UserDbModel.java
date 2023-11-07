@@ -124,6 +124,8 @@ public class UserDbModel {
                 profile= new Profile();
                 profile.setPlec(result.getString("plec"));
                 profile.setCPM(result.getDouble("CPM"));
+                profile.setImie(result.getString("imie"));
+                profile.setNazwisko(result.getString("nazwisko"));
             }
             dbConnection.closeConnection();
             return profile;

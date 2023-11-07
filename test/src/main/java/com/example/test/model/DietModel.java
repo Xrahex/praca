@@ -1,6 +1,7 @@
 package com.example.test.model;
 
 import com.example.test.beans.DietList;
+import com.example.test.beans.DietListwithnick;
 import com.example.test.beans.Product;
 
 import java.math.BigDecimal;
@@ -69,6 +70,34 @@ public class DietModel {
                 dietList.setBlonnik(resultSet.getDouble("blonnik"));
                 dietList.setSol(resultSet.getDouble("sol"));
                 dietList.setCukry(resultSet.getDouble("cukry"));
+                wszystkiediety.add(dietList);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return wszystkiediety;
+    }
+
+    public List<DietListwithnick> adminalldiets() {
+        List<DietListwithnick> wszystkiediety = new ArrayList<>();
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT diets.*, user.nickname FROM diets JOIN user on diets.id_user = user.id");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                DietListwithnick dietList = new DietListwithnick();
+                dietList.setDiet_list_id(resultSet.getInt("id_diet"));
+                dietList.setId_user(resultSet.getInt("id_user"));
+                dietList.setName(resultSet.getString("diet_name"));
+                dietList.setCalorie(resultSet.getInt("calories"));
+                dietList.setBialko(resultSet.getDouble("bialko"));
+                dietList.setWeglowodany(resultSet.getDouble("weglowodany"));
+                dietList.setTluszcz(resultSet.getDouble("tluszcz"));
+                dietList.setKwasy_tluszczowe(resultSet.getDouble("kwasy_tluszczowe"));
+                dietList.setBlonnik(resultSet.getDouble("blonnik"));
+                dietList.setSol(resultSet.getDouble("sol"));
+                dietList.setCukry(resultSet.getDouble("cukry"));
+                dietList.setNickname(resultSet.getString("nickname"));
                 wszystkiediety.add(dietList);
             }
         } catch (SQLException e) {

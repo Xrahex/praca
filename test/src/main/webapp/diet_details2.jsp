@@ -45,7 +45,7 @@
                         <label class="fw-bold mt-2 mb-1" for="productname">Nazwa produktu</label><br>
                         <input type="text" name="productname" id="productname"/><br>
                         <label class="fw-bold mt-2 mb-1" for="calorie">Liczba kalorii</label><br>
-                        <input type="text" name="calorie" id="calorie"/><br>
+                        <input type="number" step="1" min="0" value="0" name="calorie" id="calorie"/><br>
                         <label class="fw-bold mt-2 mb-1" for="poradnia">Pora dnia</label><br>
                         <select name="poradnia" id="poradnia">
                             <option value="1">Śniadanie</option>
@@ -55,19 +55,19 @@
                             <option value="5">Kolacja</option>
                         </select><br>
                         <label class="fw-bold mt-2 mb-1" for="bialko">Liczba bialka</label><br>
-                        <input type="text" name="bialko" id="bialko"/><br>
+                        <input type="number" step="0.01" min="0" value="0.0" name="bialko" id="bialko"/><br>
                         <label class="fw-bold mt-2 mb-1" for="weglowodany">Liczba weglowodanów</label><br>
-                        <input type="text" name="weglowodany" id="weglowodany"/><br>
+                        <input type="number" step="0.01" min="0" value="0.0" name="weglowodany" id="weglowodany"/><br>
                         <label class="fw-bold mt-2 mb-1" for="tluszcz">Liczba tłuszczów</label><br>
-                        <input type="text" name="tluszcz" id="tluszcz"/><br>
+                        <input type="number" step="0.01" min="0" value="0.0" name="tluszcz" id="tluszcz"/><br>
                         <label class="fw-bold mt-2 mb-1" for="kwasy_tluszczowe">Liczba kwasów tłuszczowych</label><br>
-                        <input type="text" name="kwasy_tluszczowe" id="kwasy_tluszczowe"/><br>
+                        <input type="number" step="0.01" min="0" value="0.0" name="kwasy_tluszczowe" id="kwasy_tluszczowe"/><br>
                         <label class="fw-bold mt-2 mb-1" for="blonnik">Liczba błonnika</label><br>
-                        <input type="text" name="blonnik" id="blonnik"/><br>
+                        <input type="number" step="0.01" min="0" value="0.0" name="blonnik" id="blonnik"/><br>
                         <label class="fw-bold mt-2 mb-1" for="sol">Liczba soli</label><br>
-                        <input type="text" name="sol" id="sol"/><br>
+                        <input type="number" step="0.01" min="0" value="0.0" name="sol" id="sol"/><br>
                         <label class="fw-bold mt-2 mb-1" for="cukry">Liczba cukru</label><br>
-                        <input type="text" name="cukry" id="cukry"/><br>
+                        <input type="number" step="0.01" min="0" value="0.0" name="cukry" id="cukry"/><br>
                     </form>
                 </div>
                 <div class="modal-footer">

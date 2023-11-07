@@ -101,13 +101,16 @@
       </div>
     </nav>
     <div class="porady">
-  <c:if test="${empty requestScope.email}">
     <div class="account-info card">
       <h2>Informacje o koncie</h2>
+      <c:if test="${empty requestScope.email}">
       <p>Email: ${email.email}</p>
       <p>Typ: ${email.type}</p>
+      </c:if>
+      <c:if test="${empty requestScope.profil}">
+        <p>Witaj ${profil.imie} ${profil.nazwisko}!</p></p>
+      </c:if>
     </div>
-  </c:if>
     <div class="diet-tips">
       <h2>Porady Dietetyczne</h2>
 

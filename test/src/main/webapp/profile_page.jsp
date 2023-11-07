@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.112.5">
     <title>Zmiana profilu</title>
 
@@ -80,28 +79,28 @@
                         </div>
                         <div class="col-3">
                             <label for="wiek" class="form-label fw-bold">Wiek</label>
-                            <input type="text" class="form-control" id="wiek" name="wiek" placeholder="" value="" required>
+                            <input type="number" min="1" class="form-control" id="wiek" name="wiek" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>
                         </div>
                         <div class="col-3">
                             <label for="aktualna_waga" class="form-label fw-bold ">Aktualna waga</label>
-                            <input type="text" class="form-control" id="aktualna_waga" name="aktualna_waga" placeholder="" value="" required>
+                            <input type="number" min="1" class="form-control" id="aktualna_waga" name="aktualna_waga" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>
                         </div>
                             <div class="col-3">
                                 <label for="waga_docelowa" class="form-label fw-bold">Waga docelowa</label>
-                                <input type="text" class="form-control" id="waga_docelowa" name="waga_docelowa" placeholder="" value="" required>
+                                <input type="number" min="1" class="form-control" id="waga_docelowa" name="waga_docelowa" placeholder="" value="" required>
                                 <div class="invalid-feedback">
                                     Valid last name is required.
                                 </div>
                         </div>
                         <div class="col-3">
                             <label for="wzrost" class="form-label fw-bold">Wzrost</label>
-                            <input type="text" class="form-control" id="wzrost" name="wzrost" placeholder="" value="" required>
+                            <input type="number" min="1" class="form-control" id="wzrost" name="wzrost" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid last name is required.
                             </div>

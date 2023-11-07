@@ -56,11 +56,19 @@
                 <c:forEach items="${requestScope.proponowane_produkty}" var="wszystkiediety">
                     <tr>
                         <td>
-                            <p class="list-name">${wszystkiediety.name}</p>
-                            <p class="list-id" style="display:none;">${wszystkiediety.diet_list_id}</p>
+                            <p class="product_id" style="display:none;">${wszystkiediety.product_id}</p>
+                            <p class="product_name">${wszystkiediety.name}</p>
+                            <p class="list-id">${wszystkiediety.diet_list_id}</p>
                         </td>
                         <td>
-                            <p class="calorie">${wszystkiediety.calorie}</p>
+                            <p class="product_calorie">${wszystkiediety.calorie}</p>
+                              <p class="product_bialko" style="display:none;"> ${wszystkiediety.bialko} </p>
+                              <p class="product_weglowodany" style="display:none;"> ${wszystkiediety.weglowodany} </p>
+                              <p class="product_tluszcz" style="display:none;"> ${wszystkiediety.tluszcz} </p>
+                              <p class="product_kwasy_tluszczowe" style="display:none;"> ${wszystkiediety.kwasy_tluszczowe} </p>
+                              <p class="product_blonnik" style="display:none;"> ${wszystkiediety.blonnik} </p>
+                              <p class="product_sol" style="display:none;"> ${wszystkiediety.sol} </p>
+                              <p class="product_cukry" style="display:none;"> ${wszystkiediety.cukry} </p>
                         </td>
                         <td class="text-center m-0">
                             <button class="delete-expense-list btn btn-outline-success" type="button"
@@ -95,7 +103,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Czy na pewno chcesz dodać ten produkt do swojej diety?</p>
-                    <form action="${pageContext.request.contextPath}/deletedietlist?list_id="
+                    <form action="${pageContext.request.contextPath}/addproductsnaidanie?list_id=${pageContext.request.getParameter("list_id")}"
                           method="post" method="post" id="confirmExpenseListDelete">
                     </form>
                 </div>
@@ -125,7 +133,17 @@
         $(".delete-expense-list").click(function () {
             let listName = $(this).parent().parent().find('.list-name').text();
             let listId = $(this).parent().parent().find('.list-id').text();
-            $("#delete-list-modal-title").text('Usuń: ' + listName);
+            let productName = $(this).parent().parent().find('.product_name').text();
+            let product_id = $(this).parent().parent().find('.product_id').text();
+            let calorie=  $(this).parent().parent().find('.product_calorie').text();
+            let bialko=  $(this).parent().parent().find('.product_bialko').text();
+            let weglowodany=  $(this).parent().parent().find('.product_weglowodany').text();
+            let tluszcz=  $(this).parent().parent().find('.product_tluszcz').text();
+            let kwasy_tluszczowe=  $(this).parent().parent().find('.product_kwasy_tluszczowe').text();
+            let blonnik=  $(this).parent().parent().find('.product_blonnik').text();
+            let sol=  $(this).parent().parent().find('.product_sol').text();
+            let cukry=  $(this).parent().parent().find('.product_cukry').text()
+            $("#delete-list-modal-title").text('Dodaj: ' + productName);
             let actionAttr = $("#confirmExpenseListDelete").attr('action');
             $("#confirmExpenseListDelete").attr('action', actionAttr + listId);
         });

@@ -39,7 +39,7 @@
 <table class="table table-striped table-bordered table-responsive table-hover mx-auto" style="width: 60rem;">
     <thead class="table-dark">
     <tr>
-        <th>Nazwa listy</th>
+        <th>Nazwa diety</th>
         <th>Liczba kalorii</th>
         <th style="width: 50px">Usuń</th>
         <th style="width: 50px">Modyfikuj</th>
