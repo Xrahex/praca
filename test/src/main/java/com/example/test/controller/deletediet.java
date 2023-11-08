@@ -19,6 +19,7 @@ public class deletediet extends HttpServlet {
 
         HttpSession session = req.getSession(true);
         User user = (User) session.getAttribute("email");
+        String admin = req.getParameter("admindelete");
         if( user == null) {
             response.sendRedirect(req.getContextPath() + "/signin.jsp");
             return;
@@ -26,8 +27,12 @@ public class deletediet extends HttpServlet {
         int dietlistid = Integer.parseInt(req.getParameter("list_id"));
 
         boolean isdietlistdeleted = new DietModel().deleteDietlistbyid(dietlistid);
-        response.sendRedirect(req.getContextPath() + "/alldiets");
-
+        if(admin != null) {
+            response.sendRedirect(req.getContextPath() + "/adminalldiets");
+        }
+        else {
+            response.sendRedirect(req.getContextPath() + "/alldiets");
+        }
 
     }
 

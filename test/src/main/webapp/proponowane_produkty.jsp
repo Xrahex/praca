@@ -58,7 +58,6 @@
                         <td>
                             <p class="product_id" style="display:none;">${wszystkiediety.product_id}</p>
                             <p class="product_name">${wszystkiediety.name}</p>
-                            <p class="list-id">${wszystkiediety.diet_list_id}</p>
                         </td>
                         <td>
                             <p class="product_calorie">${wszystkiediety.calorie}</p>
@@ -103,7 +102,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Czy na pewno chcesz dodać ten produkt do swojej diety?</p>
-                    <form action="${pageContext.request.contextPath}/addproductsnaidanie?list_id=${pageContext.request.getParameter("list_id")}"
+                    <form action="${pageContext.request.contextPath}/addproductproponowany?list_id=${pageContext.request.getParameter("list_id")}&product_id="
                           method="post" method="post" id="confirmExpenseListDelete">
                     </form>
                 </div>
@@ -145,7 +144,7 @@
             let cukry=  $(this).parent().parent().find('.product_cukry').text()
             $("#delete-list-modal-title").text('Dodaj: ' + productName);
             let actionAttr = $("#confirmExpenseListDelete").attr('action');
-            $("#confirmExpenseListDelete").attr('action', actionAttr + listId);
+            $("#confirmExpenseListDelete").attr('action', actionAttr + listId + product_id);
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

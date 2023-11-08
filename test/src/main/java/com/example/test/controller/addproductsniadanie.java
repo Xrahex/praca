@@ -37,6 +37,12 @@ public class addproductsniadanie extends HttpServlet {
         String blonnik = req.getParameter("blonnik");
         String sol = req.getParameter("sol");
         String cukry = req.getParameter("cukry");
+        String czas = req.getParameter("czas_przygotowania");
+        String zawiera_laktoze = req.getParameter("zawiera_laktoze");
+        String zawiera_gluten = req.getParameter("zawiera_gluten");
+        String jest_wegetarianski = req.getParameter("jest_wegetarianski");
+        String jest_weganski = req.getParameter("jest_weganski");
+
         product.setDiet_list_id(Integer.parseInt(listid));
         product.setName(productname);
         product.setCalorie(Integer.valueOf(calorie));
@@ -48,6 +54,11 @@ public class addproductsniadanie extends HttpServlet {
         product.setBlonnik(Double.parseDouble(blonnik));
         product.setSol(Double.parseDouble(sol));
         product.setCukry(Double.parseDouble(cukry));
+        product.setCzas_przygotownia(Integer.parseInt(czas));
+        product.setLaktoza(Integer.parseInt(zawiera_laktoze));
+        product.setGluten(Integer.parseInt(zawiera_gluten));
+        product.setWegetarian(Integer.parseInt(jest_wegetarianski));
+        product.setWege(Integer.parseInt(jest_weganski));
         new DietModel().createdietproductsniadanie(product);
 
         response.sendRedirect(req.getContextPath() + "/dietlistdetails?list_id="+listid);

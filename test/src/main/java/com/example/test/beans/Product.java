@@ -20,6 +20,26 @@ public class Product {
         this.cukry = cukry;
     }
 
+    public Product(String name, int calorie, int poradnia, int diet_list_id, int product_id, double bialko, double weglowodany, double tluszcz, double kwasy_tluszczowe, double blonnik, double sol, double cukry, int czas_przygotownia, int laktoza, int gluten, int wegetarian, int wege) {
+        this.name = name;
+        this.calorie = calorie;
+        this.poradnia = poradnia;
+        this.diet_list_id = diet_list_id;
+        this.product_id = product_id;
+        this.bialko = bialko;
+        this.weglowodany = weglowodany;
+        this.tluszcz = tluszcz;
+        this.kwasy_tluszczowe = kwasy_tluszczowe;
+        this.blonnik = blonnik;
+        this.sol = sol;
+        this.cukry = cukry;
+        this.czas_przygotownia = czas_przygotownia;
+        this.laktoza = laktoza;
+        this.gluten = gluten;
+        this.wegetarian = wegetarian;
+        this.wege = wege;
+    }
+
     public int getPoradnia() {
         return poradnia;
     }
@@ -131,6 +151,52 @@ public class Product {
     private double blonnik;
     private double sol;
     private double cukry;
+
+    public int getCzas_przygotownia() {
+        return czas_przygotownia;
+    }
+
+    public void setCzas_przygotownia(int czas_przygotownia) {
+        this.czas_przygotownia = czas_przygotownia;
+    }
+
+    public int getLaktoza() {
+        return laktoza;
+    }
+
+    public void setLaktoza(int laktoza) {
+        this.laktoza = laktoza;
+    }
+
+    public int getGluten() {
+        return gluten;
+    }
+
+    public void setGluten(int gluten) {
+        this.gluten = gluten;
+    }
+
+    public int getWegetarian() {
+        return wegetarian;
+    }
+
+    public void setWegetarian(int wegetarian) {
+        this.wegetarian = wegetarian;
+    }
+
+    public int getWege() {
+        return wege;
+    }
+
+    public void setWege(int wege) {
+        this.wege = wege;
+    }
+
+    private int czas_przygotownia;
+    private int laktoza;
+    private int gluten;
+    private int wegetarian;
+    private int wege;
 
     public Product() {
     }

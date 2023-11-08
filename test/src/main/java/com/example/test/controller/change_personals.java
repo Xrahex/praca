@@ -73,8 +73,22 @@ public class change_personals extends HttpServlet {
         try {
             new UserDbModel().updateuserCPM(user.getId(),CPM);
             new UserDbModel().change_personals(user,imie,nazwisko,akt_waga,wzrost,wiek,plec,liczba_posilkow,czas_posilkow,preferencje);
+            String preferencje_uzytkownika = null;
+            switch (preferencje) {
+                case 1:
+                    preferencje_uzytkownika="laktoza";
+                    break;
+                case 2:
+                    preferencje_uzytkownika="gluten";
+                    break;
+                case 3:
+                    preferencje_uzytkownika="wegetarian";
+                    break;
+                case 4:
+                    preferencje_uzytkownika="wege";
+            }
             Profile profile = new UserDbModel().select_profile(user);
-            List<DietList> dietsforyou = new UserDbModel().finddiets(CPM1,CPM2);
+            List<DietList> dietsforyou = new UserDbModel().finddiets(CPM1,CPM2,czas_posilkow,preferencje_uzytkownika);
             req.setAttribute("dietydlaciebie",dietsforyou);
             session.setAttribute("profil",profile);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/dietydlaCiebie.jsp");

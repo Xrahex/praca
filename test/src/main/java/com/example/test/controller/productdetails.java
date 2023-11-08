@@ -49,6 +49,11 @@ public class productdetails extends HttpServlet {
             BigDecimal licznik_blonnik = new DietModel().count(dietlistid,"blonnik");
             BigDecimal licznik_sol = new DietModel().count(dietlistid,"sol");
             BigDecimal licznik_cukry = new DietModel().count(dietlistid,"cukry");
+            int licznik_czas_przygotowania = new DietModel().wybory(dietlistid,"czas_przygotowania");
+            int licznik_laktoza = new DietModel().wybory(dietlistid,"laktoza");
+            int licznik_gluten = new DietModel().wybory(dietlistid,"gluten");
+            int licznik_wegetarian = new DietModel().wybory(dietlistid,"wegetarian");
+            int licznik_wege = new DietModel().wybory(dietlistid,"wege");
             System.out.println(licznik_calorie);
             System.out.println(licznik_bialko);
             new DietModel().updateDietcaloriebyid(dietlistid,licznik_calorie);
@@ -59,6 +64,11 @@ public class productdetails extends HttpServlet {
             new DietModel().updateDietelementbyid(dietlistid,licznik_blonnik,"blonnik");
             new DietModel().updateDietelementbyid(dietlistid,licznik_sol,"sol");
             new DietModel().updateDietelementbyid(dietlistid,licznik_cukry,"cukry");
+            new DietModel().updateDietwyborybyid(dietlistid,licznik_czas_przygotowania,"czas_przygotowania");
+            new DietModel().updateDietwyborybyid(dietlistid,licznik_laktoza,"laktoza");
+            new DietModel().updateDietwyborybyid(dietlistid,licznik_gluten,"gluten");
+            new DietModel().updateDietwyborybyid(dietlistid,licznik_wegetarian,"wegetarianski");
+            new DietModel().updateDietwyborybyid(dietlistid,licznik_wege,"wege");
             req.setAttribute("dietlist",dietList);
             req.setAttribute("dietwithproducts",product);
             req.setAttribute("dietwithproducts1",sniadanie);

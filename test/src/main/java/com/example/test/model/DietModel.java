@@ -228,12 +228,38 @@ public class DietModel {
         return  produkty;
     }
 
+    public Product getproductbyid(int product_id) {
+        Product product= new Product();
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM products WHERE product_id=? ");
+            preparedStatement.setInt(1, product_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                product.setProduct_id(resultSet.getInt("product_id"));
+                product.setDiet_list_id(resultSet.getInt("diet_list_id"));
+                product.setName(resultSet.getString("product_name"));
+                product.setCalorie(resultSet.getInt("calorie"));
+                product.setPoradnia(resultSet.getInt("pora_dnia"));
+                product.setBialko(resultSet.getDouble("bialko"));
+                product.setWeglowodany(resultSet.getDouble("weglowodany"));
+                product.setTluszcz(resultSet.getDouble("tluszcz"));
+                product.setKwasy_tluszczowe(resultSet.getDouble("kwasy_tluszczowe"));
+                product.setBlonnik(resultSet.getDouble("blonnik"));
+                product.setSol(resultSet.getDouble("sol"));
+                product.setCukry(resultSet.getDouble("cukry"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return  product;
+    }
 
 
     public boolean createdietproductsniadanie(Product product) {
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into products(diet_list_id,product_name,calorie,pora_dnia,bialko,weglowodany,tluszcz,kwasy_tluszczowe,blonnik,sol,cukry) values (?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement preparedStatement = connect.prepareStatement("INSERT into products(diet_list_id,product_name,calorie,pora_dnia,bialko,weglowodany,tluszcz,kwasy_tluszczowe,blonnik,sol,cukry,czas_przygotowania,laktoza,gluten,wegetarian,wege) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             preparedStatement.setInt(1,product.getDiet_list_id());
             preparedStatement.setString(2, product.getName());
             preparedStatement.setInt(3, product.getCalorie());
@@ -245,6 +271,12 @@ public class DietModel {
             preparedStatement.setDouble(9,product.getBlonnik());
             preparedStatement.setDouble(10,product.getSol());
             preparedStatement.setDouble(11,product.getCukry());
+            preparedStatement.setInt(12,product.getCzas_przygotownia());
+            preparedStatement.setInt(13,product.getLaktoza());
+            preparedStatement.setInt(14,product.getGluten());
+            preparedStatement.setInt(15,product.getWegetarian());
+            preparedStatement.setInt(16,product.getWege());
+
             preparedStatement.executeQuery();
             preparedStatement.close();
         } catch (SQLException e) {
@@ -338,7 +370,44 @@ public class DietModel {
         return d;
     }
 
+    public int wybory(int diet_list_id, String name) {
+        int d= 0;
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement(
+                    "SELECT MAX("+name+") from products where diet_list_id=?");
+            preparedStatement.setInt(1,diet_list_id);
+            ResultSet resultSet;
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                d = resultSet.getInt(1);
+                System.out.println(d);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        finally {
+            dbConnection.closeConnection();
+        }
+        return d;
+    }
+
     public boolean updateDietelementbyid(int id_diet, BigDecimal wartosc, String name) {
+        try {
+            connect = dbConnection.openConnection();
+            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE diets SET "+name+"="+wartosc+" WHERE (id_diet=?)");
+            preparedStatement.setInt(1, id_diet);
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            dbConnection.closeConnection();
+        }
+        return true;
+    }
+
+    public boolean updateDietwyborybyid(int id_diet, int wartosc, String name) {
         try {
             connect = dbConnection.openConnection();
             PreparedStatement preparedStatement = connect.prepareStatement("UPDATE diets SET "+name+"="+wartosc+" WHERE (id_diet=?)");

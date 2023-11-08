@@ -112,7 +112,7 @@
         </div>
         <div class="modal-body">
           <p>Czy na pewno chcesz usunąć tę listę?</p>
-          <form action="${pageContext.request.contextPath}/deletedietlist?list_id="
+          <form action="${pageContext.request.contextPath}/deletedietlist?admindelete=true&list_id="
                 method="post" method="post" id="confirmExpenseListDelete">
           </form>
         </div>
