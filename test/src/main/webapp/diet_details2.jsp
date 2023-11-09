@@ -164,7 +164,7 @@
                                         <button class="delete-expense-list btn btn-outline-danger" type="button"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#deleteExpenseListConfirmationModal"
-                                                id="deleteExpenseListButton">
+                                                id="deleteExpenseListButton2">
                                                             <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </span>
@@ -174,7 +174,7 @@
                                         <button class="modify-expense-list btn btn-outline-dark" type="button"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#modifyExpenseListConfirmationModal"
-                                                id="modifyExpenseListButton">
+                                                id="modifyExpenseListButton2">
                                                             <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-pen-to-square" aria-hidden="true"></i>
                                                             </span>
@@ -192,249 +192,352 @@
                         </c:if>
                     </table>
                 </div>
-        </div>
-                    <div class="center">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
-                                <h5 class="card-title">
-                                    <p>Przekąska (9:00-12:00)</p>
-                                </h5>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="table-dark">
-                                    <tr>
-                                        <th style="text-align: center;">Nazwa</th>
-                                        <th style="text-align: center;">Wartość</th>
-                                        <th colspan="2" style="text-align: center;">Operacje</th>
-                                    </tr>
-                                    </thead>
-                                    <c:if test="${!empty requestScope.dietwithproducts2}">
-                                        <c:forEach items="${requestScope.dietwithproducts2}" var="produktyzdiet">
-                                            <tr>
-                                                <td>
-                                                    <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
-                                                    <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
-                                                    <p class="product_name">${produktyzdiet.name}</p>
-                                                </td>
-                                                <td>
-                                                    <p class="product_calorie">${produktyzdiet.calorie}</p>
-                                                </td>
-                                                <td class="text-center m-0">
-                                                    <button class="delete-expense-list btn btn-outline-danger" type="button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#deleteExpenseListConfirmationModal"
-                                                            id="deleteExpenseListButton2">
+                </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
+                            <h5 class="card-title">
+                                <p class="m-0 p-0" style="background-color: white">Przekąska (9:00-12:00)</p>
+                            </h5>
+                            <table class="table table-striped table-bordered">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th style="text-align: center;">Nazwa produktu</th>
+                                    <th style="text-align: center;">Wartość kaloryczna</th>
+                                    <th style="text-align: center;">Białko</th>
+                                    <th style="text-align: center;">Węglowodany</th>
+                                    <th style="text-align: center;">Tłuszcze</th>
+                                    <th style="text-align: center;">Kwasy tłuszczowe</th>
+                                    <th style="text-align: center;">Błonnik</th>
+                                    <th style="text-align: center;">Sól</th>
+                                    <th style="text-align: center;">Cukry</th>
+                                    <th colspan="2" style="text-align: center;">Operacje</th>
+                                </tr>
+                                </thead>
+                                <c:if test="${!empty requestScope.dietwithproducts2}">
+                                    <c:forEach items="${requestScope.dietwithproducts2}" var="produktyzdiet">
+                                        <tr>
+                                            <td>
+                                                <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
+                                                <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
+                                                <p class="product_name">${produktyzdiet.name}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_calorie">${produktyzdiet.calorie}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_bialko">${produktyzdiet.bialko}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_weglowodany">${produktyzdiet.weglowodany}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_tluszcz">${produktyzdiet.tluszcz}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_kwasy_tluszczowe">${produktyzdiet.kwasy_tluszczowe}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_blonnik">${produktyzdiet.blonnik}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_sol">${produktyzdiet.sol}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_cukry">${produktyzdiet.cukry}</p>
+                                            </td>
+                                            <td class="text-center m-0">
+                                                <button class="delete-expense-list btn btn-outline-danger" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteExpenseListConfirmationModal"
+                                                        id="deleteExpenseListButton3">
                                                             <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </span>
-                                                    </button>
-                                                </td>
-                                                <td class="text-center m-0">
-                                                    <button class="modify-expense-list btn btn-outline-dark" type="button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modifyExpenseListConfirmationModal"
-                                                            id="modifyExpenseListButton2">
+                                                </button>
+                                            </td>
+                                            <td class="text-center m-0">
+                                                <button class="modify-expense-list btn btn-outline-dark" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modifyExpenseListConfirmationModal"
+                                                        id="modifyExpenseListButton3">
                                                             <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-pen-to-square" aria-hidden="true"></i>
                                                             </span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </c:if>
-                                    <c:if test="${empty requestScope.dietwithproducts2}">
-                                        <tr>
-                                            <td colspan="5" style="text-align: center;">
-                                                Nie dodałeś jeszcze żadnych produktów.
+                                                </button>
                                             </td>
                                         </tr>
-                                    </c:if>
-                                </table>
-                            </div>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${empty requestScope.dietwithproducts2}">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">
+                                            Nie dodałeś jeszcze żadnych produktów.
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </table>
                         </div>
                     </div>
-                    <div class="center">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
-                                <h5 class="card-title">
-                                    <p>Obiad (13:00-16:00)</p>
-                                </h5>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="table-dark">
-                                    <tr>
-                                        <th style="text-align: center;">Nazwa</th>
-                                        <th style="text-align: center;">Wartość</th>
-                                        <th colspan="2" style="text-align: center;">Operacje</th>
-                                    </tr>
-                                    </thead>
-                                    <c:if test="${!empty requestScope.dietwithproducts3}">
-                                        <c:forEach items="${requestScope.dietwithproducts3}" var="produktyzdiet">
-                                            <tr>
-                                                <td>
-                                                    <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
-                                                    <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
-                                                    <p class="product_name">${produktyzdiet.name}</p>
-                                                </td>
-                                                <td>
-                                                    <p class="product_calorie">${produktyzdiet.calorie}</p>
-                                                </td>
-                                                <td class="text-center m-0">
-                                                    <button class="delete-expense-list btn btn-outline-danger" type="button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#deleteExpenseListConfirmationModal"
-                                                            id="deleteExpenseListButton3">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
+                            <h5 class="card-title">
+                                <p class="m-0 p-0" style="background-color: white">Obiad (13:00-16:00)</p>
+                            </h5>
+                            <table class="table table-striped table-bordered">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th style="text-align: center;">Nazwa produktu</th>
+                                    <th style="text-align: center;">Wartość kaloryczna</th>
+                                    <th style="text-align: center;">Białko</th>
+                                    <th style="text-align: center;">Węglowodany</th>
+                                    <th style="text-align: center;">Tłuszcze</th>
+                                    <th style="text-align: center;">Kwasy tłuszczowe</th>
+                                    <th style="text-align: center;">Błonnik</th>
+                                    <th style="text-align: center;">Sól</th>
+                                    <th style="text-align: center;">Cukry</th>
+                                    <th colspan="2" style="text-align: center;">Operacje</th>
+                                </tr>
+                                </thead>
+                                <c:if test="${!empty requestScope.dietwithproducts3}">
+                                    <c:forEach items="${requestScope.dietwithproducts3}" var="produktyzdiet">
+                                        <tr>
+                                            <td>
+                                                <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
+                                                <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
+                                                <p class="product_name">${produktyzdiet.name}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_calorie">${produktyzdiet.calorie}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_bialko">${produktyzdiet.bialko}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_weglowodany">${produktyzdiet.weglowodany}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_tluszcz">${produktyzdiet.tluszcz}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_kwasy_tluszczowe">${produktyzdiet.kwasy_tluszczowe}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_blonnik">${produktyzdiet.blonnik}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_sol">${produktyzdiet.sol}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_cukry">${produktyzdiet.cukry}</p>
+                                            </td>
+                                            <td class="text-center m-0">
+                                                <button class="delete-expense-list btn btn-outline-danger" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteExpenseListConfirmationModal"
+                                                        id="deleteExpenseListButton4">
                                                             <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </span>
-                                                    </button>
-                                                </td>
-                                                <td class="text-center m-0">
-                                                    <button class="modify-expense-list btn btn-outline-dark" type="button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modifyExpenseListConfirmationModal"
-                                                            id="modifyExpenseListButton3">
+                                                </button>
+                                            </td>
+                                            <td class="text-center m-0">
+                                                <button class="modify-expense-list btn btn-outline-dark" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modifyExpenseListConfirmationModal"
+                                                        id="modifyExpenseListButton4">
                                                             <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-pen-to-square" aria-hidden="true"></i>
                                                             </span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </c:if>
-                                    <c:if test="${empty requestScope.dietwithproducts3}">
-                                        <tr>
-                                            <td colspan="5" style="text-align: center;">
-                                                Nie dodałeś jeszcze żadnych produktów.
+                                                </button>
                                             </td>
                                         </tr>
-                                    </c:if>
-                                </table>
-                            </div>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${empty requestScope.dietwithproducts3}">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">
+                                            Nie dodałeś jeszcze żadnych produktów.
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </table>
                         </div>
                     </div>
-                    <div class="center">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
-                                <h5 class="card-title">
-                                    <p>Podwieczorek (16:00-18:00)</p>
-                                </h5>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="table-dark">
-                                    <tr>
-                                        <th style="text-align: center;">Nazwa</th>
-                                        <th style="text-align: center;">Wartość</th>
-                                        <th colspan="2" style="text-align: center;">Operacje</th>
-                                    </tr>
-                                    </thead>
-                                    <c:if test="${!empty requestScope.dietwithproducts4}">
-                                        <c:forEach items="${requestScope.dietwithproducts4}" var="produktyzdiet">
-                                            <tr>
-                                                <td>
-                                                    <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
-                                                    <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
-                                                    <p class="product_name">${produktyzdiet.name}</p>
-                                                </td>
-                                                <td>
-                                                    <p class="product_calorie">${produktyzdiet.calorie}</p>
-                                                </td>
-                                                <td class="text-center m-0">
-                                                    <button class="delete-expense-list btn btn-outline-danger" type="button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#deleteExpenseListConfirmationModal"
-                                                            id="deleteExpenseListButton4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
+                            <h5 class="card-title">
+                                <p class="m-0 p-0" style="background-color: white">Podwieczorek (16:00-18:00)</p>
+                            </h5>
+                            <table class="table table-striped table-bordered">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th style="text-align: center;">Nazwa produktu</th>
+                                    <th style="text-align: center;">Wartość kaloryczna</th>
+                                    <th style="text-align: center;">Białko</th>
+                                    <th style="text-align: center;">Węglowodany</th>
+                                    <th style="text-align: center;">Tłuszcze</th>
+                                    <th style="text-align: center;">Kwasy tłuszczowe</th>
+                                    <th style="text-align: center;">Błonnik</th>
+                                    <th style="text-align: center;">Sól</th>
+                                    <th style="text-align: center;">Cukry</th>
+                                    <th colspan="2" style="text-align: center;">Operacje</th>
+                                </tr>
+                                </thead>
+                                <c:if test="${!empty requestScope.dietwithproducts4}">
+                                    <c:forEach items="${requestScope.dietwithproducts4}" var="produktyzdiet">
+                                        <tr>
+                                            <td>
+                                                <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
+                                                <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
+                                                <p class="product_name">${produktyzdiet.name}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_calorie">${produktyzdiet.calorie}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_bialko">${produktyzdiet.bialko}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_weglowodany">${produktyzdiet.weglowodany}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_tluszcz">${produktyzdiet.tluszcz}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_kwasy_tluszczowe">${produktyzdiet.kwasy_tluszczowe}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_blonnik">${produktyzdiet.blonnik}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_sol">${produktyzdiet.sol}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_cukry">${produktyzdiet.cukry}</p>
+                                            </td>
+                                            <td class="text-center m-0">
+                                                <button class="delete-expense-list btn btn-outline-danger" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteExpenseListConfirmationModal"
+                                                        id="deleteExpenseListButton5">
                                                             <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </span>
-                                                    </button>
-                                                </td>
-                                                <td class="text-center m-0">
-                                                    <button class="modify-expense-list btn btn-outline-dark" type="button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modifyExpenseListConfirmationModal"
-                                                            id="modifyExpenseListButton4">
+                                                </button>
+                                            </td>
+                                            <td class="text-center m-0">
+                                                <button class="modify-expense-list btn btn-outline-dark" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modifyExpenseListConfirmationModal"
+                                                        id="modifyExpenseListButton5">
                                                             <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-pen-to-square" aria-hidden="true"></i>
                                                             </span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </c:if>
-                                    <c:if test="${empty requestScope.dietwithproducts4}">
-                                        <tr>
-                                            <td colspan="5" style="text-align: center;">
-                                                Nie dodałeś jeszcze żadnych produktów.
+                                                </button>
                                             </td>
                                         </tr>
-                                    </c:if>
-                                </table>
-                            </div>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${empty requestScope.dietwithproducts4}">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">
+                                            Nie dodałeś jeszcze żadnych produktów.
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </table>
                         </div>
                     </div>
-                    <div class="center">
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
-                                <h5 class="card-title">
-                                    <p>Kolacja (18:00-20:00)</p>
-                                </h5>
-                                <table class="table table-striped table-bordered">
-                                    <thead class="table-dark">
-                                    <tr>
-                                        <th style="text-align: center;">Nazwa</th>
-                                        <th style="text-align: center;">Wartość</th>
-                                        <th colspan="2" style="text-align: center;">Operacje</th>
-                                    </tr>
-                                    </thead>
-                                    <c:if test="${!empty requestScope.dietwithproducts5}">
-                                        <c:forEach items="${requestScope.dietwithproducts5}" var="produktyzdiet">
-                                            <tr>
-                                                <td>
-                                                    <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
-                                                    <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
-                                                    <p class="product_name">${produktyzdiet.name}</p>
-                                                </td>
-                                                <td>
-                                                    <p class="product_calorie">${produktyzdiet.calorie}</p>
-                                                </td>
-                                                <td class="text-center m-0">
-                                                    <button class="delete-expense-list btn btn-outline-danger" type="button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#deleteExpenseListConfirmationModal"
-                                                            id="deleteExpenseListButton5">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="list-id" style="display:none;">${requestScope.dietlist.diet_list_id}</p>
+                            <h5 class="card-title">
+                                <p class="m-0 p-0" style="background-color: white">Kolacja (18:00-20:00)</p>
+                            </h5>
+                            <table class="table table-striped table-bordered">
+                                <thead class="table-dark">
+                                <tr>
+                                    <th style="text-align: center;">Nazwa produktu</th>
+                                    <th style="text-align: center;">Wartość kaloryczna</th>
+                                    <th style="text-align: center;">Białko</th>
+                                    <th style="text-align: center;">Węglowodany</th>
+                                    <th style="text-align: center;">Tłuszcze</th>
+                                    <th style="text-align: center;">Kwasy tłuszczowe</th>
+                                    <th style="text-align: center;">Błonnik</th>
+                                    <th style="text-align: center;">Sól</th>
+                                    <th style="text-align: center;">Cukry</th>
+                                    <th colspan="2" style="text-align: center;">Operacje</th>
+                                </tr>
+                                </thead>
+                                <c:if test="${!empty requestScope.dietwithproducts5}">
+                                    <c:forEach items="${requestScope.dietwithproducts5}" var="produktyzdiet">
+                                        <tr>
+                                            <td>
+                                                <p class="product_id" style="display:none;">${produktyzdiet.product_id}</p>
+                                                <p class="poradnia" style="display: none">${produktyzdiet.poradnia}</p>
+                                                <p class="product_name">${produktyzdiet.name}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_calorie">${produktyzdiet.calorie}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_bialko">${produktyzdiet.bialko}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_weglowodany">${produktyzdiet.weglowodany}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_tluszcz">${produktyzdiet.tluszcz}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_kwasy_tluszczowe">${produktyzdiet.kwasy_tluszczowe}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_blonnik">${produktyzdiet.blonnik}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_sol">${produktyzdiet.sol}</p>
+                                            </td>
+                                            <td>
+                                                <p class="product_cukry">${produktyzdiet.cukry}</p>
+                                            </td>
+                                            <td class="text-center m-0">
+                                                <button class="delete-expense-list btn btn-outline-danger" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#deleteExpenseListConfirmationModal"
+                                                        id="deleteExpenseListButton">
                                                             <span class="input-group-text text-danger w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                                             </span>
-                                                    </button>
-                                                </td>
-                                                <td class="text-center m-0">
-                                                    <button class="modify-expense-list btn btn-outline-dark" type="button"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modifyExpenseListConfirmationModal"
-                                                            id="modifyExpenseListButton5">
+                                                </button>
+                                            </td>
+                                            <td class="text-center m-0">
+                                                <button class="modify-expense-list btn btn-outline-dark" type="button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#modifyExpenseListConfirmationModal"
+                                                        id="modifyExpenseListButton">
                                                             <span class="input-group-text text-dark w-50 justify-content-center mx-auto">
                                                                 <i class="fa fa-pen-to-square" aria-hidden="true"></i>
                                                             </span>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </c:if>
-                                    <c:if test="${empty requestScope.dietwithproducts5}">
-                                        <tr>
-                                            <td colspan="5" style="text-align: center;">
-                                                Nie dodałeś jeszcze żadnych produktów.
+                                                </button>
                                             </td>
                                         </tr>
-                                    </c:if>
-                                </table>
-                            </div>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${empty requestScope.dietwithproducts5}">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center;">
+                                            Nie dodałeś jeszcze żadnych produktów.
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </table>
                         </div>
                     </div>
                 </div>
-
             <div class="col-2">
                 <button class="btn btn-primary mb-5 mt-5" style="width: 100%; margin-right: 20px;" >
                     <span class="fw-light fs-8">Wszystkie kalorie:${requestScope.liczbacalorie}</span>
@@ -559,21 +662,29 @@
                         <label class="fw-bold mt-2 mb-1" for="modifiedproductName">Nazwa produktu</label><br>
                         <input type="text" name="name" id="modifiedproductName"/><br>
                         <label class="fw-bold mt-2 mb-1" for="modifiedcalorie">Liczba kalorii</label><br>
-                        <input type="text" name="calorie" id="modifiedcalorie"/><br>
+                        <input type="number" step="1" min="0" name="calorie" id="modifiedcalorie"/><br>
+                        <label class="fw-bold mt-2 mb-1" for="modifiedpora_dnia">Pora dnia</label><br>
+                        <select name="poradnia" id="modifiedpora_dnia">
+                            <option value="1">Śniadanie</option>
+                            <option value="2">Przekąska</option>
+                            <option value="3">Obiad</option>
+                            <option value="4">Podwieczorek</option>
+                            <option value="5">Kolacja</option>
+                        </select><br>
                         <label class="fw-bold mt-2 mb-1" for="modifiedbialko">Liczba bialka</label><br>
-                        <input type="text" name="bialko" id="modifiedbialko"/><br>
+                        <input type="number" step="0.01" min="0" name="bialko" id="modifiedbialko"/><br>
                         <label class="fw-bold mt-2 mb-1" for="modifiedweglowodany">Liczba weglowodanów</label><br>
-                        <input type="text" name="weglowodany" id="modifiedweglowodany"/><br>
+                        <input type="number" step="0.01" min="0" name="weglowodany" id="modifiedweglowodany"/><br>
                         <label class="fw-bold mt-2 mb-1" for="modifiedtluszcz">Liczba tłuszczów</label><br>
-                        <input type="text" name="tluszcz" id="modifiedtluszcz"/><br>
+                        <input type="number" step="0.01" min="0" name="tluszcz" id="modifiedtluszcz"/><br>
                         <label class="fw-bold mt-2 mb-1" for="modifiedkwasy_tluszczowe">Liczba kwasów tłuszczowych</label><br>
-                        <input type="text" name="kwasy_tluszczowe" id="modifiedkwasy_tluszczowe"/><br>
+                        <input type="number" step="0.01" min="0" name="kwasy_tluszczowe" id="modifiedkwasy_tluszczowe"/><br>
                         <label class="fw-bold mt-2 mb-1" for="modifiedblonnik">Liczba błonnika</label><br>
-                        <input type="text" name="blonnik" id="modifiedblonnik"/><br>
+                        <input type="number" step="0.01" min="0" name="blonnik" id="modifiedblonnik"/><br>
                         <label class="fw-bold mt-2 mb-1" for="modifiedsol">Liczba soli</label><br>
-                        <input type="text" name="sol" id="modifiedsol"/><br>
+                        <input type="number" step="0.01" min="0" name="sol" id="modifiedsol"/><br>
                         <label class="fw-bold mt-2 mb-1" for="modifiedcukry">Liczba cukru</label><br>
-                        <input type="text" name="cukry" id="modifiedcukry"/><br>
+                        <input type="number" step="0.01" min="0" name="cukry" id="modifiedcukry"/><br>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -618,6 +729,7 @@
             let productName = $(this).parent().parent().find('.product_name').text();
             let product_id = $(this).parent().parent().find('.product_id').text();
             let productcalorie=  $(this).parent().parent().find('.product_calorie').text();
+            let productpora_dnia =  $(this).parent().parent().find('.poradnia').text();
             let productbialko=  $(this).parent().parent().find('.product_bialko').text();
             let productweglowodany=  $(this).parent().parent().find('.product_weglowodany').text();
             let producttluszcz=  $(this).parent().parent().find('.product_tluszcz').text();
@@ -630,6 +742,7 @@
             $("#modifiedproductName").val(productName);
             $("#modifiedcalorie").val(productcalorie);
             $("#modifiedbialko").val(productbialko);
+            $("#modifiedpora_dnia").val(productpora_dnia);
             $("#modifiedweglowodany").val(productweglowodany);
             $("#modifiedtluszcz").val(producttluszcz);
             $("#modifiedkwasy_tluszczowe").val(productkwasy_tluszczowe);

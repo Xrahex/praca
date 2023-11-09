@@ -302,20 +302,21 @@ public class DietModel {
         return true;
     }
 
-    public boolean updateproductbyid(int product_id,String product_name, int calorie, BigDecimal bialko, BigDecimal weglowodany, BigDecimal tluszcz, BigDecimal kwasy_tluszczowe, BigDecimal blonnik, BigDecimal sol, BigDecimal cukry) {
+    public boolean updateproductbyid(int product_id,String product_name, int calorie, int poradnia, BigDecimal bialko, BigDecimal weglowodany, BigDecimal tluszcz, BigDecimal kwasy_tluszczowe, BigDecimal blonnik, BigDecimal sol, BigDecimal cukry) {
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE products SET product_name=?, calorie=? , bialko=?, weglowodany=?, tluszcz=?, kwasy_tluszczowe=?, blonnik=?, sol=?, cukry=? WHERE (product_id=?)");
+            PreparedStatement preparedStatement = connect.prepareStatement("UPDATE products SET product_name=?, calorie=?, pora_dnia=? , bialko=?, weglowodany=?, tluszcz=?, kwasy_tluszczowe=?, blonnik=?, sol=?, cukry=? WHERE (product_id=?)");
             preparedStatement.setString(1, product_name);
             preparedStatement.setInt(2, calorie);
-            preparedStatement.setBigDecimal(3,bialko);
-            preparedStatement.setBigDecimal(4,weglowodany);
-            preparedStatement.setBigDecimal(5,tluszcz);
-            preparedStatement.setBigDecimal(6,kwasy_tluszczowe);
-            preparedStatement.setBigDecimal(7,blonnik);
-            preparedStatement.setBigDecimal(8,sol);
-            preparedStatement.setBigDecimal(9,cukry);
-            preparedStatement.setInt(10, product_id);
+            preparedStatement.setInt(3,poradnia);
+            preparedStatement.setBigDecimal(4,bialko);
+            preparedStatement.setBigDecimal(5,weglowodany);
+            preparedStatement.setBigDecimal(6,tluszcz);
+            preparedStatement.setBigDecimal(7,kwasy_tluszczowe);
+            preparedStatement.setBigDecimal(8,blonnik);
+            preparedStatement.setBigDecimal(9,sol);
+            preparedStatement.setBigDecimal(10,cukry);
+            preparedStatement.setInt(11, product_id);
             preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();

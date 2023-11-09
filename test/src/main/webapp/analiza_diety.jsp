@@ -45,10 +45,12 @@
                     function changeContent() {
                         var selectedOption = document.getElementById("dieta_analiza").value;
                         var dynamicznaTresc = document.getElementById("dynamiczna-tresc");
-
-                        window.location.replace("analizadiety?m="+selectedOption+"&dietlist="+"${requestScope.showalldiets[wychodze].diet_list_id}"+"&diet_calorie="+${requestScope.showalldiets[wychodze].calorie});
-                        <c:set var="list_id" value="${requestScope.showalldiets[wychodze].diet_list_id}"></c:set>
                         dynamicznaTresc.innerHTML = "<p>Hej${wychodze} ${requestScope.showalldiets[wychodze].diet_list_id}</p>";
+
+                        var list_id = "${requestScope.showalldiets[wychodze].diet_list_id}";
+                        var calorie = ${requestScope.showalldiets[wychodze].calorie};
+
+                        window.location.replace("analizadiety?m=" + selectedOption + "&dietlist=" + list_id + "&diet_calorie=" + calorie);
                     }
                 </script>
                 <div class="col-12 d-flex align-items-center mb-3">
@@ -317,29 +319,51 @@
 
         chart.draw(data, options);
     }
-    function drawsol() {
-        <c:if test="${!empty profil && profil.plec =='kobieta'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość soli',     ${requestScope.showalldiets[wychodze].sol}],
-            ['Brakująca ilość soli',    6- ${requestScope.showalldiets[wychodze].sol} ]
-        ]);
-        </c:if>
-        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
-        var wynik=0;
-        if (6- ${requestScope.showalldiets[wychodze].sol} > 0) {
-            wynik = 6- ${requestScope.showalldiets[wychodze].sol};
-        }
-        else {
-            wynik = 0;
-        }
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość soli',     ${requestScope.showalldiets[wychodze].sol}],
-            ['Brakująca ilość soli',   wynik ]
+    <%--function drawsol() {--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='kobieta'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość soli',     ${requestScope.showalldiets[wychodze].sol}],--%>
+    <%--        ['Brakująca ilość soli',    6- ${requestScope.showalldiets[wychodze].sol} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='mezczyzna'}">--%>
+    <%--    var wynik=0;--%>
+    <%--    if (6- ${requestScope.showalldiets[wychodze].sol} > 0) {--%>
+    <%--        wynik = 6- ${requestScope.showalldiets[wychodze].sol};--%>
+    <%--    }--%>
+    <%--    else {--%>
+    <%--        wynik = 0;--%>
+    <%--    }--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość soli',     ${requestScope.showalldiets[wychodze].sol}],--%>
+    <%--        ['Brakująca ilość soli',   wynik ]--%>
 
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    var options = {--%>
+    <%--        title: 'Wskazane dzienne spożycie soli',--%>
+    <%--        is3D: true,--%>
+    <%--        backgroundColor: 'transparent',--%>
+    <%--    };--%>
+
+    <%--    var chart = new google.visualization.PieChart(document.getElementById('piechart7'));--%>
+
+    <%--    chart.draw(data, options);--%>
+    <%--}--%>
+    function drawsol() {
+        var currentSodium = ${requestScope.showalldiets[wychodze].sol};
+        var difference = 6 - currentSodium;
+
+        difference = difference < 0 ? 0 : difference;
+
+        var data = google.visualization.arrayToDataTable([
+            ['Skład diety', 'Ze względu na składniki'],
+            ['Aktualna ilość soli', currentSodium],
+            ['Brakująca ilość soli', difference ]
         ]);
-        </c:if>
+
         var options = {
             title: 'Wskazane dzienne spożycie soli',
             is3D: true,
