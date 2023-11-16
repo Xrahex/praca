@@ -26,7 +26,7 @@
     <title>Lista diet</title>
 </head>
 <body>
-<div class="d-flex" id="wrapper">
+<div class="d-flex" id="wrapper" style="overflow: hidden;">
     <!-- Sidebar -->
     <jsp:include page="sidebar.jsp"></jsp:include>
     <div class="container-fluid d-inline m-0 p-0">
@@ -53,13 +53,13 @@
                         window.location.replace("analizadiety?m=" + selectedOption + "&dietlist=" + list_id + "&diet_calorie=" + calorie);
                     }
                 </script>
-                <div class="col-12 d-flex align-items-center mb-3">
+                <div class="col-12 d-flex justify-content-center align-items-center mb-3">
                     <a href="proponowane_produkty?list_id=${dietyy_id}&calorie=${diet_calorie}">
-                        <button class="w-100 btn btn-success btn-lg" type="submit" href="proponowane_p" style="transform: scale(0.8)">Sprawdź produkty uzupełniające</button>
+                        <button class="w-100 btn btn-outline-success btn-lg" type="submit" href="proponowane_p" style="transform: scale(0.8)">Sprawdź produkty uzupełniające</button>
                     </a>
                 </div>
+                <hr>
             </div>
-            <hr>
         </div>
     <c:set var="id_opcji" value="${0}"></c:set>
     <c:set var="test1" value="${0}"></c:set>
@@ -76,7 +76,7 @@
             </select>
     </div>
     </c:if>
-    <div id="dynamiczna-tresc" class="row align-content-center justify-content-center">
+    <div id="dynamiczna-tresc" class="row">
 <%--        <div class="col-12">--%>
 <%--            <div id="piechart9" style="width: 800px; height: 500px;"></div>--%>
 <%--        </div>--%>

@@ -23,7 +23,7 @@ public class change_personals extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServerException, IOException, ServletException {
-        HttpSession session = req.getSession(true);
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("email");
         String imie = req.getParameter("firstName");
         String nazwisko = req.getParameter("lastName");

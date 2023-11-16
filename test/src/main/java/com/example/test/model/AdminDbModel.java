@@ -36,6 +36,9 @@ public class AdminDbModel {
         catch (Exception e) {
             e.printStackTrace();
         }
+        finally {
+            dbConnection.closeConnection();
+        }
         return allusers;
     }
 

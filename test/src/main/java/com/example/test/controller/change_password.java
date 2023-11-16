@@ -20,7 +20,7 @@ public class change_password extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServerException, IOException, ServletException {
         String password = req.getParameter("password");
         String password2= req.getParameter("password2");
-        HttpSession session = req.getSession(true);
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("email");
         System.out.println(password);
         System.out.println(password2);

@@ -20,7 +20,7 @@ public class saved_diet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServerException, IOException, ServletException {
-        HttpSession session = req.getSession(true);
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("email");
         int id_user = user.getId();
         List<DietList> saved_diets = new DietModel().saved_diets(id_user);

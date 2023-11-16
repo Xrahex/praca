@@ -18,7 +18,7 @@ public class modifyuser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = req.getSession(true);
+        HttpSession session = req.getSession(false);
         User user =  (User) session.getAttribute("email");
         if(user == null) {
             response.sendRedirect("/signin.jsp");

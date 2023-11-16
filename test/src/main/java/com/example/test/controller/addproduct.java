@@ -23,11 +23,6 @@ public class addproduct extends HttpServlet {
         product.setName(name);
         product.setCalorie(calorie);
         product.setBialko(bialko);
-        if(new DietModel().addProduct(product)) {
-            System.out.println("hej");
-        }
-        else {
-            System.out.println("działa");
-        }
+        new DietModel().addProduct(product);
     }
 }

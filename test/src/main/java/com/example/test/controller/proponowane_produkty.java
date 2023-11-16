@@ -20,7 +20,7 @@ import java.util.List;
 public class proponowane_produkty extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServerException, IOException, ServletException {
-        HttpSession session = req.getSession(true);
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("email");
         int id_diet = Integer.parseInt(req.getParameter("list_id"));
         double calorie = Double.parseDouble(req.getParameter("calorie"));

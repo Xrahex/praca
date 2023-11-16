@@ -157,7 +157,13 @@ public class UserDbModel {
         List<DietList> diets = new ArrayList<>();
         try {
             connect = dbConnection.openConnection();
-            PreparedStatement preparedStatement = connect.prepareStatement("Select * from diets where calories BETWEEN ? AND ? AND czas_przygotowania =? AND "+name+"<>1  order by calories DESC LIMIT 3;");
+            PreparedStatement preparedStatement;
+            if(name!=null) {
+                preparedStatement = connect.prepareStatement("Select * from diets where calories BETWEEN ? AND ? AND czas_przygotowania =? AND " + name + "<>1  order by calories DESC LIMIT 3;");
+            }
+            else {
+                 preparedStatement = connect.prepareStatement("Select * from diets where calories BETWEEN ? AND ? AND czas_przygotowania =? order by calories DESC LIMIT 3;");
+            }
             preparedStatement.setDouble(1, CPM1);
             preparedStatement.setDouble(2, CPM2);
             preparedStatement.setInt(3,czas_przygotwania);

@@ -25,7 +25,7 @@ public class productdetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = req.getSession(true);
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("email");
         if(user == null) {
             response.sendRedirect(req.getContextPath() + "/signin.jsp");
@@ -88,7 +88,6 @@ public class productdetails extends HttpServlet {
         catch (NumberFormatException e) {
             req.setAttribute("dietlist",null);
         }
-
 
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/diet_details2.jsp");
         dispatcher.forward(req,response);

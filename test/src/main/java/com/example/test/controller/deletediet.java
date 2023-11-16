@@ -17,7 +17,7 @@ public class deletediet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse response) throws IOException {
 
-        HttpSession session = req.getSession(true);
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("email");
         String admin = req.getParameter("admindelete");
         if( user == null) {

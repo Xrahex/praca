@@ -31,6 +31,9 @@ public class DietModel {
             dbConnection.closeConnection();
             e.printStackTrace();
         }
+        finally {
+            dbConnection.closeConnection();
+        }
         return false;
     }
 
@@ -75,6 +78,9 @@ public class DietModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            dbConnection.closeConnection();
+        }
         return wszystkiediety;
     }
 
@@ -102,6 +108,9 @@ public class DietModel {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally {
+            dbConnection.closeConnection();
         }
         return wszystkiediety;
     }
@@ -194,6 +203,9 @@ public class DietModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            dbConnection.closeConnection();
+        }
     return  produkty;
     }
 
@@ -225,6 +237,9 @@ public class DietModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            dbConnection.closeConnection();
+        }
         return  produkty;
     }
 
@@ -251,6 +266,9 @@ public class DietModel {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally {
+            dbConnection.closeConnection();
         }
         return  product;
     }
@@ -283,7 +301,9 @@ public class DietModel {
             e.printStackTrace();
             return false;
         }
-        dbConnection.closeConnection();
+        finally {
+            dbConnection.closeConnection();
+        }
         return true;
     }
 
@@ -442,6 +462,9 @@ public class DietModel {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally {
+            dbConnection.closeConnection();
         }
         return zapisanediety;
     }
