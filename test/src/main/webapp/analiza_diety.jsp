@@ -77,32 +77,14 @@
     </div>
     </c:if>
     <div id="dynamiczna-tresc" class="row">
-<%--        <div class="col-12">--%>
-<%--            <div id="piechart9" style="width: 800px; height: 500px;"></div>--%>
-<%--        </div>--%>
         <div class="col-6">
             <div id="piechart" style="width: 800px; height: 500px;"></div>
         </div>
         <div class="col-6">
-            <div id="piechart2" style="width: 800px; height: 500px;"></div>
+            <div id="piechart9" style="width: 800px; height: 500px;"></div>
         </div>
-        <div class="col-6">
-            <div id="piechart3" style="width: 800px; height: 500px;"></div>
-        </div>
-        <div class="col-6">
-            <div id="piechart4" style="width: 800px; height: 500px;"></div>
-        </div>
-        <div class="col-6">
-            <div id="piechart5" style="width: 800px; height: 500px;"></div>
-        </div>
-        <div class="col-6">
-            <div id="piechart6" style="width: 800px; height: 500px;"></div>
-        </div>
-        <div class="col-6">
-            <div id="piechart7" style="width: 800px; height: 500px;"></div>
-        </div>
-        <div class="col-6">
-        <div id="piechart8" style="width: 800px; height: 500px;"></div>
+        <div class="col-12 justify-content-center align-items-center">
+            <div id="roznice" style="width: 100%; height: 700px;"></div>
         </div>
     </div>
     </div>
@@ -116,13 +98,8 @@
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
     google.charts.setOnLoadCallback(drawcalorie);
-    google.charts.setOnLoadCallback(drawbialko);
-    google.charts.setOnLoadCallback(drawbweglowodany);
-    google.charts.setOnLoadCallback(drawtluszcz);
-    google.charts.setOnLoadCallback(drawkwasytluszczowe);
-    google.charts.setOnLoadCallback(drawblonnik);
-    google.charts.setOnLoadCallback(drawsol);
-    google.charts.setOnLoadCallback(drawcukry);
+    google.charts.load('current', {'packages':['bar']});
+    google.charts.setOnLoadCallback(drawroznice);
 
     function drawChart() {
 
@@ -154,7 +131,7 @@
         var data = google.visualization.arrayToDataTable([
             ['Skład diety', 'Ze względu na składniki'],
             ['Kalorie w diecie',     ${requestScope.showalldiets[wychodze].calorie}],
-            ['Brakujące kalorie',  ${requestScope.profile[wychodze].CPM}]
+            ['Brakujące kalorie',  ${profil.CPM}]
         ]);
 
         var options = {
@@ -169,156 +146,195 @@
         chart.draw(data, options);
 
     }
-    function drawbialko() {
-        <c:if test="${!empty profil && profil.plec =='kobieta'}">
+
+    function drawroznice() {
+    <c:if test="${!empty profil && profil.plec =='kobieta'}">
         var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],
-            ['Brakująca ilość białka',    50- ${requestScope.showalldiets[wychodze].bialko} ]
+            ['Składnik odżywczy', 'Wskazane Dzienne Spożycie', 'Ilość składnika w diecie', 'Różnica'],
+            ['Białko', 50,  ${requestScope.showalldiets[wychodze].bialko}, 50- ${requestScope.showalldiets[wychodze].bialko}],
+            ['Węglowodany', 270, ${requestScope.showalldiets[wychodze].weglowodany}, 270-${requestScope.showalldiets[wychodze].weglowodany}],
+            ['Tłuszcz', 70, ${requestScope.showalldiets[wychodze].tluszcz}, 70-${requestScope.showalldiets[wychodze].tluszcz}],
+            ['Kwasy tłuszczowe nasycone', 20,  ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}, 20- ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],
+            ['Błonnik',25 , ${requestScope.showalldiets[wychodze].blonnik} ,25-  ${requestScope.showalldiets[wychodze].blonnik}],
+            ['Sól',6 ,${requestScope.showalldiets[wychodze].sol},6-${requestScope.showalldiets[wychodze].sol}],
+            ['Cukry',90 ,${requestScope.showalldiets[wychodze].cukry},90 -${requestScope.showalldiets[wychodze].cukry}]
         ]);
-        </c:if>
-        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
+    </c:if>
+    <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
         var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],
-            ['Brakująca ilość białka',    60- ${requestScope.showalldiets[wychodze].bialko} ]
+            ['Składnik odżywczy', 'Wskazane Dzienne Spożycie', 'Ilość składnika w diecie', 'Różnica'],
+            ['Białko', 60,  ${requestScope.showalldiets[wychodze].bialko}, 60- ${requestScope.showalldiets[wychodze].bialko}],
+            ['Węglowodany', 340, ${requestScope.showalldiets[wychodze].weglowodany}, 340-${requestScope.showalldiets[wychodze].weglowodany}],
+            ['Tłuszcz', 80, ${requestScope.showalldiets[wychodze].tluszcz}, 80-${requestScope.showalldiets[wychodze].tluszcz}],
+            ['Kwasy tłuszczowe nasycone', 30,  ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}, 30- ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],
+            ['Błonnik',25 , ${requestScope.showalldiets[wychodze].blonnik} ,25-  ${requestScope.showalldiets[wychodze].blonnik}],
+            ['Sól',6 ,${requestScope.showalldiets[wychodze].sol},6-${requestScope.showalldiets[wychodze].sol}],
+            ['Cukry',110 ,${requestScope.showalldiets[wychodze].cukry},110 -${requestScope.showalldiets[wychodze].cukry}]
         ]);
-        </c:if>
+    </c:if>
         var options = {
-            title: 'Wskazane dzienne spożycie białka',
-            is3D: true,
-            backgroundColor: 'transparent',
+            chart: {
+                title: 'Wskazane Dzienne Spożycie',
+                subtitle: 'W zależności od danego składnika odżywczego',
+            }
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+        var chart = new google.charts.Bar(document.getElementById('roznice'));
 
-        chart.draw(data, options);
+        chart.draw(data, google.charts.Bar.convertOptions(options));
     }
-    function drawbialko() {
-        <c:if test="${!empty profil && profil.plec =='kobieta'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],
-            ['Brakująca ilość białka',    50- ${requestScope.showalldiets[wychodze].bialko} ]
-        ]);
-        </c:if>
-        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
-            var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],
-            ['Brakująca ilość białka',    60- ${requestScope.showalldiets[wychodze].bialko} ]
-            ]);
-        </c:if>
-        var options = {
-            title: 'Wskazane dzienne spożycie białka',
-            is3D: true,
-            backgroundColor: 'transparent',
-        };
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
 
-        chart.draw(data, options);
-    }
-    function drawbweglowodany() {
-        <c:if test="${!empty profil && profil.plec =='kobieta'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość węglowodanów',     ${requestScope.showalldiets[wychodze].weglowodany}],
-            ['Brakująca ilość węglowodanów',    270- ${requestScope.showalldiets[wychodze].weglowodany} ]
-        ]);
-        </c:if>
-        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość węglowodanów',     ${requestScope.showalldiets[wychodze].weglowodany}],
-            ['Brakująca ilość węglowodanów',    340- ${requestScope.showalldiets[wychodze].weglowodany} ]
-        ]);
-        </c:if>
-        var options = {
-            title: 'Wskazane dzienne spożycie węglowodanów',
-            is3D: true,
-            backgroundColor: 'transparent',
-        };
+    <%--function drawbialko() {--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='kobieta'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],--%>
+    <%--        ['Brakująca ilość białka',    50- ${requestScope.showalldiets[wychodze].bialko} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='mezczyzna'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],--%>
+    <%--        ['Brakująca ilość białka',    60- ${requestScope.showalldiets[wychodze].bialko} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    var options = {--%>
+    <%--        title: 'Wskazane dzienne spożycie białka',--%>
+    <%--        is3D: true,--%>
+    <%--        backgroundColor: 'transparent',--%>
+    <%--    };--%>
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart3'));
+    <%--    var chart = new google.visualization.PieChart(document.getElementById('piechart2'));--%>
 
-        chart.draw(data, options);
-    }
-    function drawtluszcz() {
-        <c:if test="${!empty profil && profil.plec =='kobieta'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość tłuszczu',     ${requestScope.showalldiets[wychodze].tluszcz}],
-            ['Brakująca ilość tłuszczu',    70- ${requestScope.showalldiets[wychodze].tluszcz} ]
-        ]);
-        </c:if>
-        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość tłuszczu',     ${requestScope.showalldiets[wychodze].tluszcz}],
-            ['Brakująca ilość tłuszczu',   80- ${requestScope.showalldiets[wychodze].tluszcz} ]
-        ]);
-        </c:if>
-        var options = {
-            title: 'Wskazane dzienne spożycie tłuszczu',
-            is3D: true,
-            backgroundColor: 'transparent',
-        };
+    <%--    chart.draw(data, options);--%>
+    <%--}--%>
+    <%--function drawbialko() {--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='kobieta'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],--%>
+    <%--        ['Brakująca ilość białka',    50- ${requestScope.showalldiets[wychodze].bialko} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='mezczyzna'}">--%>
+    <%--        var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość białka',     ${requestScope.showalldiets[wychodze].bialko}],--%>
+    <%--        ['Brakująca ilość białka',    60- ${requestScope.showalldiets[wychodze].bialko} ]--%>
+    <%--        ]);--%>
+    <%--    </c:if>--%>
+    <%--    var options = {--%>
+    <%--        title: 'Wskazane dzienne spożycie białka',--%>
+    <%--        is3D: true,--%>
+    <%--        backgroundColor: 'transparent',--%>
+    <%--    };--%>
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart4'));
+    <%--    var chart = new google.visualization.PieChart(document.getElementById('piechart2'));--%>
 
-        chart.draw(data, options);
-    }
-    function drawkwasytluszczowe() {
-        <c:if test="${!empty profil && profil.plec =='kobieta'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość kwasów tłuszczowych',     ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],
-            ['Brakująca ilość kwasów tłuszczowych',    20- ${requestScope.showalldiets[wychodze].kwasy_tluszczowe} ]
-        ]);
-        </c:if>
-        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość kwasów tłuszczowych',     ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],
-            ['Brakująca ilość kwasów tłuszczowych',    30- ${requestScope.showalldiets[wychodze].kwasy_tluszczowe} ]
-        ]);
-        </c:if>
-        var options = {
-            title: 'Wskazane dzienne spożycie kwasów tłuszczowych',
-            is3D: true,
-            backgroundColor: 'transparent',
-        };
+    <%--    chart.draw(data, options);--%>
+    <%--}--%>
+    <%--function drawbweglowodany() {--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='kobieta'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość węglowodanów',     ${requestScope.showalldiets[wychodze].weglowodany}],--%>
+    <%--        ['Brakująca ilość węglowodanów',    270- ${requestScope.showalldiets[wychodze].weglowodany} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='mezczyzna'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość węglowodanów',     ${requestScope.showalldiets[wychodze].weglowodany}],--%>
+    <%--        ['Brakująca ilość węglowodanów',    340- ${requestScope.showalldiets[wychodze].weglowodany} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    var options = {--%>
+    <%--        title: 'Wskazane dzienne spożycie węglowodanów',--%>
+    <%--        is3D: true,--%>
+    <%--        backgroundColor: 'transparent',--%>
+    <%--    };--%>
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart5'));
+    <%--    var chart = new google.visualization.PieChart(document.getElementById('piechart3'));--%>
 
-        chart.draw(data, options);
-    }
-    function drawblonnik() {
-        <c:if test="${!empty profil && profil.plec =='kobieta'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość błonnika',     ${requestScope.showalldiets[wychodze].blonnik}],
-            ['Brakująca ilość błonnika',    25- ${requestScope.showalldiets[wychodze].blonnik} ]
-        ]);
-        </c:if>
-        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość błonnika',     ${requestScope.showalldiets[wychodze].blonnik}],
-            ['Brakująca ilość błonnika',    25- ${requestScope.showalldiets[wychodze].blonnik} ]
-        ]);
-        </c:if>
-        var options = {
-            title: 'Wskazane dzienne spożycie błonnika',
-            is3D: true,
-            backgroundColor: 'transparent',
-        };
+    <%--    chart.draw(data, options);--%>
+    <%--}--%>
+    <%--function drawtluszcz() {--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='kobieta'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość tłuszczu',     ${requestScope.showalldiets[wychodze].tluszcz}],--%>
+    <%--        ['Brakująca ilość tłuszczu',    70- ${requestScope.showalldiets[wychodze].tluszcz} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='mezczyzna'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość tłuszczu',     ${requestScope.showalldiets[wychodze].tluszcz}],--%>
+    <%--        ['Brakująca ilość tłuszczu',   80- ${requestScope.showalldiets[wychodze].tluszcz} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    var options = {--%>
+    <%--        title: 'Wskazane dzienne spożycie tłuszczu',--%>
+    <%--        is3D: true,--%>
+    <%--        backgroundColor: 'transparent',--%>
+    <%--    };--%>
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart6'));
+    <%--    var chart = new google.visualization.PieChart(document.getElementById('piechart4'));--%>
 
-        chart.draw(data, options);
-    }
+    <%--    chart.draw(data, options);--%>
+    <%--}--%>
+    <%--function drawkwasytluszczowe() {--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='kobieta'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość kwasów tłuszczowych',     ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],--%>
+    <%--        ['Brakująca ilość kwasów tłuszczowych',    20- ${requestScope.showalldiets[wychodze].kwasy_tluszczowe} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='mezczyzna'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość kwasów tłuszczowych',     ${requestScope.showalldiets[wychodze].kwasy_tluszczowe}],--%>
+    <%--        ['Brakująca ilość kwasów tłuszczowych',    30- ${requestScope.showalldiets[wychodze].kwasy_tluszczowe} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    var options = {--%>
+    <%--        title: 'Wskazane dzienne spożycie kwasów tłuszczowych',--%>
+    <%--        is3D: true,--%>
+    <%--        backgroundColor: 'transparent',--%>
+    <%--    };--%>
+
+    <%--    var chart = new google.visualization.PieChart(document.getElementById('piechart5'));--%>
+
+    <%--    chart.draw(data, options);--%>
+    <%--}--%>
+    <%--function drawblonnik() {--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='kobieta'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość błonnika',     ${requestScope.showalldiets[wychodze].blonnik}],--%>
+    <%--        ['Brakująca ilość błonnika',    25- ${requestScope.showalldiets[wychodze].blonnik} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='mezczyzna'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość błonnika',     ${requestScope.showalldiets[wychodze].blonnik}],--%>
+    <%--        ['Brakująca ilość błonnika',    25- ${requestScope.showalldiets[wychodze].blonnik} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    var options = {--%>
+    <%--        title: 'Wskazane dzienne spożycie błonnika',--%>
+    <%--        is3D: true,--%>
+    <%--        backgroundColor: 'transparent',--%>
+    <%--    };--%>
+
+    <%--    var chart = new google.visualization.PieChart(document.getElementById('piechart6'));--%>
+
+    <%--    chart.draw(data, options);--%>
+    <%--}--%>
     <%--function drawsol() {--%>
     <%--    <c:if test="${!empty profil && profil.plec =='kobieta'}">--%>
     <%--    var data = google.visualization.arrayToDataTable([--%>
@@ -352,53 +368,53 @@
 
     <%--    chart.draw(data, options);--%>
     <%--}--%>
-    function drawsol() {
-        var currentSodium = ${requestScope.showalldiets[wychodze].sol};
-        var difference = 6 - currentSodium;
+    <%--function drawsol() {--%>
+    <%--    var currentSodium = ${requestScope.showalldiets[wychodze].sol};--%>
+    <%--    var difference = 6 - currentSodium;--%>
 
-        difference = difference < 0 ? 0 : difference;
+    <%--    difference = difference < 0 ? 0 : difference;--%>
 
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość soli', currentSodium],
-            ['Brakująca ilość soli', difference ]
-        ]);
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość soli', currentSodium],--%>
+    <%--        ['Brakująca ilość soli', difference ]--%>
+    <%--    ]);--%>
 
-        var options = {
-            title: 'Wskazane dzienne spożycie soli',
-            is3D: true,
-            backgroundColor: 'transparent',
-        };
+    <%--    var options = {--%>
+    <%--        title: 'Wskazane dzienne spożycie soli',--%>
+    <%--        is3D: true,--%>
+    <%--        backgroundColor: 'transparent',--%>
+    <%--    };--%>
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart7'));
+    <%--    var chart = new google.visualization.PieChart(document.getElementById('piechart7'));--%>
 
-        chart.draw(data, options);
-    }
-    function drawcukry() {
-        <c:if test="${!empty profil && profil.plec =='kobieta'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość cukru',     ${requestScope.showalldiets[wychodze].cukry}],
-            ['Brakująca ilość cukru',    90- ${requestScope.showalldiets[wychodze].cukry} ]
-        ]);
-        </c:if>
-        <c:if test="${!empty profil && profil.plec =='mezczyzna'}">
-        var data = google.visualization.arrayToDataTable([
-            ['Skład diety', 'Ze względu na składniki'],
-            ['Aktualna ilość cukru',     ${requestScope.showalldiets[wychodze].cukry}],
-            ['Brakująca ilość cukru',    110- ${requestScope.showalldiets[wychodze].cukry} ]
-        ]);
-        </c:if>
-        var options = {
-            title: 'Wskazane dzienne spożycie cukru',
-            is3D: true,
-            backgroundColor: 'transparent',
-        };
+    <%--    chart.draw(data, options);--%>
+    <%--}--%>
+    <%--function drawcukry() {--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='kobieta'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość cukru',     ${requestScope.showalldiets[wychodze].cukry}],--%>
+    <%--        ['Brakująca ilość cukru',    90- ${requestScope.showalldiets[wychodze].cukry} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    <c:if test="${!empty profil && profil.plec =='mezczyzna'}">--%>
+    <%--    var data = google.visualization.arrayToDataTable([--%>
+    <%--        ['Skład diety', 'Ze względu na składniki'],--%>
+    <%--        ['Aktualna ilość cukru',     ${requestScope.showalldiets[wychodze].cukry}],--%>
+    <%--        ['Brakująca ilość cukru',    110- ${requestScope.showalldiets[wychodze].cukry} ]--%>
+    <%--    ]);--%>
+    <%--    </c:if>--%>
+    <%--    var options = {--%>
+    <%--        title: 'Wskazane dzienne spożycie cukru',--%>
+    <%--        is3D: true,--%>
+    <%--        backgroundColor: 'transparent',--%>
+    <%--    };--%>
 
-        var chart = new google.visualization.PieChart(document.getElementById('piechart8'));
+    <%--    var chart = new google.visualization.PieChart(document.getElementById('piechart8'));--%>
 
-        chart.draw(data, options);
-    }
+    <%--    chart.draw(data, options);--%>
+    <%--}--%>
     </script>
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

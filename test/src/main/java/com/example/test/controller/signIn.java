@@ -21,12 +21,12 @@ public class signIn extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
         User user = new UserDbModel().signIn(email,password);
-        Profile profile = new UserDbModel().select_profile(user);
         if(user ==  null) {
             req.setAttribute("status", 1);
-            getServletContext().getRequestDispatcher("/signin.jsp").forward(req,response);
+            getServletContext().getRequestDispatcher("/logowanie.jsp").forward(req,response);
         }
         else {
+            Profile profile = new UserDbModel().select_profile(user);
             HttpSession session = req.getSession(true);
             session.setAttribute("email",user);
             session.setAttribute("profil",profile);
