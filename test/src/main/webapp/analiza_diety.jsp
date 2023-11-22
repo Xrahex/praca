@@ -100,6 +100,7 @@
     google.charts.setOnLoadCallback(drawcalorie);
     google.charts.load('current', {'packages':['bar']});
     google.charts.setOnLoadCallback(drawroznice);
+    google.charts.setOnLoadCallback(drawcalorie2);
 
     function drawChart() {
 
@@ -131,7 +132,7 @@
         var data = google.visualization.arrayToDataTable([
             ['Skład diety', 'Ze względu na składniki'],
             ['Kalorie w diecie',     ${requestScope.showalldiets[wychodze].calorie}],
-            ['Brakujące kalorie',  ${profil.CPM}]
+            ['Twoje zapotrzebowanie',  ${profil.CPM}]
         ]);
 
         var options = {
@@ -145,6 +146,24 @@
 
         chart.draw(data, options);
 
+    }
+
+    function drawcalorie2() {
+        var data = google.visualization.arrayToDataTable([
+            ['Liczba kalorii', 'Odpowiednia liczba kalorii', 'Liczba kalorii w diecie', 'Różnica'],
+            ['Kalorie',  ${profil.CPM},  ${requestScope.showalldiets[wychodze].calorie},  ${profil.CPM}-${requestScope.showalldiets[wychodze].calorie}]
+        ]);
+
+        var options = {
+            chart: {
+                title: 'Liczba kalorii',
+                subtitle: 'Różnica między zapotrzebowaniem kalorycznym',
+            }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('caloriekolumna'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
     }
 
     function drawroznice() {

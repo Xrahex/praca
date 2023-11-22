@@ -16,7 +16,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 @WebFilter(filterName = "Login",
-        urlPatterns = {"/analizadiety"})
+        urlPatterns = {"/analizadiety","/adddietlist","/addproductproponowany","/addproductsnaidanie","/adminalldiets","/alldiets","/allusers","/asigndiet","/changepassword","/changepersonals","/deletedietlist","/deleteproduct","/deletesaveddiet",
+                "/deleteuser", "/modifydietlist", "/modifyproduct", "/modifyuser", "/dietlistdetails", "/proponowane_produkty", "/saveddiet"
+        })
 public class LoginControl implements Filter {
     public LoginControl() {}
     @Override

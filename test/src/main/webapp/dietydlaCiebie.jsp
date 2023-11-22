@@ -65,10 +65,9 @@
       </c:forEach>
     </c:if>
     <c:if test="${empty requestScope.dietydlaciebie}">
-      <c:out value="Test"></c:out>
       <tr>
         <td colspan="7" style="text-align: center;">
-          Nie utworzyłeś żadnej swojej diety.
+          Nie znaleziono diety dla Ciebie, sprawdź swoje odpowiedzi jeszcze raz.
         </td>
       </tr>
     </c:if>
